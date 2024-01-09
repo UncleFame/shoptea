@@ -22,7 +22,7 @@ const LandingPage = () => {
     <div className="relative bg-white w-full h-[932px] overflow-hidden text-center text-13xl text-gray-200 font-inter">
       <div className="absolute top-[348px] left-[41px] font-extrabold inline-block w-[348px] h-[61px]">{`MatCha&Tea`}</div>
       <div className="absolute top-[409px] left-[-25px] font-semibold text-material-theme-sys-light-primary inline-block w-[480px] h-[61px]">
-        เรานำชามาให้คุณนะkrubpomna
+        เรานำชามาให้คุณ
       </div>
       <img
         className="absolute top-[149px] left-[131px] w-[169px] h-[169px] overflow-hidden object-cover"
