@@ -4,8 +4,8 @@ import { createClient } from "@supabase/supabase-js";
 import {Auth} from "@supabase/auth-ui-react";
 import { useNavigate } from "react-router-dom";
 
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ5b2N5cHh5eXVoeGxmanBoZnRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDQyMTY3OTUsImV4cCI6MjAxOTc5Mjc5NX0.jeAGEHWFBb7DtIvYZBODXsl0IN0HibK_OUAllZlcaJ4';
-const SUPABASE_URL = 'https://vyocypxyyuhxlfjphftg.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRocHlkdXJld2VsZmxnanNjaHpiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDQ3OTMzODAsImV4cCI6MjAyMDM2OTM4MH0.rS-obZ5XFGz9DIPFF9B8buZnImFNAk2k239TQUaPD_8';
+const SUPABASE_URL = 'https://dhpydurewelflgjschzb.supabase.co';
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
