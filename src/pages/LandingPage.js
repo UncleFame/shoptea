@@ -30,8 +30,8 @@ const LandingPage = () => {
         src="/epicetea@2x.png"
       />
       <div className="absolute top-[0px] left-[-57px] w-[430px] h-[76px] text-base text-dimgray-200">
-        <div className="absolute top-[0px] left-[0px] bg-white box-border w-[430px] h-[76px] border-[1px] border-solid border-gray-300" />
-        <div className="absolute top-[43.9px] left-[calc(50% - 52px)] font-extrabold inline-block w-[103px] h-[11.8px]">
+        <div className="absolute top-[0px] left-[100px] bg-white box-border w-[350px] h-[76px] border-[1px] border-solid border-gray-300" />
+        <div className="absolute top-[43.9px] left-[calc(50% - 72px)] font-extrabold inline-block w-[110px] h-[11.8px]">
           Login
         </div>
       </div>
