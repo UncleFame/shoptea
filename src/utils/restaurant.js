@@ -1,14 +1,13 @@
 import { supabase } from "../pages/loginsystem";
 
 // upload image to the bucket for a restaurant
-export async function uploadRestaurantImage(event, restaurantName, filename){
+export async function uploadRestaurantImage(file, restaurantName, filename){
   try {
-    const file = event.target.files[0]
     // upload to the bucket
     const {error} = await supabase
     .storage
     .from("Shoplist")
-    .upload(`${restaurantName}/${filename}.png`, file, {
+    .upload(`restaurants/${restaurantName}/${filename}.png`, file, {
       cacheControl: '3600',
       upsert: false
     })
@@ -28,7 +27,7 @@ export async function uploadRestaurantSubImage(event, restaurantName, filename){
     const {error} = await supabase
     .storage
     .from("Shoplist")
-    .upload(`${restaurantName}/sub/${filename.png}`, file, {
+    .upload(`restaurants/${restaurantName}/sub/${filename.png}`, file, {
       cacheControl: '3600',
       upsert: false
     })

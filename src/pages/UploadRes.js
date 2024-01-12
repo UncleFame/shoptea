@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { uploadRestaurantImage } from "../utils/restaurant";
 
 const UploadRes = () => {
   const [rectangleInputValue, setRectangleInputValue] = useState("");
@@ -8,12 +9,28 @@ const UploadRes = () => {
   const [rectangleInput4Value, setRectangleInput4Value] = useState("");
   const [rectangleInput5Value, setRectangleInput5Value] = useState("");
   const [rectangleInput6Value, setRectangleInput6Value] = useState("");
+
+  const image = useRef(null);
+
+  async function handleUploadImage(){
+    try {
+      const fileLength = image.current.files.length
+      await uploadRestaurantImage(image.current.files[fileLength - 1], rectangleInputValue, 'mainzaza')
+      alert('Done uploading the image...')
+    } catch (error) {
+      alert(error.message)
+    }
+    
+  }
+
   return (
     <div className="relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-inter">
       <div className="absolute top-[174px] left-[105px] rounded-3xs bg-gainsboro w-[220px] h-[183px]" />
-      <img
+      <input
+        ref={image}
         className="absolute top-[252px] left-[202px] w-[26px] h-[26px] object-cover"
         alt=""
+        type="file"
         src="/group-10@2x.png"
       />
       <input
@@ -146,7 +163,7 @@ const UploadRes = () => {
         <div className="absolute top-[90px] left-[calc(50%_-_50px)] font-extrabold inline-block w-[103px] h-[18px]">
           สร้างรีวิวใหม่
         </div>
-        <button className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[90px] left-[calc(50%_+_162px)] text-base font-extrabold font-inter text-material-theme-sys-light-primary-fixed text-left inline-block w-[45px] h-[18px]">
+        <button onClick={handleUploadImage} className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[90px] left-[calc(50%_+_162px)] text-base font-extrabold font-inter text-material-theme-sys-light-primary-fixed text-left inline-block w-[45px] h-[18px]">
           สร้าง
         </button>
         <button className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[90px] left-[calc(50%_-_199px)] text-base font-extrabold font-inter text-material-theme-sys-dark-error-container text-left inline-block w-[45px] h-[18px]">

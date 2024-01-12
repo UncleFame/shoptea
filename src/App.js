@@ -6,7 +6,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import All from "./pages/All";
-import ResPreupload from "./pages/ResPreupload";
+import ResPreupload from "./pages/pages/ResPreupload";
 import UploadRes from "./pages/UploadRes";
 import LandingPage from "./pages/LandingPage";
 import Register from "./pages/Register";
