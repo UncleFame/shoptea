@@ -93,6 +93,8 @@ function App() {
     }
   }, [pathname]);
 
+  // return main page
+
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
