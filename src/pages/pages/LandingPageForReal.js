@@ -5,7 +5,7 @@ const LandingPageForReal = () => {
   const navigate = useNavigate();
 
   const onVectorSearchIcon1Click = useCallback(() => {
-    navigate("/All");
+    navigate("/");
   }, [navigate]);
 
   const onIconClick = useCallback(() => {

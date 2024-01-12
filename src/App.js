@@ -5,6 +5,9 @@ import {
   useNavigationType,
   useLocation,
 } from "react-router-dom";
+import All from "./pages/All";
+import ResPreupload from "./pages/ResPreupload";
+import UploadRes from "./pages/UploadRes";
 import LandingPage from "./pages/LandingPage";
 import Register from "./pages/Register";
 import LoginPage from "./pages/LoginPage";
@@ -31,6 +34,18 @@ function App() {
 
     switch (pathname) {
       case "/":
+        title = "";
+        metaDescription = "";
+        break;
+      case "/res-preupload":
+        title = "";
+        metaDescription = "";
+        break;
+      case "/upload-res":
+        title = "";
+        metaDescription = "";
+        break;
+      case "/landing-page":
         title = "";
         metaDescription = "";
         break;
@@ -70,7 +85,7 @@ function App() {
 
     if (metaDescription) {
       const metaDescriptionTag = document.querySelector(
-        'head > meta[name="description"]'
+        'head > meta[name="description"]',
       );
       if (metaDescriptionTag) {
         metaDescriptionTag.content = metaDescription;
@@ -81,6 +96,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
+      <Route path="/res-preupload" element={<ResPreupload />} />
+      <Route path="/upload-res" element={<UploadRes />} />
+      <Route path="/landing-page" element={<LandingPage />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login-page" element={<LoginPage />} />
       <Route path="/login-page1" element={<LoginPage1 />} />
@@ -88,6 +106,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/signin-page" element={<SigninPage />} />
       <Route path="/review" element={<Review />} />
+      <Route path="/All" element={<All />} />
     </Routes>
   );
 }
