@@ -10,20 +10,20 @@ const Register = () => {
 
   return (
     <div className="relative bg-white w-full h-[932px] overflow-hidden text-center text-lg text-black font-inter">
-      <div className="absolute top-[230px] left-[78px] shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] w-64 h-[37px]">
+      <div className="absolute top-[230px] left-[78px] shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] w-64 h-[37px] active:animate-[1s_ease_0s_infinite_normal_none_shadow-inset-center] active:opacity-[1]">
         <div className="absolute top-[0px] left-[0px] rounded-lg bg-white box-border w-64 h-[37px] border-[1px] border-solid border-gray-300" />
       </div>
-      <div className="absolute top-[316px] left-[78px] shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] w-64 h-[37px]">
+      <div className="absolute top-[316px] left-[78px] shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] w-64 h-[37px] active:animate-[1s_ease_0s_infinite_normal_none_shadow-inset-center] active:opacity-[1]">
         <div className="absolute top-[0px] left-[0px] rounded-lg bg-white box-border w-64 h-[37px] border-[1px] border-solid border-gray-300" />
       </div>
       <div className="absolute top-[466px] left-[149px] shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] w-[109px] h-[37px]">
         <div className="absolute top-[0px] left-[0px] rounded-lg bg-white w-[109px] h-[37px]" />
       </div>
       <div className="absolute top-[621px] left-[153px] w-px h-px overflow-hidden" />
-      <div className="absolute top-[237px] left-[105px] inline-block w-[196px] h-[33px]">
+      <div className="absolute top-[237px] left-[165px] inline-block w-[77px] h-[30px]">
         ร้านค้า
       </div>
-      <div className="absolute top-[321px] left-[80px] inline-block w-[250px] h-[34px]">
+      <div className="absolute top-[327px] left-[144px] inline-block w-[119px] h-[22px]">
         ผู้ใช้ทั่วไป
       </div>
       <div
