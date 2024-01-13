@@ -26,13 +26,25 @@ const UploadRes = () => {
   return (
     <div className="relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-inter">
       <div className="absolute top-[174px] left-[105px] rounded-3xs bg-gainsboro w-[220px] h-[183px]" />
-      <input
-        ref={image}
-        className="absolute top-[252px] left-[202px] w-[26px] h-[26px] object-cover"
-        alt=""
-        type="file"
-        src="/group-10@2x.png"
-      />
+      <div>
+  
+      <label htmlFor="fileInput" className="relative">
+  <img
+    className="absolute top-[252px] left-[202px] w-[26px] h-[26px] object-cover"
+    alt=""
+    src="/uploadbutton.png"
+  />
+  <input
+    id="fileInput"
+    ref={image}
+    className="absolute top-[252px] left-[202px] w-[26px] h-[26px] object-cover opacity-0 cursor-pointer"
+    alt=""
+    type="file"
+  />
+</label>
+
+</div>
+
       <input
         className="[outline:none] bg-white absolute top-[428px] left-[29px] rounded-8xs box-border w-[375px] h-6 border-[1px] border-solid border-gray-400"
         type="text"
