@@ -1,13 +1,21 @@
 import { useRef, useState } from "react";
 import { uploadRestaurantImage } from "../utils/restaurant";
+import { useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+
+
 
 const UploadRes = () => {
+  const navigate = useNavigate();
   const [rectangleInputValue, setRectangleInputValue] = useState("");
   const [rectangleInput1Value, setRectangleInput1Value] = useState("");
   const [rectangleInput2Value, setRectangleInput2Value] = useState("");
   const [rectangleInput3Value, setRectangleInput3Value] = useState("");
   const [rectangleInput4Value, setRectangleInput4Value] = useState("");
   const [rectangleInput5Value, setRectangleInput5Value] = useState("");
+  const Pushtolandingpage = useCallback(() => {
+    navigate("/res-preupload");
+  }, [navigate]);
   const [rectangleInput6Value, setRectangleInput6Value] = useState("");
 
   const image = useRef(null);
@@ -178,8 +186,8 @@ const UploadRes = () => {
         <button onClick={handleUploadImage} className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[90px] left-[calc(50%_+_162px)] text-base font-extrabold font-inter text-material-theme-sys-light-primary-fixed text-left inline-block w-[45px] h-[18px]">
           สร้าง
         </button>
-        <button className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[90px] left-[calc(50%_-_199px)] text-base font-extrabold font-inter text-material-theme-sys-dark-error-container text-left inline-block w-[45px] h-[18px]">
-          ยกเลิก
+        <button  onClick={Pushtolandingpage} className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[90px] left-[calc(50%_-_199px)] text-base font-extrabold font-inter text-material-theme-sys-dark-error-container text-left inline-block w-[45px] h-[18px]">
+          ยกเลิก 
         </button>
       </div>
     </div>
