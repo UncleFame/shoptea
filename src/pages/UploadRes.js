@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import { useRef, useState } from "react";
 import { getPublicUrl, uploadRestaurantImage } from "../utils/restaurant";
 import { useCallback } from "react";
@@ -133,7 +132,7 @@ const UploadRes = () => {
         MAP
       </b>
       <input
-        className="[outline:none] bg-snow absolute bottom-[1016px] left-[calc(50%_-_184px)] rounded-8xs box-border w-[374px] h-[92px] border-[1px] border-solid border-gray-400"
+        className="[outline:none] bg-snow absolute bottom-[1036px] left-[30px] rounded-8xs box-border w-[374px] h-[92px] border-[1px] border-solid border-gray-400"
         type="text"
         value={rectangleInput6Value}
         onChange={(event) => setRectangleInput6Value(event.target.value)}
@@ -218,5 +217,4 @@ const UploadRes = () => {
 };
 
 export default UploadRes;
-=======
->>>>>>> Stashed changes
+
