@@ -1,9 +1,12 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
-const ResPreupload = () => {
-  const navigate = useNavigate();
 
+const ResPreupload = () => {
+  
+    const navigate = useNavigate();
+  const imagePublicUrl = supabase.storage.from('Shoplist').getPublicUrl(`path/restaurants/samira/${mainzaza.png}`);
+  setImageUrl(imagePublicUrl);
   const onReviewbottomContainerClick = useCallback(() => {
     navigate("/upload-res");
   }, [navigate]);
@@ -23,7 +26,7 @@ const ResPreupload = () => {
   return (
     <div className="relative bg-white w-full h-[2494px] overflow-hidden text-center text-sm text-material-theme-sys-light-primary-fixed-dim font-inter">
       <div
-        className="absolute top-[175px] left-[163px] w-[100px] h-[33px] cursor-pointer"
+        className="absolute top-[1755ppx] left-[163px] w-[100px] h-[33px] cursor-pointer"
         onClick={onReviewbottomContainerClick}
       >
         <div className="absolute top-[0px] left-[0px] rounded-[20px] box-border w-[100px] h-[33px] border-[1px] border-solid border-material-theme-sys-light-primary-fixed-dim" />

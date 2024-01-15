@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { useRef, useState } from "react";
 import { getPublicUrl, uploadRestaurantImage } from "../utils/restaurant";
 import { useCallback } from "react";
@@ -217,3 +218,5 @@ const UploadRes = () => {
 };
 
 export default UploadRes;
+=======
+>>>>>>> Stashed changes
