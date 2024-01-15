@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
-import { uploadRestaurantImage } from "../utils/restaurant";
+import { getPublicUrl, uploadRestaurantImage } from "../utils/restaurant";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { insertNewRestaurant } from "../models/restaurant";
 
 
 
@@ -13,6 +14,7 @@ const UploadRes = () => {
   const [rectangleInput3Value, setRectangleInput3Value] = useState("");
   const [rectangleInput4Value, setRectangleInput4Value] = useState("");
   const [rectangleInput5Value, setRectangleInput5Value] = useState("");
+  const [comment, setComment] = useState("");
   const Pushtolandingpage = useCallback(() => {
     navigate("/res-preupload");
   }, [navigate]);
@@ -23,8 +25,26 @@ const UploadRes = () => {
   async function handleUploadImage(){
     try {
       const fileLength = image.current.files.length
-      await uploadRestaurantImage(image.current.files[fileLength - 1], rectangleInputValue, 'mainzaza')
-      alert('Done uploading the image...')
+      await uploadRestaurantImage(image.current.files[fileLength - 1], rectangleInputValue, 'main')
+
+      const [open, close] = rectangleInput1Value.split('/') 
+
+      const imageUrl = await getPublicUrl(`restaurants/${rectangleInputValue}/main.png`)
+
+      const newRestaurant = {
+        name : rectangleInputValue,
+        open,
+        close,
+        price : Number(rectangleInput2Value),
+        province : rectangleInput3Value,
+        phoneNum :rectangleInput4Value,
+        comment,
+        imageUrl
+      }
+
+      await insertNewRestaurant(newRestaurant);
+
+      alert("Already created the restaurant in the database")
     } catch (error) {
       alert(error.message)
     }
@@ -118,6 +138,8 @@ const UploadRes = () => {
         onChange={(event) => setRectangleInput6Value(event.target.value)}
       />
       <textarea
+        value={comment}
+        onChange={e => setComment(e.target.value)}
         className="[border:none] bg-[transparent] inline-block font-inter text-xs [outline:none] absolute bottom-[1016px] left-[32px] font-bold text-gainsboro text-left w-[371px] h-[92px]"
         placeholder="comment"
       />

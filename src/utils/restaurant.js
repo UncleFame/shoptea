@@ -4,7 +4,7 @@ import { supabase } from "../pages/loginsystem";
 export async function uploadRestaurantImage(file, restaurantName, filename){
   try {
     // upload to the bucket
-    const {error} = await supabase
+    const {data, error} = await supabase
     .storage
     .from("Shoplist")
     .upload(`restaurants/${restaurantName}/${filename}.png`, file, {
@@ -13,8 +13,24 @@ export async function uploadRestaurantImage(file, restaurantName, filename){
     })
 
     if (error) throw new Error(error.message)
-    
+
+    if (!data) throw new Error("No data returned from uploading the restaurant image")
+
   } catch (error ) {
+    throw new Error(error.message)
+  }
+}
+
+export async function getPublicUrl(filePath){
+  try {
+    const { data, error } = supabase
+    .storage
+    .from('Shoplist')
+    .getPublicUrl(filePath)
+
+    if (error) throw new Error(error.message)
+    return data.publicUrl
+  } catch (error) {
     throw new Error(error.message)
   }
 }
