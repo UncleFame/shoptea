@@ -9,7 +9,6 @@ const SUPABASE_URL = 'https://dhpydurewelflgjschzb.supabase.co';
 export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 export async function loginWithGoogle() {
-   
     try {
         const { data, error } = await supabase.auth.signInWithOAuth({
             provider: 'google',

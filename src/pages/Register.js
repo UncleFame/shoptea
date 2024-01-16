@@ -33,23 +33,23 @@ const Register = () => {
   return (
     <div className="relative bg-white w-full h-[932px] overflow-hidden text-center text-lg text-black font-inter">
       <div className="absolute top-[230px] left-[78px] shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] w-64 h-[37px] active:animate-[1s_ease_0s_infinite_normal_none_shadow-inset-center] active:opacity-[1]">
-        <div className="absolute top-[0px] left-[0px] rounded-lg bg-white box-border w-64 h-[37px] border-[1px] border-solid border-gray-300" />
+        <div className={`absolute top-[0px] left-[0px] rounded-lg ${accountType === "ร้านค้า" ? "bg-sky-400 text-white" : ""} box-border w-64 h-[37px] border-[1px] border-solid border-gray-300`} />
       </div>
       <div className="absolute top-[316px] left-[78px] shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] w-64 h-[37px] active:animate-[1s_ease_0s_infinite_normal_none_shadow-inset-center] active:opacity-[1]">
-        <div className="absolute top-[0px] left-[0px] rounded-lg bg-white box-border w-64 h-[37px] border-[1px] border-solid border-gray-300" />
+        <div className={`absolute top-[0px] left-[0px] rounded-lg ${accountType === "ผู้ใช้ทั่วไป" ? "bg-sky-400 text-white" : ""} box-border w-64 h-[37px] border-[1px] border-solid border-gray-300`} />
       </div>
       <div className="absolute top-[466px] left-[149px] shadow-[0px_4px_4px_rgba(0,_0,_0,_0.25)] w-[109px] h-[37px]">
-        <div className="absolute top-[0px] left-[0px] rounded-lg bg-white w-[109px] h-[37px]" />
+        <div className={`absolute top-[0px] left-[0px] rounded-lg w-[109px] h-[37px]`} />
       </div>
       <div className="absolute top-[621px] left-[153px] w-px h-px overflow-hidden" />
       <div
         onClick={()=>setAccountType("ร้านค้า")}
-        className="absolute top-[237px] left-[165px] inline-block w-[77px] h-[30px]">
+        className={`absolute top-[237px] left-[165px] w-[77px] h-[30px] ${accountType === "ร้านค้า" ? "text-white" : "text-black"}`}>
         ร้านค้า
       </div>
       <div
         onClick={()=>setAccountType("ผู้ใช้ทั่วไป")}
-        className="absolute top-[327px] left-[144px] inline-block w-[119px] h-[22px]">
+        className={`absolute top-[327px] left-[144px] w-[119px] h-[22px] ${accountType === "ผู้ใช้ทั่วไป" ? "text-white" : "text-black"}`}>
         ผู้ใช้ทั่วไป
       </div>
       <div
@@ -67,5 +67,6 @@ const Register = () => {
     </div>
   );
 };
+
 
 export default Register;
