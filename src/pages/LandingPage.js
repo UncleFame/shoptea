@@ -27,7 +27,7 @@ const LandingPage = () => {
       <img
         className="absolute top-[149px] left-[131px] w-[169px] h-[169px] overflow-hidden object-cover"
         alt=""
-        src="/epicetea@2x.png"
+        src="/bobacup.png"
       />
       <div className="absolute top-[0px] left-[-57px] w-[430px] h-[76px] text-base text-dimgray-200">
         <div className="absolute top-[0px] left-[100px] bg-white box-border w-[350px] h-[76px] border-[1px] border-solid border-gray-300" />
