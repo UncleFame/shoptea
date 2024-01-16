@@ -1,5 +1,3 @@
-// loginsystem.js
-
 import { createClient } from "@supabase/supabase-js";
 import { getCurrentUser } from "../models/users";
 
