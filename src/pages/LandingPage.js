@@ -1,7 +1,6 @@
 import React from "react";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { createClient } from '@supabase/supabase-js';
 import { loginWithGoogle, logout } from "./loginsystem";
 
 
@@ -29,8 +28,8 @@ const LandingPage = () => {
         alt=""
         src="/bobacup.png"
       />
-      <div className="absolute top-[0px] left-[-57px] w-[430px] h-[76px] text-base text-dimgray-200">
-        <div className="absolute top-[0px] left-[100px] bg-white box-border w-[350px] h-[76px] border-[1px] border-solid border-gray-300" />
+      <div className="absolute top-[0px] w-full h-[76px] text-base text-dimgray-200">
+        <div className="absolute top-[0px] bg-white box-border w-screen h-[76px] border-[1px] border-solid border-gray-300" />
         <div className="absolute top-[43.9px] left-[calc(50% - 72px)] font-extrabold inline-block w-[110px] h-[11.8px]">
           Login
         </div>
