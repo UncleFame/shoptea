@@ -19,6 +19,12 @@ const LandingPage = () => {
 
   return (
     <div className="relative bg-white w-full h-[932px] overflow-hidden text-center text-13xl text-gray-200 font-inter">
+      <div className="absolute top-[0px] w-full h-[76px] text-base text-dimgray-200">
+        <div className="absolute top-[0px] bg-white box-border w-screen h-[76px] border-[1px] border-solid border-gray-300" />
+        <div className="absolute top-[43.9px] left-[165px] font-extrabold inline-block w-[110px] h-[11.8px]">
+          Login
+        </div>
+      </div>
       <div className="absolute top-[348px] left-[41px] font-extrabold inline-block w-[348px] h-[61px]">{`MatCha&Tea`}</div>
       <div className="absolute top-[409px] left-[-25px] font-semibold text-material-theme-sys-light-primary inline-block w-[480px] h-[61px]">
         เรานำชามาให้คุณ
@@ -28,12 +34,6 @@ const LandingPage = () => {
         alt=""
         src="/bobacup.png"
       />
-      <div className="absolute top-[0px] w-full h-[76px] text-base text-dimgray-200">
-        <div className="absolute top-[0px] bg-white box-border w-screen h-[76px] border-[1px] border-solid border-gray-300" />
-        <div className="absolute top-[43.9px] left-[calc(50% - 72px)] font-extrabold inline-block w-[110px] h-[11.8px]">
-          Login
-        </div>
-      </div>
       <div
         className="absolute top-[500px] left-[59px] w-[312px] h-[71px] cursor-pointer"
         onClick={ HandleSignIN}
