@@ -1,9 +1,13 @@
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../hooks/useUser";
 
 const Register = () => {
   const navigate = useNavigate();
+  const {user} = useUser();
 
+  console.log(user)
+  
   const onText2Click = useCallback(() => {
     navigate("/landing-page-for-real");
   }, [navigate]);

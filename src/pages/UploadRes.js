@@ -15,6 +15,7 @@ const UploadRes = () => {
   const [rectangleInput4Value, setRectangleInput4Value] = useState("");
   const [rectangleInput5Value, setRectangleInput5Value] = useState("");
   const [comment, setComment] = useState("");
+  
   const Pushtolandingpage = useCallback(() => {
     navigate("/res-preupload");
   }, [navigate]);
