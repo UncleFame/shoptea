@@ -24,7 +24,7 @@ const LandingPage = () => {
         เรานำชามาให้คุณ
       </div>
       <img
-        className="absolute top-[149px] left-[131px] w-[169px] h-[169px] overflow-hidden object-cover"
+        className="absolute top-[149px] left-[131px] w-[169px] h-[169px] overflow-hidden object-contain"
         alt=""
         src="/bobacup.png"
       />
