@@ -1,16 +1,34 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
+import { insertNewUser } from "../models/users";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [accountType, setAccountType] = useState(null)
   const {user} = useUser();
 
   console.log(user)
-  
-  const onText2Click = useCallback(() => {
-    navigate("/landing-page-for-real");
-  }, [navigate]);
+  console.log(accountType)
+
+  async function handleCreateAccount(){
+    try {
+      if (!accountType) return alert("กรุณาเลือกประเภทของบัญชี")
+      // create a new user
+      const newUser = {
+        id : user.id,
+        email : user.email,
+        type : accountType
+      }
+      // insert a new user
+      await insertNewUser(newUser)
+
+      navigate("/landing-page-for-real");
+
+    } catch (error) {
+      throw new Error(error.message)
+    }
+  }
 
   return (
     <div className="relative bg-white w-full h-[932px] overflow-hidden text-center text-lg text-black font-inter">
@@ -24,15 +42,19 @@ const Register = () => {
         <div className="absolute top-[0px] left-[0px] rounded-lg bg-white w-[109px] h-[37px]" />
       </div>
       <div className="absolute top-[621px] left-[153px] w-px h-px overflow-hidden" />
-      <div className="absolute top-[237px] left-[165px] inline-block w-[77px] h-[30px]">
+      <div
+        onClick={()=>setAccountType("ร้านค้า")}
+        className="absolute top-[237px] left-[165px] inline-block w-[77px] h-[30px]">
         ร้านค้า
       </div>
-      <div className="absolute top-[327px] left-[144px] inline-block w-[119px] h-[22px]">
+      <div
+        onClick={()=>setAccountType("ผู้ใช้ทั่วไป")}
+        className="absolute top-[327px] left-[144px] inline-block w-[119px] h-[22px]">
         ผู้ใช้ทั่วไป
       </div>
       <div
         className="absolute top-[473px] left-[74px] inline-block w-[250px] h-[34px] cursor-pointer"
-        onClick={onText2Click}
+        onClick={handleCreateAccount}
       >
         เสร็จ
       </div>

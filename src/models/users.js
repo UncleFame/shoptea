@@ -12,6 +12,7 @@ export async function getCurrentUser(accessToken){
   }
 }
 
+// get current session
 export async function getCurrentSession(){
   try {
     const {data, error} = await supabase.auth.getSession();
@@ -19,6 +20,19 @@ export async function getCurrentSession(){
     if (error) throw new Error(error.message)
 
     return data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
+
+// create new user to the database
+export async function insertNewUser(user){
+  try {
+    const {error} = await supabase
+    .from('users')
+    .insert(user)
+
+    if (error) throw new Error(error.message)
   } catch (error) {
     throw new Error(error.message)
   }
