@@ -1,7 +1,6 @@
 import React ,{ useState} from "react";
 import { useCallback } from "react";
 import { Form, useNavigate } from "react-router-dom";
-import { loginWithGoogle, logout } from "./loginsystem";
 import { supabase } from "./loginsystem";
 
 
@@ -9,7 +8,7 @@ const LandingPage = () => {
   const navigate = useNavigate();
   const [formData,setFormData] = useState({
     email:"" ,password:""
-  })
+  });
   function handleChange(event){
     setFormData((prevFormData)=>{
       return{
@@ -19,18 +18,12 @@ const LandingPage = () => {
       }  
     })
   }
-  async function HandleSubmit(e) 
+  async function HandleSubmit() 
 {
-  e.preventDafault()
-    
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: formData.email,
-        password: formData.password,
-      });
-  }
-  async function HandleSignIN() {
-    await loginWithGoogle(); 
-    // navigate("/Register");     
+const { data, error } = await supabase.auth.signUp({
+  email: formData.email,
+  password: formData.password,
+  })
   }
 
   const onFrameContainerClick = useCallback(() => {
@@ -67,20 +60,11 @@ const LandingPage = () => {
             name="password"
             onChange={handleChange}/>
 
-          <button type="Submit">
-            signUp
-
+          <button type="Submit" onClick={() => navigate("/Register")}>
+          signUp
           </button>
-
-
-
-
-
         </form>
-        
-
-          
-      </div> 
+        </div> 
   
       
       <div className="absolute top-[138px] left-[174px] w-[86px] h-[94px] overflow-hidden" />
