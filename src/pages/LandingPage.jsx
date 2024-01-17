@@ -1,13 +1,33 @@
-import React from "react";
+import React ,{ useState} from "react";
 import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { loginWithGoogle, logout } from "./loginsystem";
-
+import { supabase } from "./loginsystem";
 
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  
+  const [formData,setFormData] = useState({
+    email:"" ,password:""
+  })
+  function handleChange(event){
+    setFormData((prevFormData)=>{
+      return{
+        ...prevFormData,
+        [event.target.name]:event.target.value
+
+      }  
+    })
+  }
+  async function HandleSubmit(e) 
+{
+  e.preventDafault()
+    
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password: formData.password,
+      });
+  }
   async function HandleSignIN() {
     await loginWithGoogle(); 
     // navigate("/Register");     
@@ -34,16 +54,32 @@ const LandingPage = () => {
         alt=""
         src="/bobacup.png"
       />
-      <div
-        className="absolute top-[500px] left-[59px] w-[312px] h-[71px] cursor-pointer"
-        onClick={ HandleSignIN}
-      >
+      <div className="absolute top-[500px] left-[131px] w-[169px] h-[169px] ">
+        <form onSubmit={HandleSubmit}>
+          <input 
+            placeholder="Email"
+            name="email"
+            onChange={handleChange}/>
+
+
+           <input 
+            placeholder="Password"
+            name="password"
+            onChange={handleChange}/>
+
+          <button type="Submit">
+            signUp
+
+          </button>
+
+
+
+
+
+        </form>
         
-        <img
-          className="absolute top-[0px] left-[0px] w-[312px] h-[71px] object-cover"
-          alt=""
-          src="/image-1@2x.png"
-        />
+
+          
       </div> 
   
       
