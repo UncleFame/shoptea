@@ -22,7 +22,9 @@ const LandingPage = () => {
 {
 const { data, error } = await supabase.auth.signUp({
   email: formData.email,
-  password: formData.password,
+  password: formData.password,  options: {
+    emailRedirectTo: 'http://localhost:3000/Register#'
+  }
   })
   }
 
@@ -57,10 +59,11 @@ const { data, error } = await supabase.auth.signUp({
 
            <input 
             placeholder="Password"
+            type="password"
             name="password"
             onChange={handleChange}/>
 
-          <button type="Submit" onClick={() => navigate("/Register")}>
+          <button type="Submit">
           signUp
           </button>
         </form>
