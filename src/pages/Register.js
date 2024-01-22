@@ -7,6 +7,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [accountType, setAccountType] = useState(null)
   const {user} = useUser();
+  
 
   console.log(user)
   console.log(accountType)

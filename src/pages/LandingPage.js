@@ -39,8 +39,12 @@ const LandingPage = () => {
 
       if (userExist) return alert("มีผู้ใช้นี้อยู่แล้ว")
 
-      await insertNewUser(newUser)
-
+      const data = await insertNewUser(newUser)
+      
+      localStorage.setItem("email", newUser.email);  
+      localStorage.setItem("id" ,  data.id);
+     
+      
   
       navigate("/Register");
   

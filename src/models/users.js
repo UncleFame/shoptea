@@ -28,11 +28,14 @@ export async function getCurrentSession(){
 // create new user to the database
 export async function insertNewUser(user){
   try {
-    const {error} = await supabase
+    const {data, error} = await supabase
     .from('users')
     .insert(user)
+    .select()
+    .single()
 
     if (error) throw new Error(error.message)
+    return data
   } catch (error) {
     throw new Error(error.message)
   }
