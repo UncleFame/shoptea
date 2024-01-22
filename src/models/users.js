@@ -44,6 +44,7 @@ export async function doesUserExist(email){
     .from('users')
     .select()
     .eq('email', email)
+    .single();
 
     return data !== null
   } catch (error) {
