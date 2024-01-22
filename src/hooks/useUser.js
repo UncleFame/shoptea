@@ -6,8 +6,8 @@ export const useUser = () => {
 
   useEffect(()=>{
     const fetchUser = async () => {
-      const session = await getCurrentSession();
-      const extractedUser = session.session.user;
+      const email = localStorage.getItem('email');
+      const id = localStorage.getItem('id');
       setUser(extractedUser);
     }
 
