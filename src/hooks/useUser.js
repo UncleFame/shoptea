@@ -8,7 +8,10 @@ export const useUser = () => {
     const fetchUser = async () => {
       const email = localStorage.getItem('email');
       const id = localStorage.getItem('id');
-      setUser(extractedUser);
+      setUser(_ => ({
+        email,
+        id
+      }));
     }
 
     fetchUser();
