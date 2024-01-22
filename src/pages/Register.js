@@ -2,6 +2,8 @@ import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import { insertNewUser } from "../models/users";
+import { supabase } from "./loginsystem";
+
 
 const Register = () => {
   const navigate = useNavigate();
@@ -16,18 +18,18 @@ const Register = () => {
     try {
       if (!accountType) return alert("กรุณาเลือกประเภทของบัญชี")
       // create a new user
-      const newUser = {
-        id : user.id,
-        email : user.email,
-        type : accountType
-      }
+    
       // insert a new user
-      await insertNewUser(newUser)
-
+      const { error } = await supabase
+      .from('users')
+      .update({ type : accountType })
+      .eq('id', user.id )
       navigate("/landing-page-for-real");
+      
+      if (error) throw new Error(error.message)
 
     } catch (error) {
-      throw new Error(error.message)
+      console.error(error.message)
     }
   }
 
