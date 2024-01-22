@@ -2,7 +2,7 @@ import React ,{ useState} from "react";
 import { useCallback } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import { supabase } from "./loginsystem";
-import { insertNewUser } from "../models/users";
+import { doesUserExist, insertNewUser } from "../models/users";
 
 
 
@@ -32,7 +32,12 @@ const LandingPage = () => {
         email,
         password
       }
+
+      const userExist = await doesUserExist(email);
+
+      if (userExist) return alert("มีผู้ใช้นี้อยู่แล้ว")
       await insertNewUser(newUser)
+      
   
       navigate("/Register");
   
@@ -49,11 +54,10 @@ const LandingPage = () => {
     const { data, error } = await supabase
       .from('users')
       .select()
-      .eq('email',email)
+      .eq('email', email)
       .single();
       
-     return console.log(data)
-    
+    return console.log(data)
     
     // STEP 2: If user exists, proceed
     if (data && data.length > 0) {

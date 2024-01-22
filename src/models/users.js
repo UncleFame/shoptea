@@ -37,3 +37,16 @@ export async function insertNewUser(user){
     throw new Error(error.message)
   }
 }
+
+export async function doesUserExist(email){
+  try {
+    const {data, error} = await supabase
+    .from('users')
+    .select()
+    .eq('email', email)
+
+    return data !== null
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
