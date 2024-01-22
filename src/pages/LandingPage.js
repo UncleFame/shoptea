@@ -45,7 +45,7 @@ const LandingPage = () => {
       navigate("/Register");
   
     } catch (error) {
-      throw new Error(error.message)
+      alert(error.message)
     }
   }
 
@@ -54,44 +54,16 @@ const LandingPage = () => {
   event.preventDefault()
   try {
     // STEP 1: Check if the user exists
-    const { data, error } = await supabase
+    const { data : fetchedUser, error } = await supabase
       .from('users')
       .select()
       .eq('email', email)
       .single();
-      
-    return console.log(data)
+
+    if (!fetchedUser) return alert("ไม่มีผู้ใช้นี้อยู่ในระบบ")
+
+    navigate("/registration-page");
     
-    // STEP 2: If user exists, proceed
-    if (data && data.length > 0) {
-      // Check if email is present
-      if (data[0].email) {
-        console.log('Email found');
-  
-        // STEP 3: Check password
-        if (data[0].password) {
-          console.log('Password found');
-          
-          // STEP 4: Check the user type
-          if (data[0].type) {
-            // STEP 7: If type exists, go to landing page
-            console.log('User type found');
-            // navigate("/landing-page-for-real");
-          } else {
-            // STEP 6: If no type, go to registration
-            console.log('No user type, go to registration');
-            // navigate("/registration-page");
-          }
-        } else {
-          console.log('Error: Password not found');
-        }
-      } else {
-        console.log('Error: Email not found');
-      }
-    } else {
-      // STEP 5: If user does not exist, print an error message
-      console.log('Error: User not found');
-    }
   } catch (error) {
        console.error('Supabase error:', error.message);
   }
