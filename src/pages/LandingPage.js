@@ -33,11 +33,14 @@ const LandingPage = () => {
         password
       }
 
+      if (!email || !password) return alert("กรุณาใส่ email และ password")
+
       const userExist = await doesUserExist(email);
 
       if (userExist) return alert("มีผู้ใช้นี้อยู่แล้ว")
+
       await insertNewUser(newUser)
-      
+
   
       navigate("/Register");
   
