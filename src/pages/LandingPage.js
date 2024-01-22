@@ -62,7 +62,7 @@ const LandingPage = () => {
 
     if (!fetchedUser) return alert("ไม่มีผู้ใช้นี้อยู่ในระบบ")
 
-    navigate("/registration-page");
+    navigate("/landing-page-for-real");
     
   } catch (error) {
        console.error('Supabase error:', error.message);
