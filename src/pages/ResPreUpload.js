@@ -1,17 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import BottomBar from "../components/BottomBar";
 import { useUser } from "../hooks/useUser";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { getRestaurantsByUserId } from "../models/restaurant";
+import { ResPreUploadContext, ResPreUploadProvider } from "../contexts/ResPreUploadContext";
 
 
 const ResPreupload = () => {
-  
+
   return (
     <main className="flex flex-col items-center gap-y-5">
-      <NavBar />
-      <DisplayRestaurant />
-      <BottomBar />
+      <ResPreUploadProvider>
+        <NavBar />
+        <DisplayRestaurant />
+        <BottomBar />
+      </ResPreUploadProvider>
     </main>
   );
 };
@@ -19,16 +22,21 @@ const ResPreupload = () => {
 const DisplayRestaurant = () => {
   return (
     <div className="flex flex-col items-center w-full">
+      <RestaurantItem />
       <ReviewButton />
     </div>
   )
 }
 
 const RestaurantItem = ({name}) => {
-  return (
-    <div>
+  const {restaurants} = useContext(ResPreUploadContext);
 
-    </div>
+  return (
+    <ul>
+      {
+        restaurants.map(restaurant => <li>{restaurant.name}</li>)
+      }
+    </ul>
   )
 }
 
