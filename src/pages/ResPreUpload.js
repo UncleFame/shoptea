@@ -68,8 +68,7 @@ const RestaurantItem = ({restaurant}) => {
 
   return (
     <div className="flex h-[120px] justify-between gap-x-5 w-full">
-      {/* <img className="w-[1/4] h-full object-cover" src={restaurant.imageUrl} alt="restaurant image"/> */}
-      <div className="w-[130px] h-full bg-gray-50 rounded-2xl"></div>
+      <img className="w-[1/4] h-full object-cover" src={restaurant.imageUrl} alt="restaurant image"/>
       <div className="flex flex-col h-full justify-start items-start">
         <p>{restaurant.name}</p>
         <p>{owner?.email}</p>
