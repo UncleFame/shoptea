@@ -3,18 +3,17 @@ import { getPublicUrl, uploadRestaurantImage } from "../utils/restaurant";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { insertNewRestaurant } from "../models/restaurant";
-
-
-
+import {useUser} from "../hooks/useUser"
 const UploadRes = () => {
   const navigate = useNavigate();
-  const [rectangleInputValue, setRectangleInputValue] = useState("");
-  const [rectangleInput1Value, setRectangleInput1Value] = useState("");
-  const [rectangleInput2Value, setRectangleInput2Value] = useState("");
-  const [rectangleInput3Value, setRectangleInput3Value] = useState("");
-  const [rectangleInput4Value, setRectangleInput4Value] = useState("");
+  const [name, setName] = useState("");
+  const [operationTime, setOperationTime] = useState("");
+  const [price, setPrice] = useState("");
+  const [province, setProvince] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
   const [rectangleInput5Value, setRectangleInput5Value] = useState("");
   const [comment, setComment] = useState("");
+  const {user} = useUser();
   
   const Pushtolandingpage = useCallback(() => {
     navigate("/res-preupload");
@@ -26,26 +25,31 @@ const UploadRes = () => {
   async function handleUploadImage(){
     try {
       const fileLength = image.current.files.length
-      await uploadRestaurantImage(image.current.files[fileLength - 1], rectangleInputValue, 'main')
+      await uploadRestaurantImage(image.current.files[fileLength - 1], name, 'main')
 
-      const [open, close] = rectangleInput1Value.split('/') 
+      const [open, close] = operationTime.split('/') 
 
-      const imageUrl = await getPublicUrl(`restaurants/${rectangleInputValue}/main.png`)
+      const imageUrl = await getPublicUrl(`restaurants/${name}/main.png`)
 
       const newRestaurant = {
-        name : rectangleInputValue,
+        name : name,
         open,
         close,
-        price : Number(rectangleInput2Value),
-        province : rectangleInput3Value,
-        phoneNum :rectangleInput4Value,
+        price : Number(price),
+        province : province,
+        phoneNum :phoneNum,
         comment,
-        imageUrl
+        imageUrl,
+        user_id : user.id
       }
 
       await insertNewRestaurant(newRestaurant);
 
       alert("Already created the restaurant in the database")
+
+      setTimeout(()=>{
+        navigate('/res-preupload')
+      }, 1500)
     } catch (error) {
       alert(error.message)
     }
@@ -77,32 +81,32 @@ const UploadRes = () => {
       <input
         className="[outline:none] bg-white absolute top-[428px] left-[29px] rounded-8xs box-border w-[375px] h-6 border-[1px] border-solid border-gray-400"
         type="text"
-        value={rectangleInputValue}
-        onChange={(event) => setRectangleInputValue(event.target.value)}
+        value={name}
+        onChange={(event) => setName(event.target.value)}
       />
       <input
         className="[outline:none] bg-white absolute top-[507px] left-[29px] rounded-8xs box-border w-[375px] h-6 border-[1px] border-solid border-gray-400"
         type="text"
-        value={rectangleInput1Value}
-        onChange={(event) => setRectangleInput1Value(event.target.value)}
+        value={operationTime}
+        onChange={(event) => setOperationTime(event.target.value)}
       />
       <input
         className="[outline:none] bg-white absolute top-[586px] left-[29px] rounded-8xs box-border w-[375px] h-6 border-[1px] border-solid border-gray-400"
         type="text"
-        value={rectangleInput2Value}
-        onChange={(event) => setRectangleInput2Value(event.target.value)}
+        value={price}
+        onChange={(event) => setPrice(event.target.value)}
       />
       <input
         className="[outline:none] bg-white absolute top-[665px] left-[30px] rounded-8xs box-border w-[375px] h-6 border-[1px] border-solid border-gray-400"
         type="text"
-        value={rectangleInput3Value}
-        onChange={(event) => setRectangleInput3Value(event.target.value)}
+        value={province}
+        onChange={(event) => setProvince(event.target.value)}
       />
       <input
         className="[outline:none] bg-white absolute top-[744px] left-[30px] rounded-8xs box-border w-[375px] h-6 border-[1px] border-solid border-gray-400"
         type="text"
-        value={rectangleInput4Value}
-        onChange={(event) => setRectangleInput4Value(event.target.value)}
+        value={phoneNum}
+        onChange={(event) => setPhoneNum(event.target.value)}
       />
       <input
         className="[outline:none] bg-white absolute top-[823px] left-[31px] rounded-8xs box-border w-[375px] h-6 border-[1px] border-solid border-gray-400"

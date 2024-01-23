@@ -18,3 +18,18 @@ export async function insertNewRestaurant(newRestaurant){
 export function getRestaurantImageUrl(restaurantName){
     
 }
+
+export async function getRestaurantsByUserId(userId){
+    try {
+        const {data, error} = await supabase
+        .from('restaurant_details')
+        .select()
+        .eq('user_id', userId)
+        
+        if (error) throw new Error(error.message)
+
+        return data
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}

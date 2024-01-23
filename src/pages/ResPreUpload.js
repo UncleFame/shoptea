@@ -1,11 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "./loginsystem";
 import BottomBar from "../components/BottomBar";
 
 
 const ResPreupload = () => {
-  const navigate = useNavigate();
 
   return (
     <main className="flex flex-col items-center gap-y-5">
@@ -17,8 +14,14 @@ const ResPreupload = () => {
 };
 
 const ReviewButton = () => {
+  const navigate = useNavigate();
+
+  function handleClick(e){
+    e.preventDefault();
+    navigate('/upload-res')
+  }
   return (
-    <button className="bg-transparent border-2 border-solid border-green-300 w-[30%] rounded-full hover:scale-105 transition-all cursor-pointer">
+    <button onClick={handleClick} className="bg-transparent border-2 border-solid border-green-300 w-[30%] rounded-full hover:scale-105 transition-all cursor-pointer">
       <h1 className="text-green-300 text-sm">Review +</h1>
     </button>
   )
