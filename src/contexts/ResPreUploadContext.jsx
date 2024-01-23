@@ -28,7 +28,8 @@ export const ResPreUploadProvider = ({children}) => {
         <ResPreUploadContext.Provider
             value={{
                 restaurants,
-                setRestaurants
+                setRestaurants,
+                user
             }}
         >
             {children}

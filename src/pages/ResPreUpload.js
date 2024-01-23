@@ -4,6 +4,7 @@ import { useUser } from "../hooks/useUser";
 import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { getRestaurantsByUserId } from "../models/restaurant";
 import { ResPreUploadContext, ResPreUploadProvider } from "../contexts/ResPreUploadContext";
+import { getUserInfo } from "../models/users";
 
 
 const ResPreupload = () => {
@@ -37,14 +38,24 @@ const DisplayRestaurant = () => {
 }
 
 const RestaurantItem = ({restaurant}) => {
+  const [owner, setOwner] = useState('');
+  const {user} = useContext(ResPreUploadContext);
 
+  useEffect(() => {
+    async function fetchUserInfo(){
+      const userInfo = await getUserInfo(user.id)
+      setOwner(userInfo)
+    }
+
+    fetchUserInfo();
+  }, [])
 
   return (
     <div className="flex">
       <img src={restaurant.imageUrl} alt="restaurant image"/>
       <div className="flex flex-col items-start">
         <p>{restaurant.name}</p>
-        <p>{restaurant.user_id}</p>
+        <p>{owner?.email}</p>
       </div>
     </div>
   )
