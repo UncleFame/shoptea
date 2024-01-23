@@ -1,10 +1,25 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { signOut } from "../utils/auth";
 
 const Profile = () => {
   const [mrETCValue, setMrETCValue] = useState("");
   const [favoriteValue, setFavoriteValue] = useState("");
   const navigate = useNavigate();
+
+  function handleSignOut(){
+    try {
+      signOut();
+
+      alert("ออกจากระบบสำเร็จ")
+
+      setTimeout(()=>{
+        window.location.href = "/"
+      }, 1000)
+    } catch (error) {
+      alert(error.message)
+    }
+  }
 
   const onRectangleClick = useCallback(() => {
     navigate("/edit-profile");
@@ -55,7 +70,7 @@ const Profile = () => {
       </div>
       <button
         className="absolute left-[50%] translate-x-[-50%] bg-gainsboro rounded-full top-[341px] w-[80%] text-5xl text-black inline-block h-[35px] cursor-pointer"
-        onClick={onTextClick}
+        onClick={handleSignOut}
       >
         ออกจากระบบ
       </button>
