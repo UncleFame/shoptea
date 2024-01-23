@@ -5,6 +5,7 @@ import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { deleteRestaurantById, getRestaurantsByUserId } from "../models/restaurant";
 import { ResPreUploadContext, ResPreUploadProvider } from "../contexts/ResPreUploadContext";
 import { getUserInfo } from "../models/users";
+import { deleteRestaurantCover } from "../models/storage";
 
 
 const ResPreupload = () => {
@@ -44,6 +45,7 @@ const RestaurantItem = ({restaurant}) => {
   async function handleDelete(){
     try {
       await deleteRestaurantById(restaurant.id);
+      await deleteRestaurantCover(restaurant.name);
       alert("ลบร้านค้าสำเร็จ")
       const latestRestaurants = await getRestaurantsByUserId(user.id)
       // update updated restaurants to UI
