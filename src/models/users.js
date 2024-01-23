@@ -70,3 +70,16 @@ export async function getUserInfo(userId){
     throw new Error(error.message)
   }
 }
+
+export async function updateUser(userId, updatedField){
+  try {
+    const {error} = await supabase
+    .from('users')
+    .update(updatedField)
+    .eq('id', userId)
+
+    if (error) throw new Error(error.message)
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}

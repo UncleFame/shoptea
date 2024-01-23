@@ -21,6 +21,14 @@ const Profile = () => {
     }
   }
 
+  function handleEdit(){
+    try {
+      
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
   const onRectangleClick = useCallback(() => {
     navigate("/edit-profile");
   }, [navigate]);
