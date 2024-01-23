@@ -1,12 +1,12 @@
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "./loginsystem";
 
 
 const ResPreupload = () => {
+  const [imageUrl, setImageUrl] = useState(null);
+  const navigate = useNavigate();
   
-    const navigate = useNavigate();
-  const imagePublicUrl = supabase.storage.from('Shoplist').getPublicUrl(`path/restaurants/samira/${mainzaza.png}`);
-  setImageUrl(imagePublicUrl);
   const onReviewbottomContainerClick = useCallback(() => {
     navigate("/upload-res");
   }, [navigate]);
