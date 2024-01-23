@@ -4,7 +4,13 @@ import { useUser } from "../hooks/useUser";
 
 const LandingPageForReal = () => {
   const navigate = useNavigate();
-  const {user} = useUser();
+  const {user, loading} = useUser();
+
+  // Handle user authentication navigation
+  useEffect(()=>{
+    if (loading) return
+    if (!user) return navigate("/")
+  }, [loading])
 
   const onVectorSearchIcon1Click = useCallback(() => {
     navigate("/All");
@@ -26,10 +32,6 @@ const LandingPageForReal = () => {
     navigate("/res-preupload");
   }, [navigate]);
 
-  // Handle user authentication navigation
-  useEffect(()=>{
-    
-  }, [user])
 
   return (
     <div className="relative bg-white w-full h-[957px] overflow-hidden text-left text-xl text-black font-inter">
