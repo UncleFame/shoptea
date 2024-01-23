@@ -54,3 +54,19 @@ export async function doesUserExist(email){
     throw new Error(error.message)
   }
 }
+
+export async function getUserInfo(userId){
+  try {
+    const {data, error} = await supabase
+    .from('users')
+    .select()
+    .eq('id', userId)
+    .single();
+
+    if (error) throw new Error(error.message)
+
+    return data
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}

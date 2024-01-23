@@ -20,23 +20,33 @@ const ResPreupload = () => {
 };
 
 const DisplayRestaurant = () => {
+  const {restaurants} = useContext(ResPreUploadContext);
+
   return (
     <div className="flex flex-col items-center w-full">
-      <RestaurantItem />
+      <div>
+        {
+          restaurants?.map(restaurant => 
+            <RestaurantItem key={restaurant.id} restaurant={restaurant}/>
+            )
+        }
+      </div>
       <ReviewButton />
     </div>
   )
 }
 
-const RestaurantItem = ({name}) => {
-  const {restaurants} = useContext(ResPreUploadContext);
+const RestaurantItem = ({restaurant}) => {
+
 
   return (
-    <ul>
-      {
-        restaurants.map(restaurant => <li>{restaurant.name}</li>)
-      }
-    </ul>
+    <div className="flex">
+      <img src={restaurant.imageUrl} alt="restaurant image"/>
+      <div className="flex flex-col items-start">
+        <p>{restaurant.name}</p>
+        <p>{restaurant.user_id}</p>
+      </div>
+    </div>
   )
 }
 
