@@ -33,3 +33,16 @@ export async function getRestaurantsByUserId(userId){
         throw new Error(error.message)
     }
 }
+
+export async function deleteRestaurantById(restaurantId){
+    try {
+        const {error} = await supabase
+        .from('restaurant_details')
+        .delete()
+        .eq('id', restaurantId)
+
+        if (error) throw new Error(error.message)
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}

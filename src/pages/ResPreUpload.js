@@ -41,6 +41,14 @@ const RestaurantItem = ({restaurant}) => {
   const [owner, setOwner] = useState('');
   const {user} = useContext(ResPreUploadContext);
 
+  async function handleDelete(){
+    try {
+      
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
   useEffect(() => {
     async function fetchUserInfo(){
       const userInfo = await getUserInfo(user.id)
