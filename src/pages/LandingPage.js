@@ -71,6 +71,10 @@ const LandingPage = () => {
 
     if (!fetchedUser) return alert("ไม่มีผู้ใช้นี้อยู่ในระบบ")
 
+    
+    localStorage.setItem("email", fetchedUser.email);  
+    localStorage.setItem("id" ,  fetchedUser.id);
+
     navigate("/landing-page-for-real");
     
   } catch (error) {

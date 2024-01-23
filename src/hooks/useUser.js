@@ -8,10 +8,12 @@ export const useUser = () => {
     const fetchUser = async () => {
       const email = localStorage.getItem('email');
       const id = localStorage.getItem('id');
-      setUser(_ => ({
-        email,
-        id
-      }));
+      setUser(_ => {
+        return (!email || !id) ? null : {
+          email,
+          id
+        }
+      });
     }
 
     fetchUser();
