@@ -39,13 +39,17 @@ const DisplayRestaurant = () => {
 
 const RestaurantItem = ({restaurant}) => {
   const [owner, setOwner] = useState('');
-  const {user} = useContext(ResPreUploadContext);
+  const {user, setRestaurants} = useContext(ResPreUploadContext);
 
   async function handleDelete(){
     try {
       await deleteRestaurantById(restaurant.id);
-
       alert("ลบร้านค้าสำเร็จ")
+      const latestRestaurants = await getRestaurantsByUserId(user.id)
+      // update updated restaurants to UI
+      setRestaurants(_ => {
+        return latestRestaurants
+      })
     } catch (error) {
       alert(error.message)
     }
