@@ -28,6 +28,7 @@ const UploadRes = () => {
       const fileLength = image.current.files.length;
 
       if (fileLength < 1) return alert("กรุณา upload รูปภาพร้านค้า")
+      if (!name) return alert("กรุณาใส่ชื่อร้าน")
       await uploadRestaurantImage(image.current.files[fileLength - 1], name, 'main')
 
       const [open, close] = operationTime.split('/') 
