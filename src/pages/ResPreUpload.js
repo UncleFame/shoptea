@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import BottomBar from "../components/BottomBar";
 import { useUser } from "../hooks/useUser";
 import { useContext, useEffect, useLayoutEffect, useState } from "react";
-import { getRestaurantsByUserId } from "../models/restaurant";
+import { deleteRestaurantById, getRestaurantsByUserId } from "../models/restaurant";
 import { ResPreUploadContext, ResPreUploadProvider } from "../contexts/ResPreUploadContext";
 import { getUserInfo } from "../models/users";
 
@@ -43,7 +43,9 @@ const RestaurantItem = ({restaurant}) => {
 
   async function handleDelete(){
     try {
-      
+      await deleteRestaurantById(restaurant.id);
+
+      alert("ลบร้านค้าสำเร็จ")
     } catch (error) {
       alert(error.message)
     }
@@ -68,7 +70,7 @@ const RestaurantItem = ({restaurant}) => {
       </div>
       <div className="flex flex-col h-full justify-between">
         <button className="rounded-full p-2 font-semibold">Edit</button>
-        <button className="rounded-full p-2 font-semibold">Delete</button>
+        <button onClick={handleDelete} className="rounded-full p-2 font-semibold">Delete</button>
       </div>
     </div>
   )
