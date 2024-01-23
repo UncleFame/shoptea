@@ -53,6 +53,12 @@ const Profile = () => {
         <p className="m-0">ระยะทาง ?? km.</p>
         <p className="m-0">จ.ชลบุลี</p>
       </div>
+      <button
+        className="absolute left-[50%] translate-x-[-50%] bg-gainsboro rounded-full top-[341px] w-[80%] text-5xl text-black inline-block h-[35px] cursor-pointer"
+        onClick={onTextClick}
+      >
+        ออกจากระบบ
+      </button>
       <div
         className="absolute top-[401px] left-[193px] text-5xl text-black inline-block w-[83px] h-[23px] cursor-pointer"
         onClick={onTextClick}
