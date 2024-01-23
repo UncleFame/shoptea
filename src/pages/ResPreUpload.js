@@ -24,15 +24,15 @@ const DisplayRestaurant = () => {
   const {restaurants} = useContext(ResPreUploadContext);
 
   return (
-    <div className="flex flex-col items-center w-full">
-      <div>
+    <div className="flex flex-col items-center gap-y-5 w-full">
+      <div className="flex flex-col gap-y-3 w-[95%]">
         {
           restaurants?.map(restaurant => 
             <RestaurantItem key={restaurant.id} restaurant={restaurant}/>
             )
         }
       </div>
-      <ReviewButton />
+      {restaurants?.length < 1 && <ReviewButton />}
     </div>
   )
 }
@@ -51,11 +51,16 @@ const RestaurantItem = ({restaurant}) => {
   }, [])
 
   return (
-    <div className="flex">
-      <img src={restaurant.imageUrl} alt="restaurant image"/>
-      <div className="flex flex-col items-start">
+    <div className="flex h-[120px] justify-between gap-x-5 w-full">
+      {/* <img className="w-[1/4] h-full object-cover" src={restaurant.imageUrl} alt="restaurant image"/> */}
+      <div className="w-[130px] h-full bg-gray-50 rounded-2xl"></div>
+      <div className="flex flex-col h-full justify-start items-start">
         <p>{restaurant.name}</p>
         <p>{owner?.email}</p>
+      </div>
+      <div className="flex flex-col h-full justify-between">
+        <button className="rounded-full p-2 font-semibold">Edit</button>
+        <button className="rounded-full p-2 font-semibold">Delete</button>
       </div>
     </div>
   )
