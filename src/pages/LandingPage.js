@@ -1,11 +1,9 @@
-import React ,{ useState} from "react";
+import React ,{ useEffect, useState} from "react";
 import { useCallback } from "react";
 import { Form, useNavigate } from "react-router-dom";
 import { supabase } from "./loginsystem";
 import { doesUserExist, insertNewUser } from "../models/users";
-
-
-
+import { useUser } from "../hooks/useUser";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -13,6 +11,13 @@ const LandingPage = () => {
     email:"" ,password:""
   });
   const {email, password} = formData;
+  const {user} = useUser();
+
+  // logic for navigating users if they are authenticated
+  useEffect(()=>{
+    // navigate to landing-page-for-real if the user is authenticated
+    if (user) return navigate('/landing-page-for-real')
+  },[user])
 
   function handleChange(event){
     setFormData((prevFormData)=>{
@@ -73,11 +78,6 @@ const LandingPage = () => {
   }
   
  }
-
-  // const onFrameContainerClick = useCallback(() => {
-  //   navigate("/Register");
-  // }, [navigate]);
-
 
   return (
     <div className="relative bg-white w-full h-[932px] overflow-hidden text-center text-13xl text-gray-200 font-inter">
