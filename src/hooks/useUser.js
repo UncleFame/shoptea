@@ -3,6 +3,7 @@ import { getCurrentSession } from "../models/users"
 
 export const useUser = () => {
   const [user, setUser] = useState(null)
+  const [loading, setLoading] = useState(true);
 
   useEffect(()=>{
     const fetchUser = async () => {
@@ -14,10 +15,11 @@ export const useUser = () => {
           id
         }
       });
+      setLoading(false)
     }
 
     fetchUser();
   }, [])
 
-  return {user, setUser}
+  return {user, setUser, loading}
 }

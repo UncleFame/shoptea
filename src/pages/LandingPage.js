@@ -11,11 +11,12 @@ const LandingPage = () => {
     email:"" ,password:""
   });
   const {email, password} = formData;
-  const {user} = useUser();
+  const {user, loading} = useUser();
 
   // logic for navigating users if they are authenticated
   useEffect(()=>{
     // navigate to landing-page-for-real if the user is authenticated
+    if (loading) return
     if (user) return navigate('/landing-page-for-real')
   },[user])
 
@@ -49,8 +50,6 @@ const LandingPage = () => {
       localStorage.setItem("email", newUser.email);  
       localStorage.setItem("id" ,  data.id);
      
-      
-  
       navigate("/Register");
   
     } catch (error) {

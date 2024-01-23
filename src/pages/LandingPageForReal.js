@@ -1,8 +1,10 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../hooks/useUser";
 
 const LandingPageForReal = () => {
   const navigate = useNavigate();
+  const {user} = useUser();
 
   const onVectorSearchIcon1Click = useCallback(() => {
     navigate("/All");
@@ -23,6 +25,11 @@ const LandingPageForReal = () => {
   const onReviewicon1ImageClick = useCallback(() => {
     navigate("/res-preupload");
   }, [navigate]);
+
+  // Handle user authentication navigation
+  useEffect(()=>{
+    
+  }, [user])
 
   return (
     <div className="relative bg-white w-full h-[957px] overflow-hidden text-left text-xl text-black font-inter">
