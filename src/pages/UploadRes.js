@@ -14,6 +14,7 @@ const UploadRes = () => {
   const [rectangleInput5Value, setRectangleInput5Value] = useState("");
   const [comment, setComment] = useState("");
   const {user} = useUser();
+  const [imgSrc, setImgSrc] = useState("");
   
   const Pushtolandingpage = useCallback(() => {
     navigate("/res-preupload");
@@ -24,7 +25,7 @@ const UploadRes = () => {
 
   async function handleUploadImage(){
     try {
-      const fileLength = image.current.files.length
+      const fileLength = image.current.files.length;
       await uploadRestaurantImage(image.current.files[fileLength - 1], name, 'main')
 
       const [open, close] = operationTime.split('/') 
@@ -58,25 +59,37 @@ const UploadRes = () => {
 
   return (
     <div className="relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-inter">
-      <div className="absolute top-[174px] left-[105px] rounded-3xs bg-gainsboro w-[220px] h-[183px]" />
+      {
+        imgSrc ?
+          <img src={imgSrc} className="absolute top-[174px] left-[105px] w-[220px] h-[183px] object-cover rounded-2xl" />
+          :
+          <div className="absolute top-[174px] left-[105px] rounded-3xs bg-gainsboro w-[220px] h-[183px]" />
+      }
       <div>
-  
-      <label htmlFor="fileInput" className="relative">
-  <img
-    className="absolute top-[252px] left-[202px] w-[26px] h-[26px] object-cover"
-    alt=""
-    src="/uploadbutton.png"
-  />
-  <input
-    id="fileInput"
-    ref={image}
-    className="absolute top-[252px] left-[202px] w-[26px] h-[26px] object-cover opacity-0 cursor-pointer"
-    alt=""
-    type="file"
-  />
-</label>
+        <label htmlFor="fileInput" className="relative">
+          <img
+            className="absolute top-[252px] left-[202px] w-[26px] h-[26px] object-cover"
+            alt=""
+            src="/uploadbutton.png"
+          />
+          <input
+            id="fileInput"
+            ref={image}
+            className="absolute top-[252px] left-[202px] w-[26px] h-[26px] object-cover opacity-0 cursor-pointer"
+            alt=""
+            type="file"
+            onChange={()=>{
+              let reader = new FileReader();
+              let file = image.current.files[image.current.files.length - 1];
+              reader.readAsDataURL(file);
 
-</div>
+              reader.onload = function(){
+                setImgSrc(reader.result)
+              }
+            }}
+          />
+        </label>
+      </div>
 
       <input
         className="[outline:none] bg-white absolute top-[428px] left-[29px] rounded-8xs box-border w-[375px] h-6 border-[1px] border-solid border-gray-400"
