@@ -1,17 +1,36 @@
 import { useNavigate } from "react-router-dom";
 import BottomBar from "../components/BottomBar";
+import { useUser } from "../hooks/useUser";
+import { useEffect, useState } from "react";
+import { getRestaurantsByUserId } from "../models/restaurant";
 
 
 const ResPreupload = () => {
-
+  
   return (
     <main className="flex flex-col items-center gap-y-5">
       <NavBar />
-      <ReviewButton />
+      <DisplayRestaurant />
       <BottomBar />
     </main>
   );
 };
+
+const DisplayRestaurant = () => {
+  return (
+    <div className="flex flex-col items-center w-full">
+      <ReviewButton />
+    </div>
+  )
+}
+
+const RestaurantItem = ({name}) => {
+  return (
+    <div>
+
+    </div>
+  )
+}
 
 const ReviewButton = () => {
   const navigate = useNavigate();
