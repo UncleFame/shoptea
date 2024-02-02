@@ -28,7 +28,7 @@ export async function getRestaurantsByUserId(userId){
         
         if (error) throw new Error(error.message)
 
-        return data
+        return data 
     } catch (error) {
         throw new Error(error.message)
     }
