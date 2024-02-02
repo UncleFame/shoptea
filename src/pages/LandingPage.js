@@ -31,7 +31,7 @@ const LandingPage = () => {
   }
 
   async function HandleRegister(event) {
-    // prevent screen from refreshing after submitting
+    
     event.preventDefault();
     try {
       const newUser = {

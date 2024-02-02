@@ -8,20 +8,6 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 
 
-export async function loginWithGoogle() {
-    try {
-        
-        const { data, error } = await supabase.auth.signInWithOAuth({
-            provider: 'google',
-            options: {
-                redirectTo : 'http://localhost:3000/Register'
-            }
-        });
-
-    } catch (error) {
-        console.error('Error during Google login:', error.message);
-    }
-}
 
 export async function logout() {
     try {
