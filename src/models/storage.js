@@ -8,9 +8,10 @@ export async function deleteRestaurantCover(restaurantName){
         .remove([`restaurants/${restaurantName}/main.png`])
 
         if (error) throw new Error(error.message)
-
+        
 
     } catch (error) {
         throw new Error(error.message)
     }
 }
+

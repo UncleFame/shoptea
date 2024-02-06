@@ -38,6 +38,11 @@ const DisplayRestaurant = () => {
   )
 }
 
+
+const navigatetordit = useCallback(() => {
+  navigate("/editpostupload");
+}, [navigate]);
+
 const RestaurantItem = ({restaurant}) => {
   const [owner, setOwner] = useState('');
   const {user, setRestaurants} = useContext(ResPreUploadContext);
@@ -82,7 +87,7 @@ const RestaurantItem = ({restaurant}) => {
         <p>{owner?.email}</p>
       </div>
       <div className="flex flex-col h-full justify-between">
-        <button className="rounded-full p-2 font-semibold">Edit</button>
+        <button onClick={editrestarunt} className="rounded-full p-2 font-semibold" >Edit</button>
         <button onClick={handleDelete} className="rounded-full p-2 font-semibold">Delete</button>
       </div>
     </div>

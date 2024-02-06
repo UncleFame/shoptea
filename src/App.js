@@ -77,6 +77,10 @@ function App() {
         title = "";
         metaDescription = "";
         break;
+      case "/EditpostUpload":
+          title = "";
+          metaDescription = "";
+        break;  
     }
 
     if (title) {
@@ -109,6 +113,7 @@ function App() {
       <Route path="/signin-page" element={<SigninPage />} />
       <Route path="/review" element={<Review />} />
       <Route path="/All" element={<All />} />
+      <Route path="/EditpostUpload" element={<Editpostupload/>}/>
     </Routes>
   );
 }

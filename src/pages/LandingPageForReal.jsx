@@ -5,6 +5,7 @@ import BottomBar from "../components/BottomBar";
 import { supabase } from "./loginsystem";
 
 
+
 const LandingPageForReal = () => {
   const navigate = useNavigate();
   const {user, loading} = useUser();
@@ -83,11 +84,12 @@ const LandingPageForReal = () => {
 
 function RestaurantList(){
   const navigate = useNavigate();
-  const [sampleRestaurants, setSampleRestaurants] = useState(null);
+  const [sampleRestaurants, setSampleRestaurants] = useState();
   
   useEffect(()=>{
     const fetchRestaurants = async () => {
-      const {data} = await supabase.from("restaraunt_details").select()
+      const {data} = await supabase.from("restaraunt_details")
+      .select()
       setSampleRestaurants(data);
     }
 
@@ -103,6 +105,7 @@ function RestaurantList(){
     <div className="flex flex-col bg-yellow-800 mx-0 p-10 gap-y-5">
       {
         sampleRestaurants?.map((restaurant)=>{
+          useState()
           return (
             <div className=" flex">
               <p>img</p>
@@ -128,6 +131,7 @@ function RestaurantList(){
     
   )
 }
+
 
 
 export default LandingPageForReal;
