@@ -59,8 +59,16 @@ const RestaurantItem = ({restaurant}) => {
 
   useEffect(() => {
     async function fetchUserInfo(){
-      const userInfo = await getUserInfo(user.id)
-      setOwner(userInfo)
+      try {
+        if (user) {
+          const userInfo = await getUserInfo(user.id)
+          
+          setOwner(userInfo)
+        }
+      } catch (error) {
+        console.error(error.message)
+        alert(error.message)
+      }
     }
 
     fetchUserInfo();

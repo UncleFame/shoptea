@@ -1,7 +1,8 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import BottomBar from "../components/BottomBar";
+import { supabase } from "./loginsystem";
 
 
 const LandingPageForReal = () => {
@@ -26,10 +27,7 @@ const LandingPageForReal = () => {
     navigate("/review");
   }, [navigate]);
 
-  const onSoulGoodMatchacoffeeClick = useCallback(() => {
-    navigate("/review");
-  }, [navigate]);
-
+ 
   return (
     <div className="flexrelative bg-white w-full h-[957px] overflow-hidden text-left text-xl text-black font-inter">
       <div className="flex[20px] left-[6px] inline-block w-[215px] h-[111px] text-gray-100">
@@ -60,10 +58,7 @@ const LandingPageForReal = () => {
 
       <div className="mx-auto bg-gainsboro w-full  h-[197px]" />
       
-      <div
-        className="absolute top-[524px] left-[6px] bg-gainsboro w-[139px] h-[121px] cursor-pointer"
-        onClick={onRectangle1Click}
-      />
+    
       <div className="absolute top-[780px] left-[12px] bg-gainsboro w-[139px] h-[121px]" />
       <div className=" flex flex-row gap-5  mt-3 mx-auto [412px] left-[180px] text-sm inline-block w-44 h-[17px]">
         
@@ -76,33 +71,63 @@ const LandingPageForReal = () => {
         
       </div>
       </div>
+      <RestaurantList />
       
-      <div
-        className="absolute top-[518px] left-[172px] inline-block w-[253px] h-44 cursor-pointer text-darkslategray"
-        onClick={onSoulGoodMatchacoffeeClick}
-      >
-        <p className="m-0 text-black">{`soul good matcha&coffee`}</p>
-        <p className="m-0 text-black">&nbsp;</p>
-        <p className="m-0">open 8.00-18.00น</p>
-        <p className="m-0">Matcha%coffee</p>
-        <p className="m-0">ราคา$$-$$</p>
-        <p className="m-0">ระยะทาง ?? km.</p>
-        <p className="m-0">จ.ชลบุลี</p>
-      </div>
-      <div className="absolute top-[738px] left-[172px] inline-block w-[253px] h-44 text-darkslategray">
-        <p className="m-0 text-black">{`soul good matcha&coffee`}</p>
-        <p className="m-0 text-black">&nbsp;</p>
-        <p className="m-0">open 8.00-18.00น</p>
-        <p className="m-0">Matcha%coffee</p>
-        <p className="m-0">ราคา$$-$$</p>
-        <p className="m-0">ระยะทาง ?? km.</p>
-        <p className="m-0">จ.ชลบุลี</p>
-      </div>
-
+      
+  
       <BottomBar />
     </div>
     
   );
 };
+
+function RestaurantList(){
+  const navigate = useNavigate();
+  const [sampleRestaurants, setSampleRestaurants] = useState(null);
+  
+  useEffect(()=>{
+    const fetchRestaurants = async () => {
+      const {data} = await supabase.from("restaraunt_details").select()
+      setSampleRestaurants(data);
+    }
+
+    fetchRestaurants();
+  }, [])
+
+
+  const onSoulGoodMatchacoffeeClick = useCallback(() => {
+    navigate("/review");
+  }, [navigate]);
+
+  return (
+    <div className="flex flex-col bg-yellow-800 mx-0 p-10 gap-y-5">
+      {
+        sampleRestaurants?.map((restaurant)=>{
+          return (
+            <div className=" flex">
+              <p>img</p>
+              <div  className="flex flex-col ">
+                <p className="m-0">{restaurant.name}</p>
+                <p className="m-0">{restaurant.price}</p>
+                <p className="m-0">{restaurant.province}</p>
+                <p className="m-0">{restaurant.open}</p>
+                <p className="m-0">{restaurant.review}</p>
+              </div>
+
+              
+            </div>
+
+
+
+
+          )
+
+        })
+      }
+    </div>
+    
+  )
+}
+
 
 export default LandingPageForReal;
