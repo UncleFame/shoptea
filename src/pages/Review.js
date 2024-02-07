@@ -41,6 +41,8 @@ const Review = () => {
           className="absolute top-[6.8px] left-[44.8px] w-[40.3px] h-[31.2px] object-cover"
           alt=""
           src="/houseicon-1@2x.png"
+          
+          onClick={onBacktohome1ImageClick}
         />
         <img
           className="absolute top-[1.8px] left-[349.2px] w-[53.5px] h-[39.5px] object-cover"

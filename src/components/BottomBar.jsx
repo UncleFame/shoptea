@@ -3,6 +3,8 @@ import {useNavigate} from "react-router-dom"
 
 export const BottomBar = () => {
 const navigate = useNavigate();
+
+
   return (
     <nav
         className="absolute top-[914px] left-[-38px] w-[468px] h-[42.9px]"
@@ -17,6 +19,8 @@ const navigate = useNavigate();
           className="absolute top-[6.8px] left-[48.8px] w-[43.9px] h-[31.2px] object-cover"
           alt=""
           src="/houseicon-1@2x.png"
+
+          onClick={()=>navigate("/landing-page-for-real")}
         />
         <img
           className="absolute top-[1.8px] left-[380px] w-[58.3px] h-[39.5px] object-cover"

@@ -68,6 +68,8 @@ const LandingPageForReal = () => {
       all
       <div
         onClick={onVectorSearchIcon1Click}>
+          
+      <BottomBar />
         
       </div>
       </div>
@@ -75,7 +77,6 @@ const LandingPageForReal = () => {
       
       
   
-      <BottomBar />
     </div>
     
   );
@@ -115,9 +116,9 @@ function RestaurantList(){
               <div  className="flex flex-col ">
                 
                 <p className="m-0">{restaurant.name}</p>
-                <p className="m-0">{restaurant.price}</p>
-                <p className="m-0">{restaurant.province}</p>
-                <p className="m-0">{restaurant.open}</p>
+                <p className="m-0">ราคา  {restaurant.price}</p>
+                <p className="m-0">สถานที่  {restaurant.province}</p>
+                <p className="m-0">เวลาเปิด  {restaurant.open}</p>
                 <p className="m-0">{restaurant.review}</p>
                 <p className="m-0">{restaurant.phoneNum}</p>
                 <p className="m-0">{restaurant.star}  star</p>

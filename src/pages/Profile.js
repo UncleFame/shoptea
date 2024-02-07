@@ -46,7 +46,7 @@ const Profile = () => {
       <img
         className="absolute top-[50px] left-[174px] w-[81px] h-[81px] object-cover"
         alt=""
-        src="/9131529-1@2x.png"
+        src="profileicon.png"
       />
       <input
         className="[border:none] [outline:none] font-inter text-13xl bg-[transparent] absolute top-[253px] left-[174px] text-black text-left inline-block w-[133px] h-12"
@@ -61,20 +61,13 @@ const Profile = () => {
       />
       <input
         className="[border:none] [outline:none] font-inter text-13xl bg-[transparent] absolute top-[565px] left-[16px] text-black text-left inline-block w-[133px] h-12"
-        placeholder="favorite"
+      
         type="text"
         value={favoriteValue}
         onChange={(event) => setFavoriteValue(event.target.value)}
       />
-      <div className="absolute top-[674px] left-[11px] bg-gainsboro w-[139px] h-[121px]" />
       <div className="absolute top-[668px] left-[177px] inline-block w-[253px] h-44">
-        <p className="m-0 text-black">{`soul good matcha&coffee`}</p>
-        <p className="m-0 text-black">&nbsp;</p>
-        <p className="m-0">open 8.00-18.00น</p>
-        <p className="m-0">Matcha%coffee</p>
-        <p className="m-0">ราคา$$-$$</p>
-        <p className="m-0">ระยะทาง ?? km.</p>
-        <p className="m-0">จ.ชลบุลี</p>
+       
       </div>
       <button
         className="absolute left-[50%] translate-x-[-50%] bg-gainsboro rounded-full top-[341px] w-[80%] text-5xl text-black inline-block h-[35px] cursor-pointer"
