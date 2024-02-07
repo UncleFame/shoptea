@@ -11,7 +11,7 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <input
-      className="mx-auto"
+      className="flex flex-row mx-auto"
       type="text"
       placeholder="Search..."
       onChange={handleChange}
