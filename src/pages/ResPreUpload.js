@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import BottomBar from "../components/BottomBar";
 import { useUser } from "../hooks/useUser";
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState,useCallback } from "react";
 import { deleteRestaurantById, getRestaurantsByUserId } from "../models/restaurant";
 import { ResPreUploadContext, ResPreUploadProvider } from "../contexts/ResPreUploadContext";
 import { getUserInfo } from "../models/users";
@@ -23,7 +23,7 @@ const ResPreupload = () => {
 
 const DisplayRestaurant = () => {
   const {restaurants} = useContext(ResPreUploadContext);
-
+  
   return (
     <div className="flex flex-col items-center gap-y-5 w-full">
       <div className="flex flex-col gap-y-3 w-[95%]">
@@ -38,15 +38,10 @@ const DisplayRestaurant = () => {
   )
 }
 
-
-const navigatetordit = useCallback(() => {
-  navigate("/editpostupload");
-}, [navigate]);
-
 const RestaurantItem = ({restaurant}) => {
   const [owner, setOwner] = useState('');
   const {user, setRestaurants} = useContext(ResPreUploadContext);
-
+  const navigate = useNavigate();
   async function handleDelete(){
     try {
       await deleteRestaurantById(restaurant.id);
@@ -79,6 +74,11 @@ const RestaurantItem = ({restaurant}) => {
     fetchUserInfo();
   }, [])
 
+
+  const navigatetordit = useCallback(() => {
+    navigate("/editpostupload");
+  }, [navigate]);
+  
   return (
     <div className="flex h-[120px] justify-between gap-x-5 w-full">
       <img className="w-[1/4] h-full object-cover" src={restaurant.imageUrl} alt="restaurant image"/>
@@ -87,7 +87,7 @@ const RestaurantItem = ({restaurant}) => {
         <p>{owner?.email}</p>
       </div>
       <div className="flex flex-col h-full justify-between">
-        <button onClick={editrestarunt} className="rounded-full p-2 font-semibold" >Edit</button>
+        <button onClick={navigatetordit} className="rounded-full p-2 font-semibold" >Edit</button>
         <button onClick={handleDelete} className="rounded-full p-2 font-semibold">Delete</button>
       </div>
     </div>

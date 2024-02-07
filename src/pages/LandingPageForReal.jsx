@@ -60,7 +60,6 @@ const LandingPageForReal = () => {
       <div className="mx-auto bg-gainsboro w-full  h-[197px]" />
       
     
-      <div className="absolute top-[780px] left-[12px] bg-gainsboro w-[139px] h-[121px]" />
       <div className=" flex flex-row gap-5  mt-3 mx-auto [412px] left-[180px] text-sm inline-block w-44 h-[17px]">
         
       <div>
@@ -84,11 +83,12 @@ const LandingPageForReal = () => {
 
 function RestaurantList(){
   const navigate = useNavigate();
-  const [sampleRestaurants, setSampleRestaurants] = useState();
+  const [sampleRestaurants, setSampleRestaurants] = useState(null);
+  
   
   useEffect(()=>{
     const fetchRestaurants = async () => {
-      const {data} = await supabase.from("restaraunt_details")
+      const {data} = await supabase.from("restaurant_details")
       .select()
       setSampleRestaurants(data);
     }
@@ -102,19 +102,25 @@ function RestaurantList(){
   }, [navigate]);
 
   return (
-    <div className="flex flex-col bg-yellow-800 mx-0 p-10 gap-y-5">
+    <div className="flex flex-col mx-0 p-10 gap-y-5">
       {
         sampleRestaurants?.map((restaurant)=>{
-          useState()
+     
           return (
-            <div className=" flex">
-              <p>img</p>
+            <div className=" flex gap-x-5">
+              <img src={restaurant.imageUrl} className="max-w-[150px]" />
+              
+              
+             
               <div  className="flex flex-col ">
+                
                 <p className="m-0">{restaurant.name}</p>
                 <p className="m-0">{restaurant.price}</p>
                 <p className="m-0">{restaurant.province}</p>
                 <p className="m-0">{restaurant.open}</p>
                 <p className="m-0">{restaurant.review}</p>
+                <p className="m-0">{restaurant.phoneNum}</p>
+                <p className="m-0">{restaurant.star}  star</p>
               </div>
 
               
