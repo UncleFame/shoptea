@@ -66,12 +66,10 @@ const LandingPageForReal = () => {
       recommended  
       </div>
       all
-      <div
-        onClick={onVectorSearchIcon1Click}>
-          
+                
       <BottomBar />
         
-      </div>
+     
       </div>
       <RestaurantList />
       

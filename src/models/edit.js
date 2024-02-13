@@ -4,13 +4,12 @@ import { supabase } from "../pages/loginsystem";
 export async function editrestarunt(id , edit){
     try {
         
-    const {error} = await supabase
-        .from('restarunt')
-        .update({ name: edit })
-        .eq('id', id)
+    const {data , error} = await supabase
+        .from('restarunt_details')
+        .upsert({ name: edit })
+        .select()
   
     } catch (error) {
       throw new Error(error.message)
     }
 }
-

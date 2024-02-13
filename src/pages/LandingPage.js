@@ -84,45 +84,60 @@ const LandingPage = () => {
 
   return (
     <div className="relative bg-white w-full h-[932px] overflow-hidden text-center text-13xl text-gray-200 font-inter">
-      <div className="absolute top-[0px] w-full h-[76px] text-base text-dimgray-200">
-        <div className="absolute top-[0px] bg-white box-border w-screen h-[76px] border-[1px] border-solid border-gray-300" />
-        <div className="absolute top-[43.9px] left-[165px] font-extrabold inline-block w-[110px] h-[11.8px]">
-          Login
-        </div>
-      </div>
-      <div className="absolute top-[348px] left-[41px] font-extrabold inline-block w-[348px] h-[61px]">{`MatCha&Tea`}</div>
-      <div className="absolute top-[409px] left-[-25px] font-semibold text-material-theme-sys-light-primary inline-block w-[480px] h-[61px]">
-        เรานำชามาให้คุณ
-      </div>
       <img
-        className="absolute top-[149px] left-[131px] w-[169px] h-[169px] overflow-hidden object-contain"
+        className="flex flex-col mx-auto w-[169px] h-[169px] overflow-hidden object-contain "
         alt=""
         src="/bobacup.png"
       />
-      <div className="absolute top-[500px] left-[131px] w-[169px] h-[169px] ">
+
+      
+      <div className="flex flex-col mx-auto font-semibold text-material-theme-sys-light-primary inline-block w-[480px] h-[61px]">
+        
+      <p>Matcha&Tea</p>
+        <p>เรานำชามาให้คุณ</p>
         <form >
-          <input 
-            placeholder="Email"
+
+            
+        <div className="= flex flex-col mx-auto gap-5">
+
+        <input 
+            
+            className="outline outline-2 outline-offset-2"
+            placeholder="Email " 
             name="email"
             onChange={handleChange}/>
+            
 
 
            <input 
+            className="outline outline-2 outline-offset-2"
             placeholder="Password"
             type="password"
             name="password"
             onChange={handleChange}/>
-            
-          <button type="Submit" onClick={Hadlelogin }>
-          login
-          </button>
+          
+          </div >
+         <div className=" flex gap-5 mt-[30px] mx-[180px]">
+         <button type="submit" onClick={Hadlelogin} 
+         className="bg-green-800 size-12 ">
+           Login
+        </button>
 
+          
           <button type="Submit" onClick={ HandleRegister}>
           signUp
           </button>
+
+
+         </div>
+          
           
         </form>
-        </div> 
+
+
+      </div>
+      
+       
   
       
       <div className="absolute top-[138px] left-[174px] w-[86px] h-[94px] overflow-hidden" />
