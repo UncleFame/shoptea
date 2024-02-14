@@ -64,7 +64,7 @@ const LandingPageForReal = () => {
       <div/>
       
     
-      <div className=" flex flex-row gap-5  mt-3 mx-auto [412px] left-[180px] text-sm inline-block w-44 h-[17px]">
+      <div className=" flex flex-row gap-5  mt-3 mx-auto [412px] left-[180px] text-sm w-44 h-[17px]">
         
       <div>
       recommended  
@@ -116,11 +116,8 @@ export const RestaurantList = () =>{
             <div className=" flex gap-x-5">
               <img src={restaurant.imageUrl} className="max-w-[150px]" 
               onClick={()=>goReviewPage(index)}/>
-              
-              
              
               <div  className="flex flex-col ">
-                                
                 
                 <p className="m-0">{restaurant.name}</p>
                 <p className="m-0">ราคา  {restaurant.price}</p>
