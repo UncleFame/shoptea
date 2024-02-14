@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useUser } from "../hooks/useUser";
 import BottomBar from "../components/BottomBar";
 import { supabase } from "./loginsystem";
-
-
+import { Star } from "../components/destination/Star";
 
 const LandingPageForReal = () => {
   const navigate = useNavigate();
@@ -108,7 +107,7 @@ export const RestaurantList = () =>{
   }, [navigate]);
 
   return (
-    <div className="flex flex-col mx-0 p-10 gap-y-5">
+    <div className="flex flex-col mx-0 py-5 px-10 gap-y-5">
       {
         sampleRestaurants?.map((restaurant,index)=>{
           
@@ -118,14 +117,13 @@ export const RestaurantList = () =>{
               onClick={()=>goReviewPage(index)}/>
              
               <div  className="flex flex-col ">
-                
                 <p className="m-0">{restaurant.name}</p>
                 <p className="m-0">ราคา  {restaurant.price}</p>
                 <p className="m-0">สถานที่  {restaurant.province}</p>
                 <p className="m-0">เวลาเปิด  {restaurant.open}</p>
                 <p className="m-0">{restaurant.review}</p>
                 <p className="m-0">{restaurant.phoneNum}</p>
-                <p className="m-0">{restaurant.star}  star</p>
+                <Star rating={restaurant.star}/>
               </div>        
             </div>
           )
