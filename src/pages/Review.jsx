@@ -30,9 +30,6 @@ const Review = () => {
         const RestaurantList = () => {
             const navigate = useNavigate();
             const [firstRestaurant, setFirstRestaurant] = useState(null);
-            const goReviewPage = useCallback(() => {
-              navigate("/Review");
-            }, [navigate]);
           
             useEffect(() => {
               const fetchRestaurants = async () => {
