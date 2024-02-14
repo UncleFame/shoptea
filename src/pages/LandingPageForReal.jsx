@@ -71,13 +71,8 @@ const LandingPageForReal = () => {
       all
                 
       <BottomBar />
-        
-     
       </div>
       <RestaurantList />
-      
-      
-  
     </div>
     
   );
@@ -107,7 +102,7 @@ export const RestaurantList = () =>{
   }, [navigate]);
 
   return (
-    <div className="flex flex-col mx-0 py-5 px-10 gap-y-5">
+    <div className="flex flex-col mx-0 p-10 gap-y-5 max-h-[500px] overflow-y-scroll">
       {
         sampleRestaurants?.map((restaurant,index)=>{
           
