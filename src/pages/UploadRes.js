@@ -238,4 +238,3 @@ const UploadRes = () => {
 };
 
 export default UploadRes;
-

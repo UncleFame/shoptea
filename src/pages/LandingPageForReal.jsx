@@ -15,7 +15,7 @@ const LandingPageForReal = () => {
     if (loading) return
     if (!user) return navigate("/")
   }, [loading])
-
+  
   const onVectorSearchIcon1Click = useCallback(() => {
     navigate("/All");
   }, [navigate]);
@@ -55,9 +55,13 @@ const LandingPageForReal = () => {
       />
         
         </div>
+      
 
-
-      <div className="mx-auto bg-gainsboro w-full  h-[197px]" />
+        <img
+          className="mx-auto  w-full  h-[197px]"
+         src="matcha.webp"
+         alt="" />
+      <div/>
       
     
       <div className=" flex flex-row gap-5  mt-3 mx-auto [412px] left-[180px] text-sm inline-block w-44 h-[17px]">
@@ -80,9 +84,12 @@ const LandingPageForReal = () => {
   );
 };
 
-function RestaurantList(){
+export const RestaurantList = () =>{
   const navigate = useNavigate();
   const [sampleRestaurants, setSampleRestaurants] = useState(null);
+  const goReviewPage = useCallback(() => {
+    navigate("/Review");
+  }, [navigate]);
   
   
   useEffect(()=>{
@@ -107,11 +114,13 @@ function RestaurantList(){
      
           return (
             <div className=" flex gap-x-5">
-              <img src={restaurant.imageUrl} className="max-w-[150px]" />
+              <img src={restaurant.imageUrl} className="max-w-[150px]" 
+              onClick={goReviewPage}/>
               
               
              
               <div  className="flex flex-col ">
+                                
                 
                 <p className="m-0">{restaurant.name}</p>
                 <p className="m-0">ราคา  {restaurant.price}</p>
@@ -120,14 +129,8 @@ function RestaurantList(){
                 <p className="m-0">{restaurant.review}</p>
                 <p className="m-0">{restaurant.phoneNum}</p>
                 <p className="m-0">{restaurant.star}  star</p>
-              </div>
-
-              
+              </div>        
             </div>
-
-
-
-
           )
 
         })

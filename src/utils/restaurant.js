@@ -7,9 +7,9 @@ export async function uploadRestaurantImage(file, restaurantName, filename){
     const {data, error} = await supabase
     .storage
     .from("Shoplist")
-    .upsert(`restaurants/${restaurantName}/${filename}.png`, file, {
+    .upload(`restaurants/${restaurantName}/${filename}.png`, file, {
       cacheControl: '3600',
-      
+      upsert: true
     })
 
     if (error) throw new Error(error.message)

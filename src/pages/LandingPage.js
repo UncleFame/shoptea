@@ -85,7 +85,7 @@ const LandingPage = () => {
   return (
     <div className="relative bg-white w-full h-[932px] overflow-hidden text-center text-13xl text-gray-200 font-inter">
       <img
-        className="flex flex-col mx-auto w-[169px] h-[169px] overflow-hidden object-contain "
+        className="flex flex-col mx-auto mt-[60px] [169px] h-[169px] overflow-hidden object-contain "
         alt=""
         src="/bobacup.png"
       />

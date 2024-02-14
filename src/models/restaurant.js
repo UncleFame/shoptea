@@ -8,6 +8,7 @@ export async function insertNewRestaurant(newRestaurant){
         const { error } = await supabase
         .from('restaurant_details')
         .insert(newRestaurant)
+        
 
         if (error) throw new Error(error.message)
 

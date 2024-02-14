@@ -76,7 +76,7 @@ const RestaurantItem = ({restaurant}) => {
 
 
   const navigatetordit = useCallback(() => {
-    navigate("/editpostupload");
+    navigate("/upload-res");
   }, [navigate]);
   
   return (
