@@ -87,8 +87,8 @@ const LandingPageForReal = () => {
 export const RestaurantList = () =>{
   const navigate = useNavigate();
   const [sampleRestaurants, setSampleRestaurants] = useState(null);
-  const goReviewPage = useCallback(() => {
-    navigate("/Review");
+  const goReviewPage = useCallback((index) => {
+    navigate(`/Review?restaurantId=${index}`);
   }, [navigate]);
   
   
@@ -110,12 +110,12 @@ export const RestaurantList = () =>{
   return (
     <div className="flex flex-col mx-0 p-10 gap-y-5">
       {
-        sampleRestaurants?.map((restaurant)=>{
-     
+        sampleRestaurants?.map((restaurant,index)=>{
+          
           return (
             <div className=" flex gap-x-5">
               <img src={restaurant.imageUrl} className="max-w-[150px]" 
-              onClick={goReviewPage}/>
+              onClick={()=>goReviewPage(index)}/>
               
               
              
