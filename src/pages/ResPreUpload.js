@@ -75,8 +75,8 @@ const RestaurantItem = ({restaurant}) => {
   }, [])
 
 
-  const navigatetordit = useCallback(() => {
-    navigate("/upload-res");
+  const navigatetordit = useCallback((restaurantId) => {
+    navigate(`/upload-res?method=editing&restaurantId=${restaurantId}`);
   }, [navigate]);
   
   return (
@@ -87,7 +87,7 @@ const RestaurantItem = ({restaurant}) => {
         <p>{owner?.email}</p>
       </div>
       <div className="flex flex-col h-full justify-between">
-        <button onClick={navigatetordit} className="rounded-full p-2 font-semibold" >Edit</button>
+        <button onClick={()=>navigatetordit(restaurant.id)} className="rounded-full p-2 font-semibold" >Edit</button>
         <button onClick={handleDelete} className="rounded-full p-2 font-semibold">Delete</button>
       </div>
     </div>
@@ -99,7 +99,7 @@ const ReviewButton = () => {
 
   function handleClick(e){
     e.preventDefault();
-    navigate('/upload-res')
+    navigate('/upload-res?method=uploading')
   }
   return (
     <button onClick={handleClick} className="bg-transparent border-2 border-solid border-green-300 w-[30%] rounded-full hover:scale-105 transition-all cursor-pointer">
