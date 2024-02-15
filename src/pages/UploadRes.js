@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { getPublicUrl, uploadRestaurantImage } from "../utils/restaurant";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { insertNewRestaurant } from "../models/restaurant";
+import { getRestaurantInfoById, insertNewRestaurant } from "../models/restaurant";
 import {useUser} from "../hooks/useUser"
 import { useSearchParams } from "react-router-dom";
 
@@ -32,8 +32,11 @@ const UploadRes = () => {
   // Initial load
   useEffect(()=>{
     const fetchRestaurantInfo = async () => {
-      
+      const restaurantInfo = await getRestaurantInfoById(restaurantId);
+      console.log(restaurantInfo)
     }
+
+    fetchRestaurantInfo();
   },[])
 
   async function handleUploadImage(){

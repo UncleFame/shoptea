@@ -64,14 +64,17 @@ export async function deleteRestaurantById(restaurantId){
     }
 }
 
-export async function RestaurantID(restaurantId){
+export async function getRestaurantInfoById(restaurantId){
     try{
-        const {error} = await supabase
-        .from("restarunt_details")
+        const {data, error} = await supabase
+        .from("restaurant_details")
         .select()
         .eq("id" ,restaurantId)
+        .single()
 
         if (error) throw new Error(error.message)
+
+        return data
     }catch (error){
         throw new Error(error.message)
     }
