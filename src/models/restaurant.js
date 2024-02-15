@@ -80,6 +80,23 @@ export async function getRestaurantInfoById(restaurantId){
     }
 }
 
+export async function updateRestaurant(restaurant){
+    try {
+        const {id} = restaurant;
+        const {error} = await supabase
+        .from('restaurant_details')
+        .update({
+            ...restaurant
+        })
+        .eq('id', id);
+
+        if (error) throw new Error(error.message)
+        
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
 
 // export const fakeData = [
 //     itme = "00.00"

@@ -50,6 +50,11 @@ const UploadRes = () => {
 
   async function handleUploadImage(){
     try {
+      if (isEditing) {
+        
+        return
+      }
+      // This will run if the user uploads new restaurant
       const fileLength = image.current.files.length;
 
       if (fileLength < 1) return alert("กรุณา upload รูปภาพร้านค้า")
