@@ -96,10 +96,3 @@ export async function updateRestaurant(restaurant){
         throw new Error(error.message)
     }
 }
-
-
-// export const fakeData = [
-//     itme = "00.00"
-
-// ]
-

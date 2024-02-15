@@ -50,7 +50,14 @@ const UploadRes = () => {
 
   async function handleUploadImage(){
     try {
+      const fileLength = image.current.files.length;
       if (isEditing) {
+        let imageUrl
+        if (fileLength >= 1) {
+          // If file is added, upload to the storage
+          await uploadRestaurantImage(image.current.files[fileLength - 1], name, 'main')
+          imageUrl = await getPublicUrl(`restaurants/${name}/main.png`)
+        }
         const [open, close] = operationTime.split("/");
         const updatedRestaurant = {
           close,
@@ -60,7 +67,8 @@ const UploadRes = () => {
           phoneNum,
           price,
           province,
-          id : restaurantId
+          id : restaurantId,
+          imageUrl
         }
         // update restaurant
         await updateRestaurant(updatedRestaurant)
@@ -68,9 +76,8 @@ const UploadRes = () => {
         alert("แก้ไขร้านค้าสำเร็จ")
         return
       }
+      
       // This will run if the user uploads new restaurant
-      const fileLength = image.current.files.length;
-
       if (fileLength < 1) return alert("กรุณา upload รูปภาพร้านค้า")
       if (!name) return alert("กรุณาใส่ชื่อร้าน")
       await uploadRestaurantImage(image.current.files[fileLength - 1], name, 'main')
@@ -93,7 +100,7 @@ const UploadRes = () => {
 
       await insertNewRestaurant(newRestaurant);
 
-      alert("Already created the restaurant in the database")
+      alert("สร้างร้านค้าสำเร็จ")
 
       setTimeout(()=>{
         navigate('/res-preupload')
