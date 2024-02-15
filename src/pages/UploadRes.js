@@ -252,7 +252,9 @@ const UploadRes = () => {
           สร้างรีวิวใหม่
         </div>
         <button onClick={handleUploadImage} className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[90px] left-[calc(50%_+_162px)] text-base font-extrabold font-inter text-material-theme-sys-light-primary-fixed text-left inline-block w-[45px] h-[18px]">
-          สร้าง
+          {
+            isUploading ? "สร้าง" : "แก้ไข"
+          }
         </button>
         <button  onClick={Pushtolandingpage} className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[90px] left-[calc(50%_-_199px)] text-base font-extrabold font-inter text-material-theme-sys-dark-error-container text-left inline-block w-[45px] h-[18px]">
           ยกเลิก 
