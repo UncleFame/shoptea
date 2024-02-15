@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { getPublicUrl, uploadRestaurantImage } from "../utils/restaurant";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { getRestaurantInfoById, insertNewRestaurant } from "../models/restaurant";
+import { getRestaurantInfoById, insertNewRestaurant, updateRestaurant } from "../models/restaurant";
 import {useUser} from "../hooks/useUser"
 import { useSearchParams } from "react-router-dom";
 
@@ -51,7 +51,21 @@ const UploadRes = () => {
   async function handleUploadImage(){
     try {
       if (isEditing) {
-        
+        const [open, close] = operationTime.split("/");
+        const updatedRestaurant = {
+          close,
+          comment,
+          name,
+          open,
+          phoneNum,
+          price,
+          province,
+          id : restaurantId
+        }
+        // update restaurant
+        await updateRestaurant(updatedRestaurant)
+        // show success message
+        alert("แก้ไขร้านค้าสำเร็จ")
         return
       }
       // This will run if the user uploads new restaurant

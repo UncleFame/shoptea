@@ -91,7 +91,7 @@ export async function updateRestaurant(restaurant){
         .eq('id', id);
 
         if (error) throw new Error(error.message)
-        
+
     } catch (error) {
         throw new Error(error.message)
     }
