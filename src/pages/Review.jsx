@@ -6,7 +6,6 @@ import { supabase } from "./loginsystem";
 
 const Review = () => {
    
-  
   const navigate = useNavigate();
   const GOhomepage = useCallback(() => {
     navigate("/landing-page-for-real");
@@ -71,12 +70,11 @@ const Review = () => {
                         
                     </div>
                     
-                    <div className="flex flex-col rounded-sm">
+                    <div className="flex flex-col">
                         
                   
-                        <img src="chonBuri.jpg"
-                        className="rounded"></img>                       
-                        <p>review</p>
+                        <img src="chonBuri.jpg"></img>                       
+                        review
                     <div className="flex flex gap-y-5"> 
                         <img src="profileicon.png" alt=""  className="h-[50px] w-[50px]"/>
 
