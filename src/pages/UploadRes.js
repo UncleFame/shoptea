@@ -4,7 +4,13 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { insertNewRestaurant } from "../models/restaurant";
 import {useUser} from "../hooks/useUser"
+import { useSearchParams } from "react-router-dom";
+
 const UploadRes = () => {
+  let [searchParams, _] = useSearchParams();
+  const method = searchParams.get('method');
+  const [isEditing, isUploading] = [method === "editing", method === "uploading"];
+  alert(isEditing)
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [operationTime, setOperationTime] = useState("");

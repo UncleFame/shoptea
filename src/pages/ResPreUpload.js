@@ -76,7 +76,7 @@ const RestaurantItem = ({restaurant}) => {
 
 
   const navigatetordit = useCallback(() => {
-    navigate("/upload-res");
+    navigate("/upload-res?method=editing");
   }, [navigate]);
   
   return (
@@ -99,7 +99,7 @@ const ReviewButton = () => {
 
   function handleClick(e){
     e.preventDefault();
-    navigate('/upload-res')
+    navigate('/upload-res?method=uploading')
   }
   return (
     <button onClick={handleClick} className="bg-transparent border-2 border-solid border-green-300 w-[30%] rounded-full hover:scale-105 transition-all cursor-pointer">
