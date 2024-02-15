@@ -64,12 +64,12 @@ const LandingPageForReal = () => {
       <div/>
       
     
-      <div className=" flex flex-row gap-5  mt-3 mx-auto [412px] left-[180px] text-sm inline-block w-44 h-[17px]">
+      <div className=" flex flex-row gap-[150px]  mt-3 mx-[200px] [412px] left-[180px] text-sm inline-block w-44 h-[17px] gap-[180px]">
         
       <div>
-      recommended  
+      Recommended  
       </div>
-      all
+      All
                 
       <BottomBar />
         
@@ -108,27 +108,27 @@ export const RestaurantList = () =>{
   }, [navigate]);
 
   return (
-    <div className="flex flex-col mx-0 p-10 gap-y-5">
+    <div className="flex flex-col mx-0 p-10 gap-y-5 ">
       {
         sampleRestaurants?.map((restaurant)=>{
      
           return (
             <div className=" flex gap-x-5">
-              <img src={restaurant.imageUrl} className="max-w-[150px]" 
+              <img src={restaurant.imageUrl} className="max-w-[150px] rounded-lg" 
               onClick={goReviewPage}/>
               
               
              
-              <div  className="flex flex-col ">
+              <div  className="flex flex-col rounded ">
                                 
                 
-                <p className="m-0">{restaurant.name}</p>
-                <p className="m-0">ราคา  {restaurant.price}</p>
-                <p className="m-0">สถานที่  {restaurant.province}</p>
-                <p className="m-0">เวลาเปิด  {restaurant.open}</p>
-                <p className="m-0">{restaurant.review}</p>
-                <p className="m-0">{restaurant.phoneNum}</p>
-                <p className="m-0">{restaurant.star}  star</p>
+                <p className="m-0  ">{restaurant.name}</p>
+                <p className="m-0 ">ราคา  {restaurant.price}</p>
+                <p className="m-0 ">สถานที่  {restaurant.province}</p>
+                <p className="m-0 " >เวลาเปิด  {restaurant.open}</p>
+                <p className="m-0 ">{restaurant.review}</p>
+                <p className="m-0 ">{restaurant.phoneNum}</p>
+                <p className="m-0 ">{restaurant.star}  star</p>
               </div>        
             </div>
           )

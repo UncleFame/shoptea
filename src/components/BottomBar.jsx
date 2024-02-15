@@ -1,6 +1,10 @@
 import React from 'react'
 import {useNavigate} from "react-router-dom"
 
+import { FaHome } from "react-icons/fa";
+
+
+
 export const BottomBar = () => {
 const navigate = useNavigate();
 
@@ -10,6 +14,7 @@ const navigate = useNavigate();
         className="absolute top-[914px] left-[-38px] w-[468px] h-[42.9px]"
         fasd="fdas"
       >
+        <FaHome />
         <img
           className="absolute top-[0px] left-[0px] w-[468px] h-[41.6px] object-cover"
           alt=""

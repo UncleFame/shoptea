@@ -78,7 +78,7 @@ const All = () => {
         <p>Home</p>
       </div>
       <SearchBar onSearch={handleSearch} />
-      <div className="flex flex-col mx-0 p-10 gap-y-5">
+      <div className="flex flex-col mx-0 p-10 gap-y-5 rounded-sm">
         {filteredRestaurants?.map((restaurant) => (
           <div className="flex gap-x-5" key={restaurant.id}>
             <img src={restaurant.imageUrl} className="max-w-[150px]" alt={restaurant.name} />

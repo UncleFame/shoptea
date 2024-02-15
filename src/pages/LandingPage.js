@@ -87,44 +87,46 @@ const LandingPage = () => {
       <img
         className="flex flex-col mx-auto mt-[60px] [169px] h-[169px] overflow-hidden object-contain "
         alt=""
-        src="/bobacup.png"
+        src="/matchapic.png"
       />
 
       
-      <div className="flex flex-col mx-auto font-semibold text-material-theme-sys-light-primary inline-block w-[480px] h-[61px]">
+      <div className="flex flex-col mx-auto font-semibold text-material-theme-sys-light-primary inline-block w-[480px]">
         
       <p>Matcha&Tea</p>
         <p>เรานำชามาให้คุณ</p>
         <form >
 
             
-        <div className="= flex flex-col mx-auto gap-5">
-
+        <div className="= flex flex-col ">
+        <p className="flex flex text-xs   ">email</p>
         <input 
             
-            className="outline outline-2 outline-offset-2"
+            className="outline outline-2 h-[40px] rounded-md outline-gray-400"
             placeholder="Email " 
             name="email"
             onChange={handleChange}/>
             
 
-
+            <p className="flex text-xs "> 
+              password
+              </p>
            <input 
-            className="outline outline-2 outline-offset-2"
+            className="outline outline-2 h-[40px] rounded-md outline-gray-400"
             placeholder="Password"
             type="password"
             name="password"
             onChange={handleChange}/>
           
           </div >
-         <div className=" flex gap-5 mt-[30px] mx-[180px]">
+         <div className=" flex gap-[30px] w-[480px] mt-[30px] ">
          <button type="submit" onClick={Hadlelogin} 
-         className="bg-green-800 size-12 ">
-           Login
+         className="bg-green-800 w-[500px] h-[50px] rounded-md text-blac">
+           <p className="text-white">Login</p>  
         </button>
 
           
-          <button type="Submit" onClick={ HandleRegister}>
+          <button type="Submit" onClick={ HandleRegister} className="rounded-md w-[480px] h-[50px] bg-inherit border-2 text-green-800  ">
           signUp
           </button>
 
