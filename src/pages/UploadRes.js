@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getPublicUrl, uploadRestaurantImage } from "../utils/restaurant";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +9,8 @@ import { useSearchParams } from "react-router-dom";
 const UploadRes = () => {
   let [searchParams, _] = useSearchParams();
   const method = searchParams.get('method');
+  const restaurantId = searchParams.get('restaurantId');
   const [isEditing, isUploading] = [method === "editing", method === "uploading"];
-  alert(isEditing)
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [operationTime, setOperationTime] = useState("");
@@ -28,6 +28,13 @@ const UploadRes = () => {
   const [rectangleInput6Value, setRectangleInput6Value] = useState("");
 
   const image = useRef(null);
+
+  // Initial load
+  useEffect(()=>{
+    const fetchRestaurantInfo = async () => {
+      
+    }
+  },[])
 
   async function handleUploadImage(){
     try {
