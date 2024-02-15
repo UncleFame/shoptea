@@ -30,20 +30,17 @@ const LandingPageForReal = () => {
  
   return (
     <div className="flexrelative bg-white w-full h-[957px] overflow-hidden text-left text-xl text-black font-inter">
-      <div className="flex[20px] left-[6px] inline-block w-[215px] h-[111px] text-gray-100">
-        <p className="m-0">{`MatCha&Tea`}</p>
-        <p className="m-0 text-seagreen">เรานำชามาให้คุณ</p>
+      <div className="flex[20px]  left-[6px] inline-block w-[215px] h-[111px] text-gray-100">
+        
       </div>
-      <div className="flex flex-row-reverse gap-3  h-9 object-cover cursor-pointer">
-        
+      
+      <p className="m-0 ">{`MatCha&Tea`}</p>
+        <p className="m-0 text-seagreen">เรานำชามาให้คุณ</p>
+        <div className="flex flex-row-reverse gap-3  h-9  ">
+      
       <img
-        
-        alt=""
-        src="/vector-search-icon-1@2x.png"
-        onClick={onVectorSearchIcon1Click}
-      />
-       <img
-        className="flex flex-row reverse w-[33px] h-[33px] object-cover cursor-pointer"
+      
+        className=" w-[33px] h-[33px] object-cover cursor-pointer"
         alt=""
         src="profileicon.png"
         onClick={onIconClick}
@@ -52,6 +49,13 @@ const LandingPageForReal = () => {
      
            //first box under
       />
+      <img
+        
+        alt=""
+        src="/vector-search-icon-1@2x.png"
+        onClick={onVectorSearchIcon1Click}
+      />
+      
         
         </div>
       
@@ -70,7 +74,7 @@ const LandingPageForReal = () => {
       </div>
       All
                 
-      <BottomBar />
+      
       </div>
       <RestaurantList />
     </div>
@@ -114,21 +118,25 @@ export const RestaurantList = () =>{
               
              
               <div  className="flex flex-col rounded ">
-                                
+              <BottomBar />
                 
-                <p className="m-0  ">{restaurant.name}</p>
+                <p className="m-0  text-gray-950">{restaurant.name}</p>
                 <p className="m-0 ">{restaurant.star}  star</p>
-                <p className="m-0 " >เวลาเปิด  {restaurant.open}</p>
-                <p className="m-0  ">{restaurant.name}</p>
-                <p className="m-0 ">ราคา  {restaurant.price}</p>
-                <p className="m-0 ">สถานที่  {restaurant.province}</p>
+                
+                <p className="m-0 text-sm text-gray-100  ">{restaurant.name}</p>
+                <p className="m-0 text-sm text-gray-100">ราคา  {restaurant.price}</p>
+                <p className="m-0  text-sm text-gray-200">จ.  {restaurant.province}</p>
+                
         
               </div>        
+              
             </div>
           )
 
         })
+        
       }
+      
     </div>
     
   )

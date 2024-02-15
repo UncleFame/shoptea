@@ -11,9 +11,9 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <input
-      className="flex flex-row mx-auto"
+      className="  w-[480px] flex flex-row mx-auto"
       type="text"
-      placeholder="Search..."
+      placeholder="ค้นชื้อร้านค้า"
       onChange={handleChange}
     />
   );
@@ -78,10 +78,10 @@ const All = () => {
         <p>Home</p>
       </div>
       <SearchBar onSearch={handleSearch} />
-      <div className="flex flex-col mx-0 p-10 gap-y-5 rounded-sm">
+      <div className="flex flex-col mx-0 p-10 gap-y-5 ">
         {filteredRestaurants?.map((restaurant) => (
-          <div className="flex gap-x-5" key={restaurant.id}>
-            <img src={restaurant.imageUrl} className="max-w-[150px]" alt={restaurant.name} />
+          <div className="flex gap-x-5 " key={restaurant.id}>
+            <img src={restaurant.imageUrl} className=" rounded-lg max-w-[150px]" alt={restaurant.name} />
             <div className="flex flex-col">
               <p className="m-0">{restaurant.name}</p>
               <p className="m-0">ราคา {restaurant.price}</p>
