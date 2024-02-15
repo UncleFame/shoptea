@@ -26,23 +26,23 @@ const UploadRes = () => {
     navigate("/res-preupload");
   }, [navigate]);
   const [rectangleInput6Value, setRectangleInput6Value] = useState("");
-
   const image = useRef(null);
 
   // Initial load
   useEffect(()=>{
     const fetchRestaurantInfo = async () => {
+      if (!isEditing) return
       const restaurantInfo = await getRestaurantInfoById(restaurantId);
       // Destruct necessary information from the fetched restaurant
       const {name, open, close, price, province, phoneNum, comment, imageUrl} = restaurantInfo;
       // Set value to corresponding local state
       setName(_ => name);
-      setOperationTime(_ => `${open}:${close}`);
+      setOperationTime(_ => `${open}/${close}`);
       setPrice(_ => price);
       setProvince(_ => province)
       setPhoneNum(_ => phoneNum)
       setComment(_ => comment)
-      setImgSrc(_ => imageUrl)
+      setImgSrc(_ => imageUrl) 
     }
 
     fetchRestaurantInfo();
