@@ -70,6 +70,8 @@ export async function RestaurantID(restaurantId){
         .from("restarunt_details")
         .select()
         .eq("id" ,restaurantId)
+
+        if (error) throw new Error(error.message)
     }catch (error){
         throw new Error(error.message)
     }
