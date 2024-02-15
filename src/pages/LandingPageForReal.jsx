@@ -29,7 +29,7 @@ const LandingPageForReal = () => {
 
  
   return (
-    <div className="flexrelative bg-white w-full h-[957px] overflow-hidden text-left text-xl text-black font-inter">
+    <div className="flexrelative bg-white w-full h-full overflow-hidden text-left text-xl text-black font-inter">
       <div className="flex[20px]  left-[6px] inline-block w-[215px] h-[111px] text-gray-100">
         
       </div>
@@ -61,7 +61,7 @@ const LandingPageForReal = () => {
       
 
         <img
-          className="mx-auto  w-full  h-[197px]"
+          className="mx-[20px]  w-[450px]  h-[197px]"
          src="matcha.webp"
          alt="" />
       <div/>
@@ -73,6 +73,8 @@ const LandingPageForReal = () => {
       Recommended  
       </div>
       All
+                
+      <BottomBar />
                 
       
       </div>
@@ -112,14 +114,13 @@ export const RestaurantList = () =>{
           
           return (
             <div className=" flex gap-x-5">
-              <img src={restaurant.imageUrl} className="max-w-[150px] rounded-lg" 
+              <img src={restaurant.imageUrl} className="w-[150px] h-[150px]  rounded-lg" 
               onClick={goReviewPage}/>
               
               
              
               <div  className="flex flex-col rounded ">
-              <BottomBar />
-                
+              
                 <p className="m-0  text-gray-950">{restaurant.name}</p>
                 <Star rating={restaurant.star}/>
                 <p className="m-0 text-sm text-gray-100  ">{restaurant.name}</p>

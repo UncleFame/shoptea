@@ -15,7 +15,7 @@ export const BottomBar = () => {
   return (
     
     <nav
-        className="absolute top-[914px] left-[-38px] w-[468px] h-[42.9px]"
+        className="fixed top-[950px] left-[0px]"
         fasd="fdas"
       >
        
