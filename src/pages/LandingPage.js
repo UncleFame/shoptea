@@ -121,7 +121,7 @@ const LandingPage = () => {
           </div >
          <div className=" flex gap-[30px] w-[480px] mt-[30px] ">
          <button type="submit" onClick={Hadlelogin} 
-         className="bg-green-800 w-[500px] h-[50px] rounded-md text-blac">
+         className="bg-green-800 w-[50px] h-[50px] rounded-md text-blac">
            <p className="text-white">Login</p>  
         </button>
 

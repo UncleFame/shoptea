@@ -274,10 +274,10 @@ const UploadRes = () => {
       </div>
       <div className="absolute top-[0px] left-[0px] w-[430px] h-[116px]">
         <div className="absolute top-[0px] left-[0px] bg-white box-border w-[430px] h-[116px] border-[1px] border-solid border-gray-300" />
-        <div className="absolute top-[90px] left-[calc(50%_-_50px)] font-extrabold inline-block w-[103px] h-[18px]">
-          สร้างรีวิวใหม่
+        <div className="absolute top-[90px] left-[calc(50%_-_50px)] font-extrabold inline-block w-[1030px] h-[18px]">
+          สร้างร้านค้าใหม่
         </div>
-        <button onClick={handleUploadImage} className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[90px] left-[calc(50%_+_162px)] text-base font-extrabold font-inter text-material-theme-sys-light-primary-fixed text-left inline-block w-[45px] h-[18px]">
+        <button onClick={handleUploadImage} className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[90px] left-[calc(50%_+_100px)] text-base font-extrabold font-inter text-material-theme-sys-light-primary-fixed text-left inline-block w-[45px] h-[18px]">
           {
             isUploading ? "สร้าง" : "แก้ไข"
           }

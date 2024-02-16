@@ -42,7 +42,7 @@ const LandingPageForReal = () => {
           alt=""
           src="profileicon.png"
           onClick={onIconClick}
-            //first box under
+              
         />
         <img
           
@@ -54,7 +54,7 @@ const LandingPageForReal = () => {
       </div>
      </div>
       <img
-        className="mx-[20px]  w-[450px]  h-[197px]"
+        className=" box-border w-[500px]   h-[197px]"
         src="matcha.webp"
         alt="" />
     

@@ -59,7 +59,7 @@ const Review = () => {
                       
                       <p>{firstRestaurant.recommededmenuprice}</p>
                       
-                    <div className="flex gap-6" >
+                    <div className="flex gap-6 h-[50px] w-[30px]" >
                     <img src={firstRestaurant.imageUrl}  />
                     <img src={firstRestaurant.imageUrl}  />
                     <img src={firstRestaurant.imageUrl}  />
@@ -70,10 +70,12 @@ const Review = () => {
                         
                     </div>
                     
-                    <div className="flex flex-col">
-                        
+                    <div className="flex flex-col gap gap-y-5 ">
+                      
                   
-                        <img src="chonBuri.jpg"></img>                       
+                        <img src="chonBuri.jpg"></img>    
+                        <span className="-8 w-full h-1 bg-gray-300"></span>
+                                           
                         review
                     <div className="flex flex gap-y-5"> 
                         <img src="profileicon.png" alt=""  className="h-[50px] w-[50px]"/>
