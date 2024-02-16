@@ -29,56 +29,41 @@ const LandingPageForReal = () => {
 
  
   return (
-    <div className="flexrelative bg-white w-full h-full overflow-hidden text-left text-xl text-black font-inter">
-      <div className="flex[20px]  left-[6px] inline-block w-[215px] h-[111px] text-gray-100">
-        
-      </div>
-      
-      <p className="m-0 ">{`MatCha&Tea`}</p>
-        <p className="m-0 text-seagreen">เรานำชามาให้คุณ</p>
-        <div className="flex flex-row-reverse gap-3  h-9  ">
-      
-      <img
-      
-        className=" w-[33px] h-[33px] object-cover cursor-pointer"
-        alt=""
-        src="profileicon.png"
-        onClick={onIconClick}
-
-     
-     
-           //first box under
-      />
-      <img
-        
-        alt=""
-        src="/vector-search-icon-1@2x.png"
-        onClick={onVectorSearchIcon1Click}
-      />
-      
-        
-        </div>
-      
-
-        <img
-          className="mx-[20px]  w-[450px]  h-[197px]"
-         src="matcha.webp"
-         alt="" />
-      <div/>
-      
-    
-      <div className=" flex flex-row gap-[150px]  mt-3 mx-[200px] [412px] left-[180px] text-sm inline-block w-44 h-[17px] gap-[180px]">
-        
-      <div>
-      Recommended  
-      </div>
-      All
-                
+    <div className="relative bg-white w-full h-full overflow-hidden text-left text-xl text-black font-inter">
       <BottomBar />
-                
+      <p className="m-0 ">{`MatCha&Tea`}</p>
+      <p className="m-0 text-seagreen">เรานำชามาให้คุณ</p>
+      <div className="flex flex-row-reverse gap-3  h-9  ">
+        <img
+          className=" w-[33px] h-[33px] object-cover cursor-pointer"
+          alt=""
+          src="profileicon.png"
+          onClick={onIconClick}
+            //first box under
+        />
+        <img
+          
+          alt=""
+          src="/vector-search-icon-1@2x.png"
+          onClick={onVectorSearchIcon1Click}
+        />
       
+      </div>
+      <img
+        className="mx-[20px]  w-[450px]  h-[197px]"
+        src="matcha.webp"
+        alt="" />
+    
+      <div className=" flex flex-row mt-3 mx-[200px] [412px] left-[180px] text-sm  w-44 h-[17px] gap-[180px]">
+
+        <div>Recommended</div>
+        All
+              
+              
+
       </div>
       <RestaurantList />
+      
     </div>
     
   );
