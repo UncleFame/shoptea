@@ -10,7 +10,7 @@ import { deleteRestaurantCover } from "../models/storage";
 const ResPreupload = () => {
 
   return (
-    <main className="flex flex-col items-center gap-y-5 relative">
+    <main className="flex flex-col overflow-x-hidden w-full items-center gap-y-5 px-5 box-border relative">
       <ResPreUploadProvider>
         <NavBar />
         <DisplayRestaurant />
@@ -25,7 +25,7 @@ const DisplayRestaurant = () => {
   
   return (
     <div className="flex flex-col items-center gap-y-5 w-full">
-      <div className="flex flex-col gap-y-3 w-[95%]">
+      <div className="flex flex-col gap-y-3 w-full px-5">
         {
           restaurants?.map(restaurant => 
             <RestaurantItem key={restaurant.id} restaurant={restaurant}/>
@@ -79,13 +79,13 @@ const RestaurantItem = ({restaurant}) => {
   }, [navigate]);
   
   return (
-    <div className="flex h-[120px] justify-between gap-x-5 w-full">
-      <img className="w-[1/4] h-full object-cover" src={restaurant.imageUrl} alt="restaurant image"/>
-      <div className="flex flex-col h-full justify-start items-start">
-        <p>{restaurant.name}</p>
-        <p>{owner?.email}</p>
+    <div className="flex h-[150px] justify-between gap-x-5 w-full">
+      <img className="w-full h-full object-cover rounded-2xl" src={restaurant.imageUrl} alt="restaurant image"/>
+      <div className="flex w-1/3 flex-col h-full justify-start items-start">
+        <p className="w-full">{restaurant.name}</p>
+        <p className="w-full break-words">{owner?.email}</p>
       </div>
-      <div className="flex flex-col h-full justify-between">
+      <div className="flex flex-col w-full h-full justify-between">
         <button onClick={()=>navigatetordit(restaurant.id)} className="rounded-full p-2 font-semibold" >Edit</button>
         <button onClick={handleDelete} className="rounded-full p-2 font-semibold">Delete</button>
       </div>
