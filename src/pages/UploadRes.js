@@ -114,21 +114,15 @@ const UploadRes = () => {
   return (
     
   <div className="relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-inter">
-        <div className="flex flex-row-reverse  w-full  gap-[150px] mt-50 mx-5 font-bold">
-
-
-<button onClick={handleUploadImage} className="text-material-theme-sys-light-primary-fixed text-left inline-block">
-  {isUploading ? "สร้าง" : "แก้ไข"}
-</button>
-
-
-
-<p>สร้างร้านใหม่</p>
-<button onClick={Pushtolandingpage} className="text-material-theme-sys-dark-error-container text-left inline-block">
-  <p>ยกเลิก </p>
-</button>
-</div>
-
+    <div className="flex w-full justify-between mt-50 px-5 box-border font-bold">
+      <button onClick={Pushtolandingpage} className="text-material-theme-sys-dark-error-container bg-transparent text-left inline-block">
+        <p>ยกเลิก </p>
+      </button>
+      <p>สร้างร้านใหม่</p>
+      <button onClick={handleUploadImage} className="text-material-theme-sys-light-primary-fixed text-left inline-block bg-transparent">
+      {isUploading ? "สร้าง" : "แก้ไข"}
+      </button>
+    </div>
       {
         imgSrc ?
           <img src={imgSrc} className="absolute top-[174px] left-[105px] w-[220px] h-[183px] object-cover rounded-2xl" />
