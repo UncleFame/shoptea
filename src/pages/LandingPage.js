@@ -121,12 +121,12 @@ const LandingPage = () => {
           </div >
          <div className=" flex gap-[30px] w-full mt-[30px] ">
          <button type="submit" onClick={Hadlelogin} 
-         className="bg-green-800 w-[50px] h-[50px] rounded-md text-blac">
+         className="bg-green-800 w-full h-[50px] rounded-md text-blac">
            <p className="text-white">Login</p>  
         </button>
 
           
-          <button type="Submit" onClick={ HandleRegister} className="rounded-md w-[480px] h-[50px] bg-inherit border-2 text-green-800  ">
+          <button type="Submit" onClick={ HandleRegister} className="rounded-md w-full h-[50px] bg-inherit border-2 text-green-800  ">
           signUp
           </button>
 
