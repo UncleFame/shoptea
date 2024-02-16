@@ -110,28 +110,22 @@ const ReviewButton = () => {
 const NavBar = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-row text-base   gap-[500px] text-gray-200">
+    <div className="flex flex-row items-center justify-between text-base w-full p-5 text-gray-200 box-border">
       <p>Review</p> 
-      <div className="flex flex-row ">
-      <img
-        className="w-8 h-9 object-cover cursor-pointer"
-        alt=""
-        src="/vector-search-icon-1@2x.png"
-        onClick={()=>navigate("/All")}
-        
-      />
-      <img
-        className="w-[33px] h-[33px] object-cover cursor-pointer"
-        alt=""
-        src="/profileicon.png"
-      />
-
+      <div className="flex flex-row">
+        <img
+          className="w-8 h-9 object-cover cursor-pointer"
+          alt=""
+          src="/vector-search-icon-1@2x.png"
+          onClick={()=>navigate("/All")}
+          
+        />
+        <img
+          className="w-[33px] h-[33px] object-cover cursor-pointer"
+          alt=""
+          src="/profileicon.png"
+        />
       </div>
-        
-         
-                
-     
-     
     </div>
   )
 }
