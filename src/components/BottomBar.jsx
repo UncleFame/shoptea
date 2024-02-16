@@ -15,7 +15,7 @@ export const BottomBar = () => {
   const iconSize = 35
   return (
     
-    <nav className="flex fixed bottom-0 w-full justify-between py-3 box-border px-8">
+    <nav className="flex fixed bg-white bottom-0 w-full justify-between py-3 box-border px-8">
 
       <FaHome size={iconSize} className={`${currentPage === "landing-page-for-real" ? "text-[#B9CCB5]" : "text-black" }`}
         onClick={()=>navigate("/landing-page-for-real")}
