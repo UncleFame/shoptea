@@ -54,15 +54,17 @@ const LandingPageForReal = () => {
       </div>
      </div>
       <img
-        className=" box-border w-[520px]   h-[197px]"
+        className=" box-border w-[520px]  h-[197px]"
         src="matcha.webp"
         alt="" />
     
-      <div className=" flex flex-row mt-3 mx-[200px] [412px] left-[180px] text-sm  w-44 h-[17px] gap-[180px]">
-
-        <div>Recommended</div>
-        All
-              
+      <div className=" flex flex-row mt-3 [412px] left-[180px] text-sm w-full mx-auto h-[17px]">
+        <div className="w-full flex justify-end">
+          <p className="translate-x-1/2">Recommended</p>
+        </div>
+        <div className="w-full flex justify-end">
+          <p>All</p>
+        </div>
               
       </div>
       <RestaurantList />
