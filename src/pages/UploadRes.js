@@ -114,7 +114,7 @@ const UploadRes = () => {
   return (
     
     <div className="relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-inter">
-              <div className="flex flex-row   w-full h-18  gap-10 mt-[70px] mx-5" >
+          <div className="flex flex-row w-full h-18 gap-10 mt-[70px] mx-5" >
           
           <button  onClick={Pushtolandingpage} className=" text-material-theme-sys-dark-error-container text-left inline-block ">
             ยกเลิก 
