@@ -54,7 +54,7 @@ const LandingPageForReal = () => {
       </div>
      </div>
       <img
-        className=" box-border w-[500px]   h-[197px]"
+        className=" box-border w-[520px]   h-[197px]"
         src="matcha.webp"
         alt="" />
     

@@ -112,13 +112,30 @@ const UploadRes = () => {
   }
 
   return (
+    
     <div className="relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-inter">
+              <div className="flex flex-row   w-full h-18  gap-10 mt-[70px] mx-5" >
+          
+          <button  onClick={Pushtolandingpage} className=" text-material-theme-sys-dark-error-container text-left inline-block ">
+            ยกเลิก 
+          </button>
+          
+          
+            <p>สร้างร้านใหม่</p>
+            <button onClick={handleUploadImage} className=" text-material-theme-sys-light-primary-fixed text-left inline-block ">
+            {
+              isUploading ? "สร้าง" : "แก้ไข"
+            }
+          </button>
+  
+          </div>
       {
         imgSrc ?
           <img src={imgSrc} className="absolute top-[174px] left-[105px] w-[220px] h-[183px] object-cover rounded-2xl" />
           :
           <div className="absolute top-[174px] left-[105px] rounded-3xs bg-gainsboro w-[220px] h-[183px]" />
       }
+
       <div>
         <label htmlFor="fileInput" className="relative">
           <img
@@ -143,6 +160,10 @@ const UploadRes = () => {
             }}
           />
         </label>
+      </div>
+      <div>
+        
+
       </div>
 
       <input
@@ -271,20 +292,6 @@ const UploadRes = () => {
             src="/group-10@2x.png"
           />
         </div>
-      </div>
-      <div className="absolute top-[0px] left-[0px] w-[430px] h-[116px]">
-        <div className="absolute top-[0px] left-[0px] bg-white box-border w-[430px] h-[116px] border-[1px] border-solid border-gray-300" />
-        <div className="absolute top-[90px] left-[calc(50%_-_50px)] font-extrabold inline-block w-[1030px] h-[18px]">
-          สร้างร้านค้าใหม่
-        </div>
-        <button onClick={handleUploadImage} className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[90px] left-[calc(50%_+_100px)] text-base font-extrabold font-inter text-material-theme-sys-light-primary-fixed text-left inline-block w-[45px] h-[18px]">
-          {
-            isUploading ? "สร้าง" : "แก้ไข"
-          }
-        </button>
-        <button  onClick={Pushtolandingpage} className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[90px] left-[calc(50%_-_199px)] text-base font-extrabold font-inter text-material-theme-sys-dark-error-container text-left inline-block w-[45px] h-[18px]">
-          ยกเลิก 
-        </button>
       </div>
     </div>
   );
