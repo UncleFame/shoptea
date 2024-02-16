@@ -113,22 +113,22 @@ const UploadRes = () => {
 
   return (
     
-    <div className="relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-inter">
-              <div className="flex flex-row   w-full h-18  gap-10 mt-[70px] mx-5" >
-          
-          <button  onClick={Pushtolandingpage} className=" text-material-theme-sys-dark-error-container text-left inline-block ">
-            ยกเลิก 
-          </button>
-          
-          
-            <p>สร้างร้านใหม่</p>
-            <button onClick={handleUploadImage} className=" text-material-theme-sys-light-primary-fixed text-left inline-block ">
-            {
-              isUploading ? "สร้าง" : "แก้ไข"
-            }
-          </button>
+    <div className="relative bg-white w-full h-full text-left text-base text-gray-200 font-inter">
+        <div className="flex flex-row-reverse  w-full  gap-[150px] mt-50 mx-5">
   
-          </div>
+  
+        <button onClick={handleUploadImage} className="text-material-theme-sys-light-primary-fixed text-left inline-block">
+    {isUploading ? "สร้าง" : "แก้ไข"}
+  </button>
+  
+  
+  
+  <p>สร้างร้านใหม่</p>
+  <button onClick={Pushtolandingpage} className="text-material-theme-sys-dark-error-container text-left inline-block">
+    ยกเลิก 
+  </button>
+</div>
+
       {
         imgSrc ?
           <img src={imgSrc} className="absolute top-[174px] left-[105px] w-[220px] h-[183px] object-cover rounded-2xl" />
@@ -139,7 +139,7 @@ const UploadRes = () => {
       <div>
         <label htmlFor="fileInput" className="relative">
           <img
-            className="absolute top-[252px] left-[202px] w-[26px] h-[26px] object-cover"
+            className="absolute top-[202px] left-[202px] w-[26px] h-[26px] object-cover"
             alt=""
             src="/uploadbutton.png"
           />

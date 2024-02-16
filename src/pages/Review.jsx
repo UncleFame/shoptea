@@ -43,7 +43,7 @@ const Review = () => {
             }, []);
           
             return (
-              <div className="flex flex-col mx-0 p-10 gap-y-5">
+              <div className="flex flex-col mx-0 p-10 border gap-y-5">
                 {firstRestaurant && (
                     <div className="flex flex-col">
                       <img src={firstRestaurant.imageUrl} className="w-full h-[350px] mx-auto"  />
@@ -59,10 +59,10 @@ const Review = () => {
                       
                       <p>{firstRestaurant.recommededmenuprice}</p>
                       
-                    <div className="flex gap-6 h-[50px] w-[30px]" >
-                    <img src={firstRestaurant.imageUrl}  />
-                    <img src={firstRestaurant.imageUrl}  />
-                    <img src={firstRestaurant.imageUrl}  />
+                    <div className="flex gap-6 h-[380px]" >
+                    <img className="h-full object-cover w-1/3" src={firstRestaurant.imageUrl}  />
+                    <img className="h-full object-cover w-1/3" src={firstRestaurant.imageUrl}  />
+                    <img className="h-full object-cover w-1/3" src={firstRestaurant.imageUrl}  />
                     </div>
                     <div className="flex flex-col">
                         location
