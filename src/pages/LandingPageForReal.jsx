@@ -31,8 +31,11 @@ const LandingPageForReal = () => {
   return (
     <div className="relative bg-white w-full h-full overflow-hidden text-left text-xl text-black font-inter">
       <BottomBar />
-      <p className="m-0 ">{`MatCha&Tea`}</p>
-      <p className="m-0 text-seagreen">เรานำชามาให้คุณ</p>
+     <div className="flex justify-between py-5 px-5">
+      <div className="flex flex-col">
+        <p className="m-0 ">{`MatCha&Tea`}</p>
+        <p className="m-0 text-seagreen">เรานำชามาให้คุณ</p>
+      </div>
       <div className="flex flex-row-reverse gap-3  h-9  ">
         <img
           className=" w-[33px] h-[33px] object-cover cursor-pointer"
@@ -49,6 +52,7 @@ const LandingPageForReal = () => {
         />
       
       </div>
+     </div>
       <img
         className="mx-[20px]  w-[450px]  h-[197px]"
         src="matcha.webp"
