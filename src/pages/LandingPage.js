@@ -91,7 +91,7 @@ const LandingPage = () => {
       />
 
       
-      <div className="flex flex-col mx-auto font-semibold text-material-theme-sys-light-primary inline-block w-full">
+      <div className="flex flex-col mx-auto font-semibold text-material-theme-sys-light-primary w-full">
         
       <p>Matcha&Tea</p>
         <p>เรานำชามาให้คุณ</p>
@@ -99,7 +99,7 @@ const LandingPage = () => {
 
             
         <div className="= flex flex-col w-full">
-        <p className="flex flex text-xs   ">email</p>
+        <p className="flex text-xs   ">email</p>
         <input 
             
             className="outline outline-2 h-[40px] rounded-md outline-gray-400"
