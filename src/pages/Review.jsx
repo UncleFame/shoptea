@@ -16,7 +16,7 @@ const Review = () => {
         return(
             
 
-            <div className="flex flex-col ">
+            <div className="flex flex-col">
             <p onClick={GOhomepage}>Homepage </p>
 
             <RestaurantList/>

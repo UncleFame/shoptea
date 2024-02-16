@@ -60,7 +60,6 @@ const LandingPageForReal = () => {
         All
               
               
-
       </div>
       <RestaurantList />
       

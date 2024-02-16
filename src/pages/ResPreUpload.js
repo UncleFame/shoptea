@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import BottomBar from "../components/BottomBar";
-import { useUser } from "../hooks/useUser";
 import { useContext, useEffect, useLayoutEffect, useState,useCallback } from "react";
 import { deleteRestaurantById, getRestaurantsByUserId } from "../models/restaurant";
 import { ResPreUploadContext, ResPreUploadProvider } from "../contexts/ResPreUploadContext";
@@ -11,7 +10,7 @@ import { deleteRestaurantCover } from "../models/storage";
 const ResPreupload = () => {
 
   return (
-    <main className="flex flex-col items-center gap-y-5">
+    <main className="flex flex-col items-center gap-y-5 relative">
       <ResPreUploadProvider>
         <NavBar />
         <DisplayRestaurant />
