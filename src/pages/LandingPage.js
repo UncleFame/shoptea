@@ -83,7 +83,7 @@ const LandingPage = () => {
  }
 
   return (
-    <div className="relative bg-white w-full h-[932px] overflow-hidden text-center text-13xl text-gray-200 font-inter">
+    <div className="relative bg-white px-5 box-border w-full h-[932px] overflow-hidden text-center text-13xl text-gray-200 font-inter">
       <img
         className="flex flex-col mx-auto mt-[60px] [169px] h-[169px] overflow-hidden object-contain "
         alt=""
@@ -91,14 +91,14 @@ const LandingPage = () => {
       />
 
       
-      <div className="flex flex-col mx-auto font-semibold text-material-theme-sys-light-primary inline-block w-[480px]">
+      <div className="flex flex-col mx-auto font-semibold text-material-theme-sys-light-primary inline-block w-full">
         
       <p>Matcha&Tea</p>
         <p>เรานำชามาให้คุณ</p>
         <form >
 
             
-        <div className="= flex flex-col ">
+        <div className="= flex flex-col w-full">
         <p className="flex flex text-xs   ">email</p>
         <input 
             
@@ -119,7 +119,7 @@ const LandingPage = () => {
             onChange={handleChange}/>
           
           </div >
-         <div className=" flex gap-[30px] w-[480px] mt-[30px] ">
+         <div className=" flex gap-[30px] w-full mt-[30px] ">
          <button type="submit" onClick={Hadlelogin} 
          className="bg-green-800 w-[500px] h-[50px] rounded-md text-blac">
            <p className="text-white">Login</p>  
