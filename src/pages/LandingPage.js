@@ -127,7 +127,7 @@ const LandingPage = () => {
 
           
           <button type="Submit" onClick={ HandleRegister} className="rounded-md w-full h-[50px] bg-inherit border-2 text-green-800  ">
-          signUp
+          SignUp
           </button>
 
 
