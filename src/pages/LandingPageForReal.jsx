@@ -40,8 +40,6 @@ const LandingPageForReal = () => {
         <p className="m-0 text-seagreen">เรานำชามาให้คุณ</p>
       </div>
       <div className="flex flex-row-reverse gap-3  h-9  ">
-    
-      
       </div>
      </div>
       <img

@@ -42,28 +42,44 @@ const All = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data, error } = await supabase
-          .from("restaurant_details")
-          .select()
-          .textSearch("name", searchTerm);
-
-        if (error) {
-          console.error("Error fetching data:", error.message);
-        } else {
-          setFilteredRestaurants(data);
+        let nameResults = [];
+        let provinceResults = [];
+  
+        if (searchTerm !== '') {
+          const { data: nameData, error: nameError } = await supabase
+            .from("restaurant_details")
+            .select()
+            .textSearch(["name"], searchTerm);
+  
+          if (nameError) {
+            console.error("Error fetching data by name:", nameError.message);
+          } else {
+            nameResults = nameData;
+          }
+  
+          const { data: provinceData, error: provinceError } = await supabase
+            .from("restaurant_details")
+            .select()
+            .textSearch(["province"], searchTerm);
+  
+          if (provinceError) {
+            console.error("Error fetching data by province:", provinceError.message);
+          } else {
+            provinceResults = provinceData;
+          }
         }
+  
+        const mergedResults = [...nameResults, ...provinceResults];
+  
+        setFilteredRestaurants(mergedResults);
       } catch (error) {
         console.error("Error fetching data:", error.message);
       }
     };
-
-    if (searchTerm !== '') {
-      fetchData();
-    } else {
-      setFilteredRestaurants(sampleRestaurants); // Reset filtered restaurants when search term is empty
-    }
-  }, [searchTerm, sampleRestaurants]);
-
+  
+    fetchData();
+  }, [searchTerm]);
+  
   const handleSearch = useCallback((value) => {
     setSearchTerm(value);
   }, []);

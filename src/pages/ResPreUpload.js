@@ -5,6 +5,7 @@ import { deleteRestaurantById, getRestaurantsByUserId } from "../models/restaura
 import { ResPreUploadContext, ResPreUploadProvider } from "../contexts/ResPreUploadContext";
 import { getUserInfo } from "../models/users";
 import { deleteRestaurantCover } from "../models/storage";
+import ProfileAndSearch from "../components/profileandsearch";
 
 
 const ResPreupload = () => {
@@ -15,6 +16,7 @@ const ResPreupload = () => {
         <NavBar />
         <DisplayRestaurant />
         <BottomBar />
+        <ProfileAndSearch />
       </ResPreUploadProvider>
     </main>
   );
@@ -110,23 +112,12 @@ const ReviewButton = () => {
 const NavBar = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-row items-center justify-between text-base w-full p-5 text-gray-200 box-border">
+    <div className="flex flex-row items-center justify-center text-base w-full p-5 text-gray-200 box-border">
       <p>Review</p> 
-      <div className="flex flex-row">
-        <img
-          className="w-8 h-9 object-cover cursor-pointer"
-          alt=""
-          src="/vector-search-icon-1@2x.png"
-          onClick={()=>navigate("/All")}
-          
-        />
-        <img
-          className="w-[33px] h-[33px] object-cover cursor-pointer"
-          alt=""
-          src="/profileicon.png"
-        />
+   
+      
       </div>
-    </div>
+    
   )
 }
 
