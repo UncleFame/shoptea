@@ -133,27 +133,25 @@ const UploadRes = () => {
       </div>
 
     <div className="flex flex-col">
-        <p>profile</p>
-        <p>comment</p>
-
-    </div>
-      <textarea
-        value={comment}
-        onChange={e => setComment(e.target.value)}
-        className="[border:none] bg-[transparent] inline-block font-inter text-xs [outline:none] absolute bottom-[1016px] left-[32px] font-bold text-gainsboro text-left w-[371px] h-[92px]"
-        placeholder="comment"
-      />
-      <img
-        className="absolute bottom-[1153px] left-[31px] rounded-[50%] w-[37px] h-[37px] object-cover"
+        <div className="flex flex">
+        <img
+        className="rounded-[50%] w-[37px] h-[37px] object-cover"
         alt=""
         src="/ellipse-4@2x.png"
       />
-      <b className="absolute bottom-[1153px] left-[77px] text-sm inline-block w-[142px] h-[27px]">
-        Annette Black
-      </b>
-        <div className="absolute top-[0px] left-[0px] w-[700px] h-[141px]">
+      <p>Annette Black</p>
+    
         </div>
-      </div>
+        
+      <textarea
+        className="mx-8 rounded-lg"
+        value={comment}
+        onChange={e => setComment(e.target.value)}
+        placeholder="comment"
+      />
+
+    </div>
+        </div>
   
   );
 };
