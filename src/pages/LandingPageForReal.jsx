@@ -34,12 +34,8 @@ const LandingPageForReal = () => {
     <div className="relative bg-white w-full h-full overflow-hidden text-left text-xl text-black font-inter">
       <ProfileAndSearch isTitleVisible={true}/>
       <BottomBar />
-     <div className="flex justify-between py-5 px-5">
-      <div className="flex flex-row-reverse gap-3  h-9  ">
-      </div>
-     </div>
       <img
-        className=" box-border w-[520px]  h-[197px]"
+        className="object-cover box-border w-[520px]  h-[197px]"
         src="matcha.webp"
         alt="" />
     

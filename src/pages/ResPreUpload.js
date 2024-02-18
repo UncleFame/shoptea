@@ -13,10 +13,9 @@ const ResPreupload = () => {
   return (
     <main className="flex flex-col overflow-x-hidden w-full items-center gap-y-5 px-5 box-border relative">
       <ResPreUploadProvider>
-        <NavBar />
+        <ProfileAndSearch header="Review"/>
         <DisplayRestaurant />
         <BottomBar />
-        <ProfileAndSearch />
       </ResPreUploadProvider>
     </main>
   );
@@ -109,16 +108,5 @@ const ReviewButton = () => {
   )
 }
 
-const NavBar = () => {
-  const navigate = useNavigate();
-  return (
-    <div className="flex flex-row items-center justify-center text-base w-full p-5 text-gray-200 box-border">
-      <p>Review</p> 
-   
-      
-      </div>
-    
-  )
-}
 
 export default ResPreupload;

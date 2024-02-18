@@ -32,7 +32,7 @@ const Review = () => {
        
         
         const RestaurantList = () => {
-          const [searchParams, setSearchParams] = useSearchParams();
+          const [searchParams, _] = useSearchParams();
           const restaurantId = searchParams.get("restaurantId");
             const navigate = useNavigate();
             const [firstRestaurant, setFirstRestaurant] = useState(null);
