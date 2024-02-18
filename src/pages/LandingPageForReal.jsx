@@ -39,12 +39,12 @@ const LandingPageForReal = () => {
         src="matcha.webp"
         alt="" />
     
-      <div className=" flex flex-row mt-3 [412px] left-[180px] text-sm w-full mx-auto h-[17px]">
+      <div className="flex flex-row mt-3 left-[180px] text-sm w-full mx-auto h-[17px]">
         <div className="w-full flex justify-end">
-          <p className="translate-x-1/2">Recommended</p>
+          <p className="translate-x-1/2 hover:text-green-400 transition-all cursor-pointer font-semibold">Recommend</p>
         </div>
         <div className="w-full flex justify-end">
-          <p>All</p>
+          <p className="underline underline-offset-4 mr-8 hover:text-green-400 transition-all cursor-pointer">All</p>
         </div>
               
       </div>
