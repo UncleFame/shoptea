@@ -15,30 +15,17 @@ export const BottomBar = () => {
   const iconSize = 35
   return (
     
-    <nav className="flex fixed bg-white bottom-0 w-full justify-between py-3 box-border px-8">
+    <nav className="flex fixed bg-white  bottom-0 w-full justify-between py-3 box-border px-8">
 
-      <FaHome size={iconSize} className={`${currentPage === "landing-page-for-real" ? "text-[#B9CCB5]" : "text-black" }`}
+      <FaHome size={iconSize} className={`${currentPage === "landing-page-for-real" ? "text-[#B9CCB5]" : "text-black" } mx-8`}
         onClick={()=>navigate("/landing-page-for-real")}
       />
-       <MdOutlineRateReview size={iconSize} className={`cursor-pointer ${currentPage === "res-preupload" ? "text-[#B9CCB5]" : "text-black"}`}
+       <MdOutlineRateReview size={iconSize} className={`cursor-pointer ${currentPage === "res-preupload" ? "text-[#B9CCB5]" : "text-black"} mx-8`}
         onClick={()=>navigate("/res-preupload")}
       />
       
-      <GoBookmark 
-        size={iconSize}
-        className=""
-      />
 
-      <CiBellOn
-        size={iconSize}
-        className=""
-      />
 
-      <LuSettings2 
-        size={iconSize}
-        className=""
-      />
-      
     </nav>
   )
 }

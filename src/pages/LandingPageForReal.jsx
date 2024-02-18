@@ -4,6 +4,8 @@ import { useUser } from "../hooks/useUser";
 import BottomBar from "../components/BottomBar";
 import { supabase } from "./loginsystem";
 import { Star } from "../components/destination/Star";
+import ProfileAndSearch from "../components/profileandsearch";
+
 
 const LandingPageForReal = () => {
   const navigate = useNavigate();
@@ -30,6 +32,7 @@ const LandingPageForReal = () => {
  
   return (
     <div className="relative bg-white w-full h-full overflow-hidden text-left text-xl text-black font-inter">
+      <ProfileAndSearch />
       <BottomBar />
      <div className="flex justify-between py-5 px-5">
       <div className="flex flex-col">
@@ -37,19 +40,7 @@ const LandingPageForReal = () => {
         <p className="m-0 text-seagreen">เรานำชามาให้คุณ</p>
       </div>
       <div className="flex flex-row-reverse gap-3  h-9  ">
-        <img
-          className=" w-[33px] h-[33px] object-cover cursor-pointer"
-          alt=""
-          src="profileicon.png"
-          onClick={onIconClick}
-              
-        />
-        <img
-          
-          alt=""
-          src="/vector-search-icon-1@2x.png"
-          onClick={onVectorSearchIcon1Click}
-        />
+    
       
       </div>
      </div>
