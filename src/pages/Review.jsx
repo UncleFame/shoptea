@@ -96,11 +96,11 @@ const Review = () => {
                     
                     <div className="flex flex-col gap gap-y-5  ">
 
-                        <p onClick={GotoMap}> {firstRestaurant.googlemap} </p>    
+                        <p src="https://www.google.com/maps/search/assumption+university/@13.61772,100.8255361,13z/data=!3m1!4b1?hl=en&entry=ttu" onClick={GotoMap}> {firstRestaurant.googlemap} </p>    
                         <span className="-8 w-full h-1 bg-gray-300"></span>
                                            
                         review
-                    <div className="flex flex gap-y-5 "> 
+                    <div className="flex gap-y-5 "> 
                         <img src="profileicon.png" alt=""  className="h-[50px] w-[50px]"/>
 
                     <p>Profile Name</p>
