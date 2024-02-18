@@ -17,7 +17,7 @@ export const ProfileAndSearch = ({isTitleVisible = false, header}) => {
         <p className="m-0 text-seagreen">เรานำชามาให้คุณ</p>
       </div>
       }
-      <p className="absolute left-1/2 translate-x-[-50%]">
+      <p className="absolute left-1/2 translate-x-[-50%] text-gray-500 font-semibold">
         {header}
       </p>
       <span className={`flex gap-x-4 ${isTitleVisible ? "" : "ml-auto"}`}>

@@ -60,9 +60,7 @@ const Review = () => {
                     <div className="flex flex-col  ">
                       <img src={firstRestaurant.imageUrl} className="w-full h-[350px] mx-auto "  />
                       <p className="m-0 flex flex-col text-neutral-400" > {firstRestaurant.name}</p>
-                      <p className="text-slate-500">
-                        <Star rating= {firstRestaurant.star} />
-                      </p>
+                      <Star rating= {firstRestaurant.star} />
                       <p className="m-0 text-gray-100 "><span>Open</span>{firstRestaurant.open}- {firstRestaurant.close}</p>
                       <p className="m-0 text-slate-500"><span>ราคา</span>{firstRestaurant.price}</p>
                       
