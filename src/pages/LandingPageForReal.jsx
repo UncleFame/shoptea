@@ -32,13 +32,9 @@ const LandingPageForReal = () => {
  
   return (
     <div className="relative bg-white w-full h-full overflow-hidden text-left text-xl text-black font-inter">
-      <ProfileAndSearch />
+      <ProfileAndSearch isTitleVisible={true}/>
       <BottomBar />
      <div className="flex justify-between py-5 px-5">
-      <div className="flex flex-col">
-        <p className="m-0 ">{`MatCha&Tea`}</p>
-        <p className="m-0 text-seagreen">เรานำชามาให้คุณ</p>
-      </div>
       <div className="flex flex-row-reverse gap-3  h-9  ">
       </div>
      </div>
@@ -94,7 +90,7 @@ export const RestaurantList = () =>{
           return (
             <div className=" flex gap-x-5">
               <img src={restaurant.imageUrl} className="w-[150px] h-[150px]  rounded-lg" 
-              onClick={goReviewPage}/>
+              onClick={()=>goReviewPage(index)}/>
               
               
              

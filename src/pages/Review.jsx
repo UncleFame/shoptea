@@ -1,17 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 
 import { supabase } from "./loginsystem";
 import { Star } from "../components/destination/Star";
 import { LuCupSoda } from "react-icons/lu";
 import { CiLocationOn } from "react-icons/ci";
-import { IoIosAddCircle } from "react-icons/io";
 
 import { IoMdAddCircleOutline } from "react-icons/io";
 
 
 const Review = () => {
-   
   const navigate = useNavigate();
   const GOhomepage = useCallback(() => {
     navigate("/landing-page-for-real");
@@ -34,6 +32,8 @@ const Review = () => {
        
         
         const RestaurantList = () => {
+          const [searchParams, setSearchParams] = useSearchParams();
+          const restaurantId = searchParams.get("restaurantId");
             const navigate = useNavigate();
             const [firstRestaurant, setFirstRestaurant] = useState(null);
             const GotoMap = useCallback(() => {
@@ -46,8 +46,8 @@ const Review = () => {
             useEffect(() => {
               const fetchRestaurants = async () => {
                 const { data } = await supabase.from("restaurant_details").select();
-                if (data.length > 0) {
-                  setFirstRestaurant(data[0]);
+                if (data.length > restaurantId) {
+                  setFirstRestaurant(data[restaurantId]);
                 }
               };
           

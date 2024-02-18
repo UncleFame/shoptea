@@ -1,19 +1,26 @@
 import React from 'react'
 import {useNavigate, useLocation} from "react-router-dom"
-import { IoSearchCircle } from "react-icons/io5";
+import { FaSearch } from 'react-icons/fa';
 import { CgProfile } from "react-icons/cg";
+import { IoSearchOutline } from "react-icons/io5";
 
-export const ProfileAndSearch = () => {
+export const ProfileAndSearch = ({isTitleVisible = false}) => {
   const navigate = useNavigate();
 
-
-  
   return (
     
-    <nav className="flex fixed  w-full justify-end gap-4 py-3 box-border ">
-        <IoSearchCircle size="50" className='top-[5px]' onClick={()=>navigate("/All")}/>
-        <CgProfile size="48" onClick={()=>navigate("/profile")}/>
-
+    <nav className="flex fixed items-center w-full justify-between gap-4 py-3 box-border px-5">
+      {
+        isTitleVisible &&
+        <div className="flex flex-col ">
+        <p className="m-0 ">{`MatCha&Tea`}</p>
+        <p className="m-0 text-seagreen">เรานำชามาให้คุณ</p>
+      </div>
+      }
+      <span className={`flex gap-x-4 ${isTitleVisible ? "" : "ml-auto"}`}>
+        <IoSearchOutline className='text-black bg-gray-300 p-3 rounded-full' size={20} onClick={()=>navigate("/All")}/>
+        <CgProfile size={45} onClick={()=>navigate("/profile")}/>
+      </span>
     </nav>
   )
 }
