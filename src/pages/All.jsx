@@ -46,26 +46,31 @@ const All = () => {
         let provinceResults = [];
   
         if (searchTerm !== '') {
+          // Convert the search term to lowercase
+          const searchTermLower = searchTerm.toLowerCase();
+  
+          // Fetch data for name search
           const { data: nameData, error: nameError } = await supabase
             .from("restaurant_details")
             .select()
-            .textSearch(["name"], searchTerm);
+            .textSearch(["name"], searchTermLower);
   
           if (nameError) {
             console.error("Error fetching data by name:", nameError.message);
           } else {
-            nameResults = nameData;
+            nameResults = nameData.filter(restaurant => restaurant.name.toLowerCase().startsWith(searchTermLower));
           }
   
+          
           const { data: provinceData, error: provinceError } = await supabase
             .from("restaurant_details")
             .select()
-            .textSearch(["province"], searchTerm);
+            .textSearch(["province"], searchTermLower);
   
           if (provinceError) {
             console.error("Error fetching data by province:", provinceError.message);
           } else {
-            provinceResults = provinceData;
+            provinceResults = provinceData.filter(restaurant => restaurant.province.toLowerCase().startsWith(searchTermLower));
           }
         }
   
@@ -79,6 +84,7 @@ const All = () => {
   
     fetchData();
   }, [searchTerm]);
+  
   
   const handleSearch = useCallback((value) => {
     setSearchTerm(value);

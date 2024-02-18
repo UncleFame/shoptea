@@ -102,6 +102,10 @@ export const RestaurantList = () =>{
               
                 <p className="m-0  text-gray-950">{restaurant.name}</p>
                 <Star rating={restaurant.star}/>
+                
+                <p className="m-0 text-sm text-gray-100 flex flex-row gap-2">
+               <span className="text-black">Open </span> {restaurant.open} - {restaurant.close}
+               </p>
                 <p className="m-0 text-sm text-gray-100  ">{restaurant.name}</p>
                 <p className="m-0 text-sm text-gray-100">ราคา  {restaurant.price}</p>
                 <p className="m-0  text-sm text-gray-200">จ.  {restaurant.province}</p>
