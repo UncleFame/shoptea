@@ -90,9 +90,9 @@ export const RestaurantList = () =>{
               
               
              
-              <div  className="flex flex-col rounded ">
+              <div  className="flex flex-col rounded">
               
-                <p className="m-0  text-gray-950">{restaurant.name}</p>
+                <p className="m-0 text-gray-950">{restaurant.name}</p>
                 <Star rating={restaurant.star}/>
                 
                 <p className="m-0 text-sm text-gray-100 flex flex-row gap-2">
