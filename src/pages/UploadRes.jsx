@@ -6,7 +6,7 @@ import { getRestaurantInfoById, insertNewRestaurant, updateRestaurant } from "..
 import {useUser} from "../hooks/useUser"
 import { useSearchParams } from "react-router-dom";
 import {FaCamera} from "react-icons/fa"
-import { listAllRestaurantImages, uploadRestaurantSubImages } from "../models/storage.ts";
+import { getAllRestaurantSubImagesPublicUrl, listAllRestaurantImages, uploadRestaurantSubImages } from "../models/storage.ts";
 
 const UploadRes = () => {
   let [searchParams, _] = useSearchParams();
@@ -60,11 +60,13 @@ const UploadRes = () => {
       const imageArray = await listAllRestaurantImages(name)
       const hasSubImage = imageArray.some(image => image.name.includes("sub-image"));
       if (hasSubImage) {
+        const subImagePublicUrlList = getAllRestaurantSubImagesPublicUrl(name);
+        console.log(subImagePublicUrlList)
         // Assign sub images of the restaurant to subImages local state
-        subImages(_ => ({
-          subImage1Src : ``,
-          subImage2Src : ``,
-          subImage3Src : ``,
+        setSubImages(_ => ({
+          subImage1Src : subImagePublicUrlList[0],
+          subImage2Src : subImagePublicUrlList[1],
+          subImage3Src : subImagePublicUrlList[2],
         }))
       }
     }

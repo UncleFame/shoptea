@@ -60,7 +60,7 @@ export function getAllRestaurantSubImagesPublicUrl(restaurantName : string) : St
             const {data} = supabase
             .storage
             .from("Shoplist")
-            .getPublicUrl(`restaurants/${restaurantName}/sub-image-1.png`)
+            .getPublicUrl(`restaurants/${restaurantName}/sub-image-${index + 1}.png`)
 
             imageUrlList.push(data.publicUrl)
         }
