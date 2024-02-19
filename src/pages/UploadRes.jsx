@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { getRestaurantInfoById, insertNewRestaurant, updateRestaurant } from "../models/restaurant";
 import {useUser} from "../hooks/useUser"
 import { useSearchParams } from "react-router-dom";
-
+import {FaCamera} from "react-icons/fa"
 const UploadRes = () => {
   let [searchParams, _] = useSearchParams();
   const method = searchParams.get('method');
@@ -23,7 +23,6 @@ const UploadRes = () => {
   const [imgSrc, setImgSrc] = useState("");
   const [FavMenu,setFavMenu] = useState("");
   const [googlemap,setGoolemap] = useState("")
-  const [Imgaemini,setImagemini] = useState("")
   const Pushtolandingpage = useCallback(() => {
     navigate("/res-preupload");
   }, [navigate]);
@@ -248,35 +247,21 @@ const UploadRes = () => {
       <b className="absolute top-[1108px] left-[77px] text-sm inline-block w-[142px] h-[27px]">
         Annette Black
       </b>
-      <div className="absolute top-[861px] left-[45px] w-[350px] h-[150px] overflow-x-auto">
-
-          <div className="absolute top-[0px] left-[0px] rounded-8xs bg-darkgray box-border w-[100px] h-[141px] border-[1px] border-solid border-gray-400" />
-          <div className="absolute top-[0px] left-[120px] rounded-8xs bg-darkgray box-border w-[100px] h-[141px] border-[1px] border-solid border-gray-400" />
-          <div className="absolute top-[0px] left-[240px] rounded-8xs bg-darkgray box-border w-[100px] h-[141px] border-[1px] border-solid border-gray-400" />
-      <button className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[58px] left-[37px] w-[26px] h-[26px]">
-            <div className="absolute top-[ฆpx] left-[0px] rounded-[50%] bg-gray-500 w-[26px] h-[26px]" />
-            <img
-              className="absolute top-[6px] left-[6px] w-3.5 h-3.5 overflow-hidden object-cover"
-              alt=""
-              src="/bxscamera@2x.png"
-            />
-          </button>
-          <button className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[58px] left-[157px] w-[26px] h-[26px]">
-            <div className="absolute top-[0px] left-[0px] rounded-[50%] bg-gray-500 w-[26px] h-[26px]" />
-            <img
-              className="absolute top-[6px] left-[6px] w-3.5 h-3.5 overflow-hidden object-cover"
-              alt=""
-              src="/bxscamera@2x.png"
-            />
-          </button>
-          <button className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[58px] left-[277px] w-[26px] h-[26px]">
-            <div className="absolute top-[0px] left-[0px] rounded-[50%] bg-gray-500 w-[26px] h-[26px]" />
-            <img
-              className="absolute top-[6px] left-[6px] w-3.5 h-3.5 overflow-hidden object-cover"
-              alt=""
-              src="/bxscamera@2x.png"
-            />
-          </button>
+      <div className="absolute top-[861px] left-[45px] w-[350px] h-[150px] overflow-x-auto p-0 m-0">
+        <ul className="flex items-center justify-between w-full h-full gap-x-2 p-0 m-0">
+          <input type="file" className="w-full border-2 hidden" accept=".png"/>
+          <div className="relative w-full h-full bg-gray-400 rounded-2xl">
+            <FaCamera  className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]"/>
+          </div>
+          <input type="file" className="w-full border-2 hidden" accept=".png"/>
+          <div className="relative w-full h-full bg-gray-400 rounded-2xl">
+            <FaCamera  className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]"/>
+          </div>
+          <input type="file" className="w-full border-2 hidden" accept=".png"/>
+          <div className="relative w-full h-full bg-gray-400 rounded-2xl">
+            <FaCamera  className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]"/>
+          </div>
+        </ul>
           
         </div>
       </div>
