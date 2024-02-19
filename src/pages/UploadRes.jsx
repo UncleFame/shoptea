@@ -23,6 +23,12 @@ const UploadRes = () => {
   const [imgSrc, setImgSrc] = useState("");
   const [FavMenu,setFavMenu] = useState("");
   const [googlemap,setGoolemap] = useState("")
+  const [subImages, setSubImages] = useState({
+    subImage1Src : '',
+    subImage2Src : '',
+    subImage3Src : ''
+  });
+  const {subImage1Src, subImage2Src, subImage3Src} = subImages
   const Pushtolandingpage = useCallback(() => {
     navigate("/res-preupload");
   }, [navigate]);
@@ -259,11 +265,15 @@ const UploadRes = () => {
             reader.readAsDataURL(file);
 
             reader.onload = function(){
-              setImgSrc(reader.result)
+              setSubImages(prev => ({
+                ...prev,
+                subImage1Src : reader.result
+              }))
             }
            }}
            ref={subImage1} type="file" className="w-full border-2 hidden" accept=".png"/>
-          <div className="relative w-full h-full bg-gray-400 rounded-2xl">
+          <div className={`relative w-full h-full ${subImage1Src ? "" : "bg-gray-400"} rounded-2xl`}>
+            {subImage1Src && <img className="w-full h-full object-cover rounded-2xl" src={subImage1Src}/>}
             <FaCamera onClick={()=>{
               subImage1.current.click()
             }} 
@@ -276,11 +286,15 @@ const UploadRes = () => {
             reader.readAsDataURL(file);
 
             reader.onload = function(){
-              setImgSrc(reader.result)
+              setSubImages(prev => ({
+                ...prev,
+                subImage2Src : reader.result
+              }))
             }
            }}
            ref={subImage2} type="file" className="w-full border-2 hidden" accept=".png"/>
-          <div className="relative w-full h-full bg-gray-400 rounded-2xl">
+          <div className={`relative w-full h-full ${subImage2Src ? "" : "bg-gray-400"} rounded-2xl`}>
+            {subImage2Src && <img className="w-full h-full object-cover rounded-2xl" src={subImage2Src}/>}
             <FaCamera onClick={()=>{
               subImage2.current.click()
             }} 
@@ -293,11 +307,15 @@ const UploadRes = () => {
             reader.readAsDataURL(file);
 
             reader.onload = function(){
-              setImgSrc(reader.result)
+              setSubImages(prev => ({
+                ...prev,
+                subImage3Src : reader.result
+              }))
             }
            }}
            ref={subImage3} type="file" className="w-full border-2 hidden" accept=".png"/>
-          <div className="relative w-full h-full bg-gray-400 rounded-2xl">
+          <div className={`relative w-full h-full ${subImage3Src ? "" : "bg-gray-400"} rounded-2xl`}>
+            {subImage3Src && <img className="w-full h-full object-cover rounded-2xl" src={subImage3Src}/>}
             <FaCamera onClick={()=>{
               subImage3.current.click()
             }} 
