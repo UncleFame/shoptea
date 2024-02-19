@@ -52,3 +52,20 @@ export async function listAllRestaurantImages(restaurantName : string){
         throw new Error(error.message)
     }
 }
+
+export function getAllRestaurantSubImagesPublicUrl(restaurantName : string) : String[]{
+    try {
+        let imageUrlList : String[] = [];
+        for (let index = 0; index < 3; index++){
+            const {data} = supabase
+            .storage
+            .from("Shoplist")
+            .getPublicUrl(`restaurants/${restaurantName}/sub-image-1.png`)
+
+            imageUrlList.push(data.publicUrl)
+        }
+        return imageUrlList
+    } catch (error : any) {
+       throw new Error(error.message) 
+    }
+}

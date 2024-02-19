@@ -59,6 +59,14 @@ const UploadRes = () => {
       // Fetch restaurant sub images if there are
       const imageArray = await listAllRestaurantImages(name)
       const hasSubImage = imageArray.some(image => image.name.includes("sub-image"));
+      if (hasSubImage) {
+        // Assign sub images of the restaurant to subImages local state
+        subImages(_ => ({
+          subImage1Src : ``,
+          subImage2Src : ``,
+          subImage3Src : ``,
+        }))
+      }
     }
 
     fetchRestaurantInfo();
