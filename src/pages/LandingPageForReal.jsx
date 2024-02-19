@@ -32,13 +32,17 @@ const LandingPageForReal = () => {
  
   return (
     <div className="relative bg-white w-full h-full overflow-hidden text-left text-xl text-black font-inter">
-      <ProfileAndSearch isTitleVisible={true}/>
+    
+      <ProfileAndSearch isTitleVisible={true} graybar={true}/>
+      
       <BottomBar />
+
+      
       <img
         className="object-cover box-border w-[520px]  h-[197px]"
         src="matcha.webp"
         alt="" />
-    
+
       <div className="flex flex-row mt-3 left-[180px] text-sm w-full mx-auto h-[17px]">
         <div className="w-full flex justify-end">
           <p className="translate-x-1/2 hover:text-green-400 transition-all cursor-pointer font-semibold">Recommend</p>

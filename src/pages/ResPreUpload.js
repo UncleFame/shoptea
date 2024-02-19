@@ -26,6 +26,9 @@ const DisplayRestaurant = () => {
   
   return (
     <div className="flex flex-col items-center gap-y-5 w-full">
+      
+      <span className="bg-gray-300 w-full h-[2px]">  </span>
+
       <div className="flex flex-col gap-y-3 w-full px-5">
         {
           restaurants?.map(restaurant => 
