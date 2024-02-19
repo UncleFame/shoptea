@@ -5,6 +5,9 @@ import { deleteRestaurantById, getRestaurantsByUserId } from "../models/restaura
 import { ResPreUploadContext, ResPreUploadProvider } from "../contexts/ResPreUploadContext";
 import { getUserInfo } from "../models/users";
 import { deleteRestaurantCover } from "../models/storage";
+import { FaRegEdit } from "react-icons/fa";
+import { RiDeleteBin6Line } from "react-icons/ri";
+
 import ProfileAndSearch from "../components/profileandsearch";
 
 
@@ -90,8 +93,11 @@ const RestaurantItem = ({restaurant}) => {
         <p className="w-full break-words">{owner?.email}</p>
       </div>
       <div className="flex flex-col w-full h-full justify-between">
-        <button onClick={()=>navigatetordit(restaurant.id)} className="rounded-full p-2 font-semibold" >Edit</button>
-        <button onClick={handleDelete} className="rounded-full p-2 font-semibold">Delete</button>
+      <FaRegEdit onClick={()=>navigatetordit(restaurant.id)} className=" p-2 font-semibold"
+      size={20} />
+      <RiDeleteBin6Line onClick={handleDelete} className="p-2 text-red-600 " size={20} />
+
+        
       </div>
     </div>
   )
