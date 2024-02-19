@@ -61,13 +61,14 @@ const UploadRes = () => {
       const hasSubImage = imageArray.some(image => image.name.includes("sub-image"));
       if (hasSubImage) {
         const subImagePublicUrlList = getAllRestaurantSubImagesPublicUrl(name);
-        console.log(subImagePublicUrlList)
         // Assign sub images of the restaurant to subImages local state
-        setSubImages(_ => ({
-          subImage1Src : subImagePublicUrlList[0],
-          subImage2Src : subImagePublicUrlList[1],
-          subImage3Src : subImagePublicUrlList[2],
-        }))
+        setSubImages(prev => {
+          let finalValue = {};
+          Object.keys(prev).map((key, index) => {
+            finalValue[key] = subImagePublicUrlList[index]
+          });
+          return finalValue
+        })
       }
     }
 
