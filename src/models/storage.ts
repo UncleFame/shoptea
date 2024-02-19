@@ -39,7 +39,7 @@ export async function updateRestaurantSubImage(file : File, restaurantName : str
         const {error} = await supabase
         .storage
         .from('Shoplist')
-        .update(`restaurants/sub-image-${imageIndex + 1}.png`, file, {
+        .update(`restaurants/${restaurantName}/sub-image-${imageIndex + 1}.png`, file, {
             cacheControl: '3600',
             upsert: true
         })

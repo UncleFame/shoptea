@@ -6,7 +6,7 @@ import { getRestaurantInfoById, insertNewRestaurant, updateRestaurant } from "..
 import {useUser} from "../hooks/useUser"
 import { useSearchParams } from "react-router-dom";
 import {FaCamera} from "react-icons/fa"
-import { getAllRestaurantSubImagesPublicUrl, listAllRestaurantImages, uploadRestaurantSubImages } from "../models/storage.ts";
+import { getAllRestaurantSubImagesPublicUrl, listAllRestaurantImages, updateRestaurantSubImage, uploadRestaurantSubImages } from "../models/storage.ts";
 
 const UploadRes = () => {
   let [searchParams, _] = useSearchParams();
@@ -89,7 +89,11 @@ const UploadRes = () => {
           await uploadRestaurantImage(image.current.files[fileLength - 1], name, 'main')
           imageUrl = await getPublicUrl(`restaurants/${name}/main.png`)
         }
-        if (subImage1FileLength >= 1 && subImage2FileLength >= 1 && subImage3FileLength >= 1) await uploadRestaurantSubImages(subFiles, name)
+        
+        if (subImage1FileLength >= 1) updateRestaurantSubImage(subFiles[0],name, 0)
+        if (subImage2FileLength >= 1) updateRestaurantSubImage(subFiles[1],name, 1)
+        if (subImage3FileLength >= 1) updateRestaurantSubImage(subFiles[2],name, 2)
+
         const [open, close] = operationTime.split("/");
         const updatedRestaurant = {
           close,
