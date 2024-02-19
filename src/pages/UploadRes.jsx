@@ -27,7 +27,10 @@ const UploadRes = () => {
     navigate("/res-preupload");
   }, [navigate]);
   const image = useRef(null);
-
+  // sub images
+  const subImage1 = useRef(null);
+  const subImage2 = useRef(null);
+  const subImage3 = useRef(null);
   // Initial load
   useEffect(()=>{
     const fetchRestaurantInfo = async () => {
@@ -249,17 +252,56 @@ const UploadRes = () => {
       </b>
       <div className="absolute top-[861px] left-[45px] w-[350px] h-[150px] overflow-x-auto p-0 m-0">
         <ul className="flex items-center justify-between w-full h-full gap-x-2 p-0 m-0">
-          <input type="file" className="w-full border-2 hidden" accept=".png"/>
+          <input
+           onChange={()=>{
+            let reader = new FileReader();
+            let file = subImage1.current.files[subImage1.current.files.length - 1];
+            reader.readAsDataURL(file);
+
+            reader.onload = function(){
+              setImgSrc(reader.result)
+            }
+           }}
+           ref={subImage1} type="file" className="w-full border-2 hidden" accept=".png"/>
           <div className="relative w-full h-full bg-gray-400 rounded-2xl">
-            <FaCamera  className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]"/>
+            <FaCamera onClick={()=>{
+              subImage1.current.click()
+            }} 
+            className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]"/>
           </div>
-          <input type="file" className="w-full border-2 hidden" accept=".png"/>
+          <input
+           onChange={()=>{
+            let reader = new FileReader();
+            let file = subImage2.current.files[subImage2.current.files.length - 1];
+            reader.readAsDataURL(file);
+
+            reader.onload = function(){
+              setImgSrc(reader.result)
+            }
+           }}
+           ref={subImage2} type="file" className="w-full border-2 hidden" accept=".png"/>
           <div className="relative w-full h-full bg-gray-400 rounded-2xl">
-            <FaCamera  className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]"/>
+            <FaCamera onClick={()=>{
+              subImage2.current.click()
+            }} 
+            className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]"/>
           </div>
-          <input type="file" className="w-full border-2 hidden" accept=".png"/>
+          <input
+           onChange={()=>{
+            let reader = new FileReader();
+            let file = subImage3.current.files[subImage3.current.files.length - 1];
+            reader.readAsDataURL(file);
+
+            reader.onload = function(){
+              setImgSrc(reader.result)
+            }
+           }}
+           ref={subImage3} type="file" className="w-full border-2 hidden" accept=".png"/>
           <div className="relative w-full h-full bg-gray-400 rounded-2xl">
-            <FaCamera  className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]"/>
+            <FaCamera onClick={()=>{
+              subImage3.current.click()
+            }} 
+            className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]"/>
           </div>
         </ul>
           
