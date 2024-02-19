@@ -2,6 +2,9 @@ import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "./loginsystem";
 import BottomBar from "../components/BottomBar";
+import { IoIosArrowBack } from "react-icons/io";
+import { FaMagnifyingGlass } from "react-icons/fa6";
+
 
 const SearchBar = ({ onSearch }) => {
   const handleChange = (event) => {
@@ -10,12 +13,19 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <input
-      className="  w-[480px] flex flex-row mx-auto"
-      type="text"
-      placeholder="ค้นชื้อร้านค้า"
-      onChange={handleChange}
-    />
+    <div className="flex flex-row relative mx-8">
+      <input
+        className=" bg-gray-400 w-full text-black placeholder-gray-500 rounded-xl px-8"
+        type="text"
+        placeholder="ค้นหา ชื้อร้านค้า จังหวัด"
+        onChange={handleChange}
+      />
+      <span className="absolute right-3 top-1/2 transform -translate-y-1/2">
+        <FaMagnifyingGlass 
+        size={10}
+        className=" text-gray-500" />
+      </span>
+    </div>
   );
 };
 
@@ -96,10 +106,14 @@ const All = () => {
 
   return (
     <>
-      <div className="flex flex-row" onClick={goToLandingPage}>
-        <p>Home</p>
+      <div className="flex flex-row items-center w-full" onClick={goToLandingPage}>
+        <IoIosArrowBack className="" />
+      <p>Home</p>
       </div>
-      <SearchBar onSearch={handleSearch} />
+      <p className="flex row-auto justify-center text-gray-500 font-bold">All</p>
+      <SearchBar onSearch={handleSearch} 
+        className="bg-gray-200 "  
+      />
       <div className="flex flex-col mx-0 p-10 gap-y-5 ">
         {filteredRestaurants?.map((restaurant) => (
           <div className="flex gap-x-5 " key={restaurant.id}>
