@@ -4,7 +4,7 @@ import { supabase } from "./loginsystem";
 import BottomBar from "../components/BottomBar";
 import { IoIosArrowBack } from "react-icons/io";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-
+import { Star } from "../components/destination/Star";
 
 const SearchBar = ({ onSearch }) => {
   const handleChange = (event) => {
@@ -125,7 +125,7 @@ const All = () => {
               <p className="m-0">เวลาเปิด {restaurant.open}</p>
               <p className="m-0">{restaurant.review}</p>
               <p className="m-0">{restaurant.phoneNum}</p>
-              <p className="m-0">{restaurant.star} star</p>
+              <Star rating={restaurant.star}/>
             </div>
             <BottomBar />
           </div>

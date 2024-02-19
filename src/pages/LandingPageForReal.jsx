@@ -55,66 +55,56 @@ const LandingPageForReal = () => {
   );
 };
 
-export const RestaurantList = () =>{
+export const RestaurantList = () => {
   const navigate = useNavigate();
   const [sampleRestaurants, setSampleRestaurants] = useState(null);
+
   const goReviewPage = useCallback((index) => {
     navigate(`/Review?restaurantId=${index}`);
   }, [navigate]);
-  
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     const fetchRestaurants = async () => {
-      const {data} = await supabase.from("restaurant_details")
-      .select()
-      setSampleRestaurants(data);
-    }
+      const { data } = await supabase.from("restaurant_details").select();
+      // Sort the restaurants by star rating in descending order
+      const sortedRestaurants = data.sort((a, b) => b.star - a.star);
+      setSampleRestaurants(sortedRestaurants);
+    };
 
     fetchRestaurants();
-  }, [])
-
+  }, []);
 
   const onSoulGoodMatchacoffeeClick = useCallback(() => {
     navigate("/review");
   }, [navigate]);
 
   return (
-    <div className="flex flex-col mx-0 p-10 gap-y-5 ">
-      {
-        sampleRestaurants?.map((restaurant,index)=>{
-          
-          return (
-            <div className=" flex gap-x-5">
-              <img src={restaurant.imageUrl} className="w-[150px] h-[150px]  rounded-lg" 
-              onClick={()=>goReviewPage(index)}/>
-              
-              
-             
-              <div  className="flex flex-col rounded">
-              
-                <p className="m-0 text-gray-950">{restaurant.name}</p>
-                <Star rating={restaurant.star}/>
-                
-                <p className="m-0 text-sm text-gray-100 flex flex-row gap-2">
-               <span className="text-black">Open </span> {restaurant.open} - {restaurant.close}
-               </p>
-                <p className="m-0 text-sm text-gray-100  ">{restaurant.name}</p>
-                <p className="m-0 text-sm text-gray-100">ราคา  {restaurant.price}</p>
-                <p className="m-0  text-sm text-gray-200">จ.  {restaurant.province}</p>
-                
-              </div>        
-              
+    <div className="flex flex-col mx-0 p-10 gap-y-5">
+      {sampleRestaurants?.map((restaurant, index) => {
+        return (
+          <div className="flex gap-x-5" key={index}>
+            <img
+              src={restaurant.imageUrl}
+              className="w-[150px] h-[150px] rounded-lg"
+              onClick={() => goReviewPage(index)}
+              alt={restaurant.name}
+            />
+            <div className="flex flex-col rounded">
+              <p className="m-0 text-gray-950">{restaurant.name}</p>
+              <Star rating={restaurant.star} />
+              <p className="m-0 text-sm text-gray-100 flex flex-row gap-2">
+                <span className="text-black">Open </span> {restaurant.open} -{" "}
+                {restaurant.close}
+              </p>
+              <p className="m-0 text-sm text-gray-100 ">{restaurant.name}</p>
+              <p className="m-0 text-sm text-gray-100">ราคา {restaurant.price}</p>
+              <p className="m-0 text-sm text-gray-200">จ. {restaurant.province}</p>
             </div>
-          )
-
-        })
-        
-      }
+          </div>
+        );
+      })}
     </div>
-    
-  )
-}
-
-
+  );
+};
 
 export default LandingPageForReal;
