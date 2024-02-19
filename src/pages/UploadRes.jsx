@@ -77,9 +77,7 @@ const UploadRes = () => {
   async function handleUploadImage(){
     try {
       const fileLength = image.current.files.length;
-      const subImage1FileLength = subImage1.current.files.length;
-      const subImage2FileLength = subImage2.current.files.length;
-      const subImage3FileLength = subImage3.current.files.length;
+      const [subImage1FileLength, subImage2FileLength, subImage3FileLength] = [subImage1, subImage2, subImage3].map(item => item.current.files.length);
       const subFiles = [subImage1.current.files[subImage1FileLength - 1] ,subImage2.current.files[subImage2FileLength - 1] ,subImage3.current.files[subImage3FileLength - 1]];
 
       if (isEditing) {
