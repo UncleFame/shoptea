@@ -35,12 +35,8 @@ const Profile = () => {
     }
   }
 
-  const onRectangleClick = useCallback(() => {
-    navigate("/edit-profile");
-  }, [navigate]);
-
   const onTextClick = useCallback(() => {
-    navigate("/edit-profile");
+    navigate("/EditProfile");
   }, [navigate]);
 
   const onBacktohome1ImageClick = useCallback(() => {

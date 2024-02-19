@@ -95,7 +95,7 @@ const RestaurantItem = ({restaurant}) => {
       <div className="flex flex-col w-full h-full justify-between">
       <FaRegEdit onClick={()=>navigatetordit(restaurant.id)} className=" p-2 font-semibold"
       size={20} />
-      <RiDeleteBin6Line onClick={handleDelete} className="p-2 text-red-600 " size={20} />
+      <RiDeleteBin6Line onClick={handleDelete} className="p-2  " size={20} />
 
         
       </div>

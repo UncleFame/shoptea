@@ -16,7 +16,7 @@ import LandingPageForReal from "./pages/LandingPageForReal";
 import Profile from "./pages/Profile";
 import SigninPage from "./pages/SigninPage";
 import Review from "./pages/Review";
-
+import EditProfile from "./components/EditProfile";
 import Comment from "./pages/Comment";
 
 function App() {
@@ -83,6 +83,10 @@ function App() {
         title = "";
         metaDescription = "";
         break;
+        case "/EditProfile":
+          title = "";
+          metaDescription = "";
+          break;
   
     }
 
@@ -117,6 +121,7 @@ function App() {
       <Route path="/review" element={<Review />} />
       <Route path="/All" element={<All />} />
       <Route path="/Comment" element={<Comment />} />
+      <Route path="/EditProfile" element={<EditProfile/>} />
      </Routes>
   );
 }
