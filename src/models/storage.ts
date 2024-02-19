@@ -33,3 +33,22 @@ export async function uploadRestaurantSubImages(files : File[], restaurantName :
         throw new Error(error.message)
     }
 }
+
+export async function listAllRestaurantImages(restaurantName : string){
+    try {        
+        const { data, error } = await supabase
+        .storage
+        .from('Shoplist')
+        .list(`restaurants/${restaurantName}`, {
+        limit: 100,
+        offset: 0,
+        sortBy: { column: 'name', order: 'asc' },
+        })
+
+        if (error) throw new Error(error.message)
+
+        return data
+    } catch (error : any) {
+        throw new Error(error.message)
+    }
+}

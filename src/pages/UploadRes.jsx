@@ -6,7 +6,7 @@ import { getRestaurantInfoById, insertNewRestaurant, updateRestaurant } from "..
 import {useUser} from "../hooks/useUser"
 import { useSearchParams } from "react-router-dom";
 import {FaCamera} from "react-icons/fa"
-import { uploadRestaurantSubImages } from "../models/storage.ts";
+import { listAllRestaurantImages, uploadRestaurantSubImages } from "../models/storage.ts";
 
 const UploadRes = () => {
   let [searchParams, _] = useSearchParams();
@@ -56,7 +56,9 @@ const UploadRes = () => {
       setImgSrc(_ => imageUrl) 
       setFavMenu(_ => FavMenu)
       setGoolemap(_ => googlemap)
-      
+      // Fetch restaurant sub images if there are
+      const imageArray = await listAllRestaurantImages(name)
+      const hasSubImage = imageArray.some(image => image.name.includes("sub-image"));
     }
 
     fetchRestaurantInfo();
@@ -104,7 +106,7 @@ const UploadRes = () => {
       await uploadRestaurantImage(image.current.files[fileLength - 1], name, 'main')
 
       if (subImage1FileLength >= 1 && subImage2FileLength >= 1 && subImage3FileLength >= 1) await uploadRestaurantSubImages(subFiles, name)
-      
+
       const [open, close] = operationTime.split('/') 
 
       const imageUrl = await getPublicUrl(`restaurants/${name}/main.png`)
