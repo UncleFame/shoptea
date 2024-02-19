@@ -101,7 +101,7 @@ const UploadRes = () => {
       }
 
       await insertNewRestaurant(newRestaurant);
-
+      
       alert("สร้างร้านค้าสำเร็จ")
 
       setTimeout(()=>{

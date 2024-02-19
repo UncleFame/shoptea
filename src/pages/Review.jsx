@@ -72,8 +72,8 @@ const Review = () => {
                         
                           <LuCupSoda size={"40"}/>
                             <div className="flex flex-col ">
-                              <p className="m-0 font-medium">{firstRestaurant.FavDrink}</p>
-                              <p className=" text-gray-500 m-0">{firstRestaurant.FavDrinkPrice}บาท</p>
+                              <p className="m-0 font-medium">{firstRestaurant.FavMenu}</p>
+                              <p className=" text-gray-500 m-0">{firstRestaurant.FavMenuPrice}บาท</p>
                             </div>
                            
                         
@@ -98,7 +98,6 @@ const Review = () => {
 
                         <p src="https://www.google.com/maps/search/assumption+university/@13.61772,100.8255361,13z/data=!3m1!4b1?hl=en&entry=ttu" onClick={GotoMap}> {firstRestaurant.googlemap} </p>    
                         <span className="-8 w-full h-1 bg-gray-300"></span>
-                                           
                         review
                     <div className="flex gap-y-5 "> 
                         <img src="profileicon.png" alt=""  className="h-[50px] w-[50px]"/>
