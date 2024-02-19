@@ -57,7 +57,12 @@ const Profile = () => {
 
                       <p>Username</p>
                       <p>เเนะนำตัว</p>
-                      <p className="rounded-lg bg-gray-500  text-center">แก้ไข</p>
+                      <div class="container py-10 px-10 mx-0 min-w-full flex flex-col items-center">
+                      <button className="text-center button-center  py-2 px-4 mt-3 rounded bg-gray-200 cursor-pointer" 
+                      onClick={onTextClick}
+                      >แก้ไข</button>
+                    </div>
+
                       
                       <div className="flex flex-row items-center gap-y-[50px]">
                       <IoLogoFacebook className="text-blue-500"  size={50}/>
@@ -70,8 +75,8 @@ const Profile = () => {
                         <div className=" pt-6 w-full bg-white  box-border w-full h-[2px] gap-y-5 border-solid border-gray-400" />
                         <div className="   w-full bg-darkgray box-border w-full h-[2px] gap-y-5 border-solid border-gray-400" />
 
-                    <div>
-                      <button className="text-center bg-gray-200 cursor-pointer" 
+                    <div class="container py-10 px-10 mx-0 min-w-full flex flex-col items-center">
+                      <button className="text-center button-center  py-2 px-4 mt-3 rounded bg-gray-200 cursor-pointer" 
                       onClick={handleSignOut}
                       >ออกระบบ</button>
                     </div>
