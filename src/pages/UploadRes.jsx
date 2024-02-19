@@ -89,10 +89,10 @@ const UploadRes = () => {
           await uploadRestaurantImage(image.current.files[fileLength - 1], name, 'main')
           imageUrl = await getPublicUrl(`restaurants/${name}/main.png`)
         }
-        
-        if (subImage1FileLength >= 1) updateRestaurantSubImage(subFiles[0],name, 0)
-        if (subImage2FileLength >= 1) updateRestaurantSubImage(subFiles[1],name, 1)
-        if (subImage3FileLength >= 1) updateRestaurantSubImage(subFiles[2],name, 2)
+
+        [subImage1FileLength, subImage2FileLength,  subImage3FileLength].map((item,index)=>{
+          if (item >= 1) updateRestaurantSubImage(subFiles[index],name, index)
+        })
 
         const [open, close] = operationTime.split("/");
         const updatedRestaurant = {
