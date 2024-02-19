@@ -21,11 +21,12 @@ const UploadRes = () => {
   const [comment, setComment] = useState("");
   const {user} = useUser();
   const [imgSrc, setImgSrc] = useState("");
-  
+  const [FavMenu,setFavMenu] = useState("");
+  const [googlemap,setGoolemap] = useState("")
+  const [Imgaemini,setImagemini] = useState("")
   const Pushtolandingpage = useCallback(() => {
     navigate("/res-preupload");
   }, [navigate]);
-  const [rectangleInput6Value, setRectangleInput6Value] = useState("");
   const image = useRef(null);
 
   // Initial load
@@ -34,7 +35,7 @@ const UploadRes = () => {
       if (!isEditing) return
       const restaurantInfo = await getRestaurantInfoById(restaurantId);
       // Destruct necessary information from the fetched restaurant
-      const {name, open, close, price, province, phoneNum, comment, imageUrl} = restaurantInfo;
+      const {name, open, close, price, province, phoneNum, comment, imageUrl,googlemap} = restaurantInfo;
       // Set value to corresponding local state
       setName(_ => name);
       setOperationTime(_ => `${open}/${close}`);
@@ -43,6 +44,9 @@ const UploadRes = () => {
       setPhoneNum(_ => phoneNum)
       setComment(_ => comment)
       setImgSrc(_ => imageUrl) 
+      setFavMenu(_ => FavMenu)
+      setGoolemap(_ => googlemap)
+      
     }
 
     fetchRestaurantInfo();
@@ -68,7 +72,9 @@ const UploadRes = () => {
           price,
           province,
           id : restaurantId,
-          imageUrl
+          imageUrl,
+          FavMenu,
+          googlemap: googlemap
         }
         // update restaurant
         await updateRestaurant(updatedRestaurant)
@@ -95,7 +101,9 @@ const UploadRes = () => {
         phoneNum :phoneNum,
         comment,
         imageUrl,
-        user_id : user.id
+        user_id : user.id,
+        FavMenu,
+        googlemap
       }
 
       await insertNewRestaurant(newRestaurant);
@@ -191,12 +199,19 @@ const UploadRes = () => {
         onChange={(event) => setPhoneNum(event.target.value)}
       />
       <input
-        className="[outline:none] bg-white absolute top-[823px] left-[31px] rounded-8xs box-border w-[375px] h-6 border-[1px] border-solid border-gray-400"
+        className="Recommend [outline:none] bg-white absolute top-[823px] left-[31px] rounded-8xs box-border w-[375px] h-6 border-[1px] border-solid border-gray-400"
         type="text"
-        value={rectangleInput5Value}
-        onChange={(event) => setRectangleInput5Value(event.target.value)}
+        value={FavMenu}
+        onChange={(event) => setFavMenu(event.target.value)}
       />
-      <div className="absolute top-[1041px] left-[31px] rounded-8xs bg-darkgray box-border w-[375px] h-[200px] border-[1px] border-solid border-gray-400" />
+      
+      <input
+        className="[outline:none] bg-white absolute top-[1040px] left-[30px] rounded-8xs box-border w-[375px] h-6 border-[1px] border-solid border-gray-400"
+        type="text"
+        value={googlemap}
+        onChange={(event) => setGoolemap(event.target.value)}
+      />
+      
       <b className="absolute top-[403px] left-[28px] inline-block w-[57px] h-[25px]">
         ชื่อร้าน
       </b>
@@ -218,35 +233,27 @@ const UploadRes = () => {
       <b className="absolute top-[1016px] left-[30px] inline-block w-[115px] h-[25px]">
         MAP
       </b>
+      
       <input
-        className="[outline:none] bg-snow absolute bottom-[1036px] left-[30px] rounded-8xs box-border w-[374px] h-[92px] border-[1px] border-solid border-gray-400"
-        type="text"
-        value={rectangleInput6Value}
-        onChange={(event) => setRectangleInput6Value(event.target.value)}
-      />
-      <textarea
         value={comment}
-        onChange={e => setComment(e.target.value)}
-        className="[border:none] bg-[transparent] inline-block font-inter text-xs [outline:none] absolute bottom-[1016px] left-[32px] font-bold text-gainsboro text-left w-[371px] h-[92px]"
+        className=" absolute top-[1166px] left-[32px] w-[371px] h-[92px] border-2"
         placeholder="comment"
+        onChange={(event) => setComment(event.target.value)}
       />
       <img
-        className="absolute bottom-[1153px] left-[31px] rounded-[50%] w-[37px] h-[37px] object-cover"
+        className="absolute top-[1100px] left-[31px] rounded-[50%] w-[37px] h-[37px] object-cover"
         alt=""
         src="/ellipse-4@2x.png"
       />
-      <b className="absolute bottom-[1153px] left-[77px] text-sm inline-block w-[142px] h-[27px]">
+      <b className="absolute top-[1108px] left-[77px] text-sm inline-block w-[142px] h-[27px]">
         Annette Black
       </b>
-      <div className="absolute top-[861px] left-[45px] w-[340px] h-[141px] overflow-x-auto">
-        <div className="absolute top-[0px] left-[0px] w-[700px] h-[141px]">
+      <div className="absolute top-[861px] left-[45px] w-[350px] h-[150px] overflow-x-auto">
+
           <div className="absolute top-[0px] left-[0px] rounded-8xs bg-darkgray box-border w-[100px] h-[141px] border-[1px] border-solid border-gray-400" />
           <div className="absolute top-[0px] left-[120px] rounded-8xs bg-darkgray box-border w-[100px] h-[141px] border-[1px] border-solid border-gray-400" />
           <div className="absolute top-[0px] left-[240px] rounded-8xs bg-darkgray box-border w-[100px] h-[141px] border-[1px] border-solid border-gray-400" />
-          <div className="absolute top-[0px] left-[360px] rounded-8xs bg-darkgray box-border w-[100px] h-[141px] border-[1px] border-solid border-gray-400" />
-          <div className="absolute top-[0px] left-[480px] rounded-8xs bg-darkgray box-border w-[100px] h-[141px] border-[1px] border-solid border-gray-400" />
-          <div className="absolute top-[0px] left-[600px] rounded-8xs bg-darkgray box-border w-[100px] h-[141px] border-[1px] border-solid border-gray-400" />
-          <button className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[58px] left-[37px] w-[26px] h-[26px]">
+      <button className="cursor-pointer [border:none] p-0 bg-[transparent] absolute top-[58px] left-[37px] w-[26px] h-[26px]">
             <div className="absolute top-[0px] left-[0px] rounded-[50%] bg-gray-500 w-[26px] h-[26px]" />
             <img
               className="absolute top-[6px] left-[6px] w-3.5 h-3.5 overflow-hidden object-cover"
@@ -270,24 +277,10 @@ const UploadRes = () => {
               src="/bxscamera@2x.png"
             />
           </button>
-          <img
-            className="absolute top-[58px] left-[397px] w-[26px] h-[26px] object-cover"
-            alt=""
-            src="/group-10@2x.png"
-          />
-          <img
-            className="absolute top-[58px] left-[517px] w-[26px] h-[26px] object-cover"
-            alt=""
-            src="/group-10@2x.png"
-          />
-          <img
-            className="absolute top-[58px] left-[637px] w-[26px] h-[26px] object-cover"
-            alt=""
-            src="/group-10@2x.png"
-          />
+          
         </div>
       </div>
-    </div>
+    
   );
 };
 

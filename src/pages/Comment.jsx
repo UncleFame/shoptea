@@ -6,6 +6,8 @@ import { getRestaurantInfoById, insertNewRestaurant, updateRestaurant } from "..
 import {useUser} from "../hooks/useUser"
 import { useSearchParams } from "react-router-dom";
 
+
+
 const UploadRes = () => {
   let [searchParams, _] = useSearchParams();
   const method = searchParams.get('method');
