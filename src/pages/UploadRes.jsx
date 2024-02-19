@@ -64,7 +64,7 @@ const UploadRes = () => {
     try {
       const fileLength = image.current.files.length;
       if (isEditing) {
-        let imageUrl
+        let imageUrl;
         if (fileLength >= 1) {
           // If file is added, upload to the storage
           await uploadRestaurantImage(image.current.files[fileLength - 1], name, 'main')
