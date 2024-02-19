@@ -34,6 +34,22 @@ export async function uploadRestaurantSubImages(files : File[], restaurantName :
     }
 }
 
+export async function updateRestaurantSubImage(file : File, restaurantName : string, imageIndex : number){
+    try {
+        const {error} = await supabase
+        .storage
+        .from('Shoplist')
+        .update(`restaurants/sub-image-${imageIndex + 1}.png`, file, {
+            cacheControl: '3600',
+            upsert: true
+        })
+
+        if (error) throw new Error(error.message)
+    } catch (error : any) {
+        throw new Error(error.message)
+    }
+}
+
 export async function listAllRestaurantImages(restaurantName : string){
     try {        
         const { data, error } = await supabase

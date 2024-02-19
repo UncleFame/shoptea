@@ -89,6 +89,7 @@ const UploadRes = () => {
           await uploadRestaurantImage(image.current.files[fileLength - 1], name, 'main')
           imageUrl = await getPublicUrl(`restaurants/${name}/main.png`)
         }
+        if (subImage1FileLength >= 1 && subImage2FileLength >= 1 && subImage3FileLength >= 1) await uploadRestaurantSubImages(subFiles, name)
         const [open, close] = operationTime.split("/");
         const updatedRestaurant = {
           close,
@@ -114,8 +115,8 @@ const UploadRes = () => {
       if (fileLength < 1) return alert("กรุณา upload รูปภาพร้านค้า")
       if (!name) return alert("กรุณาใส่ชื่อร้าน")
       await uploadRestaurantImage(image.current.files[fileLength - 1], name, 'main')
-
-      if (subImage1FileLength >= 1 && subImage2FileLength >= 1 && subImage3FileLength >= 1) await uploadRestaurantSubImages(subFiles, name)
+      if (subImage1FileLength < 1 || subImage2FileLength < 1 || subImage3FileLength < 1) return alert("กรุณา upload รูปภาพย่อยของร้านค้าทั้งหมด")
+      await uploadRestaurantSubImages(subFiles, name)
 
       const [open, close] = operationTime.split('/') 
 
