@@ -4,7 +4,7 @@ import { useContext, useEffect, useLayoutEffect, useState,useCallback } from "re
 import { deleteRestaurantById, getRestaurantsByUserId } from "../models/restaurant";
 import { ResPreUploadContext, ResPreUploadProvider } from "../contexts/ResPreUploadContext";
 import { getUserInfo } from "../models/users";
-import { deleteRestaurantCover } from "../models/storage";
+import { deleteRestaurantCover } from "../models/storage.ts";
 import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 

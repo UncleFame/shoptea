@@ -18,6 +18,7 @@ export async function deleteRestaurantCover(restaurantName : string){
 export async function uploadRestaurantSubImages(files : File[], restaurantName : string) {
     try {
         for (let index = 0; index < files.length; index++){
+            console.log(`Uploading file ${index + 1} / ${files.length}`)
             const {error} = await supabase
             .storage
             .from('Shoplist')

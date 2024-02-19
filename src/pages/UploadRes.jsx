@@ -6,6 +6,8 @@ import { getRestaurantInfoById, insertNewRestaurant, updateRestaurant } from "..
 import {useUser} from "../hooks/useUser"
 import { useSearchParams } from "react-router-dom";
 import {FaCamera} from "react-icons/fa"
+import { uploadRestaurantSubImages } from "../models/storage.ts";
+
 const UploadRes = () => {
   let [searchParams, _] = useSearchParams();
   const method = searchParams.get('method');
@@ -63,6 +65,11 @@ const UploadRes = () => {
   async function handleUploadImage(){
     try {
       const fileLength = image.current.files.length;
+      const subImage1FileLength = subImage1.current.files.length;
+      const subImage2FileLength = subImage2.current.files.length;
+      const subImage3FileLength = subImage3.current.files.length;
+      const subFiles = [subImage1.current.files[subImage1FileLength - 1] ,subImage2.current.files[subImage2FileLength - 1] ,subImage3.current.files[subImage3FileLength - 1]];
+
       if (isEditing) {
         let imageUrl;
         if (fileLength >= 1) {
@@ -96,6 +103,8 @@ const UploadRes = () => {
       if (!name) return alert("กรุณาใส่ชื่อร้าน")
       await uploadRestaurantImage(image.current.files[fileLength - 1], name, 'main')
 
+      if (subImage1FileLength >= 1 && subImage2FileLength >= 1 && subImage3FileLength >= 1) await uploadRestaurantSubImages(subFiles, name)
+      
       const [open, close] = operationTime.split('/') 
 
       const imageUrl = await getPublicUrl(`restaurants/${name}/main.png`)
