@@ -237,24 +237,13 @@ const UploadRes = () => {
         subImage3,
         subImage3Src,
         setSubImages,
+        Pushtolandingpage,
+        handleUploadImage,
+        isUploading
       }}
     >
       <div className="flex flex-col items-center relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-sans">
-        <div className="flex w-full items-end pb-1.5 justify-between mb-5 px-5 box-border font-bold border-solid border-b-2 border-gray-400 pt-10">
-          <button
-            onClick={Pushtolandingpage}
-            className="text-material-theme-sys-dark-error-container bg-transparent text-left inline-block"
-          >
-            <p className="p-0 m-0 text-red-500 font-bold text-sm">ยกเลิก </p>
-          </button>
-          <p className="p-0 m-0 font-bold text-sm">สร้างร้านใหม่</p>
-          <button
-            onClick={handleUploadImage}
-            className="text-material-theme-sys-light-primary-fixed text-left inline-block bg-transparent text-sm font-bold"
-          >
-            {isUploading ? "สร้าง" : "แก้ไข"}
-          </button>
-        </div>
+        <NavBar />
 
         <RestaurantMainImage />
         <InputList
@@ -266,6 +255,27 @@ const UploadRes = () => {
         <InputSubImages />
       </div>
     </UploadResContext.Provider>
+  );
+};
+
+const NavBar = () => {
+  const {Pushtolandingpage, handleUploadImage, isUploading} = useContext(UploadResContext);
+  return (
+    <div className="flex w-full items-end pb-1.5 justify-between mb-5 px-5 box-border font-bold border-solid border-b-2 border-gray-400 pt-10">
+      <button
+        onClick={Pushtolandingpage}
+        className="text-material-theme-sys-dark-error-container bg-transparent text-left inline-block"
+      >
+        <p className="p-0 m-0 text-red-500 font-bold text-sm">ยกเลิก </p>
+      </button>
+      <p className="p-0 m-0 font-bold text-sm">สร้างร้านใหม่</p>
+      <button
+        onClick={handleUploadImage}
+        className="text-material-theme-sys-light-primary-fixed text-left inline-block bg-transparent text-sm font-bold"
+      >
+        {isUploading ? "สร้าง" : "แก้ไข"}
+      </button>
+    </div>
   );
 };
 
