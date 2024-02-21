@@ -38,9 +38,18 @@ const UploadRes = () => {
     FavMenu: "",
     googlemap: "",
   });
-  const {name, operationTime, price, province, phoneNum, comment, imgSrc, FavMenu, googlemap} = formData;
-  const formLabels = ["ชื่อร้าน", "ราคา" ,"จังหวัด" ,"เบอร์" ,"Recommend" ,"MAP"]
-  const [rectangleInput5Value, setRectangleInput5Value] = useState("");
+  const {
+    name,
+    operationTime,
+    price,
+    province,
+    phoneNum,
+    comment,
+    imgSrc,
+    FavMenu,
+    googlemap,
+  } = formData;
+
   const { user } = useUser();
   const [subImages, setSubImages] = useState({
     subImage1Src: "",
@@ -62,7 +71,17 @@ const UploadRes = () => {
       if (!isEditing) return;
       const restaurantInfo = await getRestaurantInfoById(restaurantId);
       // Destruct necessary information from the fetched restaurant
-      const {name, open, close, price, province, phoneNum, comment, imageUrl, googlemap} = restaurantInfo;
+      const {
+        name,
+        open,
+        close,
+        price,
+        province,
+        phoneNum,
+        comment,
+        imageUrl,
+        googlemap,
+      } = restaurantInfo;
       // Set value to corresponding local state
       setFormData((_) => ({
         name,
@@ -71,7 +90,7 @@ const UploadRes = () => {
         province,
         phoneNum,
         comment,
-        imgSrc : imageUrl,
+        imgSrc: imageUrl,
         FavMenu,
         googlemap,
       }));
@@ -96,12 +115,12 @@ const UploadRes = () => {
     fetchRestaurantInfo();
   }, []);
 
-  function handleUpdateFormData(event){
-    console.log(event.target.name)
-    setFormData(prev => ({
+  function handleUpdateFormData(event) {
+    console.log(event.target.name);
+    setFormData((prev) => ({
       ...prev,
-      [event.target.name] : event.target.value
-    }))
+      [event.target.name]: event.target.value,
+    }));
   }
 
   async function handleUploadImage() {
@@ -249,23 +268,18 @@ const UploadRes = () => {
               reader.readAsDataURL(file);
 
               reader.onload = function () {
-                setFormData(prev => ({
+                setFormData((prev) => ({
                   ...prev,
-                  imgSrc : reader.result
-                }))
-
+                  imgSrc: reader.result,
+                }));
               };
             }}
           />
         </label>
       </div>
 
-      {
-        Object.keys(formData).map((key, index) => (
-          <Input label={formLabels[index]} key={key} name={key} value={formData[key]} onChange={handleUpdateFormData} />
-        ))
-      }
-      
+      <InputList formData={formData} onUpdateFormData={handleUpdateFormData} />
+
       <img
         className="rounded-[50%] w-[37px] h-[37px] object-cover"
         alt=""
@@ -382,6 +396,31 @@ const UploadRes = () => {
         </ul>
       </div>
     </div>
+  );
+};
+
+const InputList = ({ formData, onUpdateFormData }) => {
+  const formLabels = [
+    "ชื่อร้าน",
+    "เวลา เปิด/ปิด",
+    "ราคา",
+    "จังหวัด",
+    "เบอร์",
+    "Recommend",
+    "Location",
+  ];
+  return (
+    <ul className="flex flex-col gap-y-3 w-[90%] m-0 p-0 mx-auto">
+      {Object.keys(formData).map((key, index) => (
+        <Input
+          label={formLabels[index]}
+          key={key}
+          name={key}
+          value={formData[key]}
+          onChange={onUpdateFormData}
+        />
+      ))}
+    </ul>
   );
 };
 
