@@ -11,7 +11,7 @@ export const ProfileAndSearch = ({
   const navigate = useNavigate();
 
   return (
-    <nav className="flex relative items-center w-full justify-between gap-4 pt-10 pb-5 box-border px-5">
+    <nav className="flex relative items-center w-full justify-between gap-4 py-5 box-border px-5">
       {isTitleVisible && (
         <div className="flex flex-col gap-y-2">
           <p className="m-0 text-[16px] font-bold text-gray-200">MatCha&Tea</p>

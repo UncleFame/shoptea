@@ -16,39 +16,30 @@ const LandingPageForReal = () => {
     if (!user) return navigate("/");
   }, [loading]);
 
-  const onVectorSearchIcon1Click = useCallback(() => {
-    navigate("/All");
-  }, [navigate]);
-
-  const onIconClick = useCallback(() => {
-    navigate("/profile");
-  }, [navigate]);
-
-  const onRectangle1Click = useCallback(() => {
-    navigate("/review");
-  }, [navigate]);
-
   return (
-    <div className="relative bg-white w-full h-full overflow-hidden text-left text-xl text-black font-inter">
+    <div className="relative bg-white w-full h-screen overflow-hidden text-left text-xl text-black font-inter">
       <ProfileAndSearch isTitleVisible={true} graybar={true} />
-
-      <BottomBar />
       <ImageCover />
-
-      <div className="flex flex-row mt-3 left-[180px] text-sm w-full mx-auto h-[17px]">
-        <div className="w-full flex justify-end">
-          <p className="translate-x-1/2 hover:text-green-400 transition-all cursor-pointer font-semibold">
-            Recommend
-          </p>
-        </div>
-        <div className="w-full flex justify-end">
-          <p className="underline underline-offset-4 mr-8 hover:text-green-400 transition-all cursor-pointer">
-            All
-          </p>
-        </div>
-      </div>
-
+      <SectionHeader />
       <RestaurantList />
+      <BottomBar />
+    </div>
+  );
+};
+
+const SectionHeader = () => {
+  return (
+    <div className="flex items-center text-sm w-full mx-auto h-[45px] border-b-2 border-solid border-gray-300">
+      <div className="w-full flex justify-end">
+        <p className="translate-x-1/2 text-gray-200 hover:text-green-400 transition-all cursor-pointer font-semibold">
+          Recommend
+        </p>
+      </div>
+      <div className="w-full flex justify-end">
+        <p className="underline underline-offset-4 mr-8 hover:text-green-400 transition-all cursor-pointer">
+          All
+        </p>
+      </div>
     </div>
   );
 };
@@ -64,15 +55,7 @@ const ImageCover = () => {
 };
 
 export const RestaurantList = () => {
-  const navigate = useNavigate();
   const [sampleRestaurants, setSampleRestaurants] = useState(null);
-
-  const goReviewPage = useCallback(
-    (restaurantId) => {
-      navigate(`/Review?restaurantId=${restaurantId}`);
-    },
-    [navigate]
-  );
 
   useEffect(() => {
     const fetchRestaurants = async () => {
@@ -85,39 +68,37 @@ export const RestaurantList = () => {
     fetchRestaurants();
   }, []);
 
-  const onSoulGoodMatchacoffeeClick = useCallback(() => {
-    navigate("/review");
-  }, [navigate]);
+  return (
+    <section className="flex flex-col gap-y-5 h-[40%] box-border overflow-y-scroll px-5 pt-5">
+      {sampleRestaurants?.map((restaurant) => {
+        return <RestaurantItem restaurant={restaurant} />;
+      })}
+    </section>
+  );
+};
+
+const RestaurantItem = ({ restaurant }) => {
+  const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col mx-0 p-10 gap-y-5 h-[400px] overflow-y-scroll">
-      {sampleRestaurants?.map((restaurant, index) => {
-        return (
-          <div className="flex gap-x-5" key={index}>
-            <img
-              src={restaurant.imageUrl}
-              className="w-[150px] h-[150px] rounded-lg"
-              onClick={() => goReviewPage(restaurant.id)}
-              alt={restaurant.name}
-            />
-            <div className="flex flex-col rounded">
-              <p className="m-0 text-gray-950">{restaurant.name}</p>
-              <Star rating={restaurant.star} />
-              <p className="m-0 text-sm text-gray-100 flex flex-row gap-2">
-                <span className="text-black">Open </span> {restaurant.open} -{" "}
-                {restaurant.close}
-              </p>
-              <p className="m-0 text-sm text-gray-100 ">{restaurant.name}</p>
-              <p className="m-0 text-sm text-gray-100">
-                ราคา {restaurant.price}
-              </p>
-              <p className="m-0 text-sm text-gray-200">
-                จ. {restaurant.province}
-              </p>
-            </div>
-          </div>
-        );
-      })}
+    <div className="flex gap-x-5" key={restaurant.title}>
+      <img
+        src={restaurant.imageUrl}
+        className="w-[150px] h-[150px] rounded-lg"
+        onClick={() => navigate(`/Review?restaurantId=${restaurant.id}`)}
+        alt={restaurant.name}
+      />
+      <div className="flex flex-col gap-y-[1px]">
+        <p className="m-0 text-gray-500 font-bold text-lg">{restaurant.name}</p>
+        <Star rating={restaurant.star} />
+        <p className="m-0 text-sm text-gray-500 font-semibold flex flex-row gap-2">
+          <span className="text-gray-200 font-semibold text-sm">Open: </span> {restaurant.open} -{" "}
+          {restaurant.close}
+        </p>
+        <p className="m-0 text-sm text-gray-100 ">{restaurant.name}</p>
+        <p className="m-0 text-sm text-gray-100">ราคา {restaurant.price}</p>
+        <p className="m-0 text-sm text-gray-200">จ. {restaurant.province}</p>
+      </div>
     </div>
   );
 };
