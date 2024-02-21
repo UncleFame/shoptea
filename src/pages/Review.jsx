@@ -8,6 +8,7 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { getRestaurantInfoById } from "../models/restaurant";
 import { getAllRestaurantSubImagesPublicUrl } from "../models/storage.ts";
+import { MdOutlineBookmarkAdd } from "react-icons/md";
 
 const Review = () => {
   const navigate = useNavigate();
@@ -65,9 +66,12 @@ const RestaurantList = () => {
             src={firstRestaurant.imageUrl}
             className=" object-cover  w-full h-[350px] mx-auto "
           />
-          <p className="m-0 flex flex-col text-neutral-400">
+          <p className="m-0 flex flex text-neutral-400 justify-between">
             {" "}
-            {firstRestaurant.name}
+            
+            {firstRestaurant.name }
+            <MdOutlineBookmarkAdd  size={20}/>
+
           </p>
           <Star rating={firstRestaurant.star} />
           <p className="m-0 text-gray-100 ">
@@ -106,13 +110,7 @@ const RestaurantList = () => {
           </div>
 
           <div className="flex flex-col gap gap-y-5  ">
-            <p
-              src="https://www.google.com/maps/search/assumption+university/@13.61772,100.8255361,13z/data=!3m1!4b1?hl=en&entry=ttu"
-              onClick={GotoMap}
-            >
-              {" "}
-              {firstRestaurant.googlemap}{" "}
-            </p>
+            <img src="Mappic.jpg" alt="ffds" onClick={GotoMap} />
             <span className="-8 w-full h-1 bg-gray-300"></span>
             review
             <div className="flex gap-y-5 ">
