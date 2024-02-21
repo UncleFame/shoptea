@@ -50,7 +50,7 @@ const RestaurantList = () => {
       const fetchedSubImages = getAllRestaurantSubImagesPublicUrl(
         fetchedRestaurant.name
       );
-      console.log(fetchedSubImages)
+      console.log(fetchedSubImages);
       setSubImages(fetchedSubImages);
     };
 
@@ -136,13 +136,29 @@ const SubImages = ({ images }) => {
   return (
     <div className="flex gap-6 h-[380px] ">
       {images?.map((image) => (
+        <SubImage key={image} image={image} />
+      ))}
+    </div>
+  );
+};
+
+const SubImage = ({ image }) => {
+  const [isImageFound, setIsImageFound] = useState(true);
+  return (
+    <>
+      {isImageFound ? (
         <img
+          onError={() => {
+            setIsImageFound(false);
+          }}
           key={image}
           className="h-full object-cover w-1/3"
           src={image}
         />
-      ))}
-    </div>
+      ) : (
+        <p>Not found</p>
+      )}
+    </>
   );
 };
 
