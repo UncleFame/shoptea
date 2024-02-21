@@ -17,6 +17,7 @@ import Profile from "./pages/Profile";
 import SigninPage from "./pages/SigninPage";
 import Review from "./pages/Review";
 import Comment from "./pages/Comment";
+import Editprofile from "./pages/editprofile";
 
 function App() {
   const action = useNavigationType();
@@ -120,7 +121,7 @@ function App() {
       <Route path="/review" element={<Review />} />
       <Route path="/All" element={<All />} />
       <Route path="/Comment" element={<Comment />} />
-      <Route path="/EditProfile" element={<EditProfile/>} />
+      <Route path="/EditProfile" element={<Editprofile/>} />
      </Routes>
   );
 }

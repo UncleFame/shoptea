@@ -7,6 +7,8 @@ import { LuCupSoda } from "react-icons/lu";
 import { CiLocationOn } from "react-icons/ci";
 
 import { IoMdAddCircleOutline } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
+
 
 
 const Review = () => {
@@ -21,7 +23,7 @@ const Review = () => {
             
 
             <div className="flex flex-col">
-            <p onClick={GOhomepage}>Homepage </p>
+            <p className="mx-5 my-5 items-center text-gray-200  font-semibold "  onClick={GOhomepage}><IoIosArrowBack />Home </p>
 
             <RestaurantList/>
 
