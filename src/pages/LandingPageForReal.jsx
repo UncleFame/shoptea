@@ -51,10 +51,13 @@ const LandingPageForReal = () => {
           <p className="underline underline-offset-4 mr-8 hover:text-green-400 transition-all cursor-pointer">All</p>
         </div>
               
-      </div>
+      </div> 
+
       <RestaurantList />
       
-    </div>
+
+      </div>
+     
     
   );
 };
@@ -83,7 +86,7 @@ export const RestaurantList = () => {
   }, [navigate]);
 
   return (
-    <div className="flex flex-col mx-0 p-10 gap-y-5">
+    <div className="flex flex-col mx-0 p-10 gap-y-5 h-[400px] overflow-y-scroll">
       {sampleRestaurants?.map((restaurant, index) => {
         return (
           <div className="flex gap-x-5" key={index}>
@@ -103,8 +106,11 @@ export const RestaurantList = () => {
               <p className="m-0 text-sm text-gray-100 ">{restaurant.name}</p>
               <p className="m-0 text-sm text-gray-100">ราคา {restaurant.price}</p>
               <p className="m-0 text-sm text-gray-200">จ. {restaurant.province}</p>
+              
             </div>
+            
           </div>
+          
         );
       })}
     </div>

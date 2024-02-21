@@ -8,9 +8,8 @@ export const ProfileAndSearch = ({isTitleVisible = false, header, graybar = fals
   const navigate = useNavigate();
 
   return (
-    <nav className='flex flex-col gap-5 '>
       
-        <nav className="flex relative items-center w-full justify-end gap-4 py-3 box-border px-5">
+        <nav className="flex relative items-center w-full justify-between gap-4 py-3 box-border px-5">
 
 {
   isTitleVisible &&
@@ -27,19 +26,6 @@ export const ProfileAndSearch = ({isTitleVisible = false, header, graybar = fals
   <CgProfile size={45} onClick={()=>navigate("/profile")}/>
 </span>
 
-
-</nav>
-{
-  graybar &&
-  <span className='w-full h-[2px] bg-black'> </span>
-
-}
-
-
-
-<div>
-  
-</div>
 
     </nav>    
     

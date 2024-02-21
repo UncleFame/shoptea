@@ -16,7 +16,6 @@ import LandingPageForReal from "./pages/LandingPageForReal";
 import Profile from "./pages/Profile";
 import SigninPage from "./pages/SigninPage";
 import Review from "./pages/Review";
-import EditProfile from "./components/EditProfile";
 import Comment from "./pages/Comment";
 
 function App() {

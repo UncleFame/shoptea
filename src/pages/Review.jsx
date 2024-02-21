@@ -58,7 +58,7 @@ const Review = () => {
               <div className="flex flex-col mx-0 p-10 border">
                 {firstRestaurant && (
                     <div className="flex flex-col  ">
-                      <img src={firstRestaurant.imageUrl} className="w-full h-[350px] mx-auto "  />
+                      <img src={firstRestaurant.imageUrl} className=" object-cover  w-full h-[350px] mx-auto "  />
                       <p className="m-0 flex flex-col text-neutral-400" > {firstRestaurant.name}</p>
                       <Star rating= {firstRestaurant.star} />
                       <p className="m-0 text-gray-100 "><span>Open</span>{firstRestaurant.open}- {firstRestaurant.close}</p>
@@ -89,8 +89,8 @@ const Review = () => {
                     <img className="h-full object-cover w-1/3" src={firstRestaurant.imageUrl}  />
                     </div>
                     <div className="flex flex-col  text-slate-500 ">
-                        Location
-                        <p> <CiLocationOn /> จ.{firstRestaurant.province}</p>
+                      Location
+                      <p> <CiLocationOn /> จ.{firstRestaurant.province}</p>
                         
                     </div>
                     
