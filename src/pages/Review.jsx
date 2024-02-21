@@ -66,10 +66,10 @@ const RestaurantList = () => {
             src={firstRestaurant.imageUrl}
             className=" object-cover  w-full h-[350px] mx-auto "
           />
-          <p className="m-0 flex flex text-neutral-400 justify-between">
+          <p className="m-0 flex flex text-slate-800 font-bold   justify-between">
             {" "}
             
-            {firstRestaurant.name }
+            {firstRestaurant.name}
             <MdOutlineBookmarkAdd  size={20}/>
 
           </p>
