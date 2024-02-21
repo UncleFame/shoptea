@@ -41,9 +41,9 @@ const LandingPageForReal = () => {
 
 const SectionHeader = () => {
   return (
-    <div className="flex flex-row text-sm w-full mx-auto h-[17px]">
+    <div className="flex items-center text-sm w-full mx-auto h-[45px] border-b-2 border-solid border-gray-300">
       <div className="w-full flex justify-end">
-        <p className="translate-x-1/2 hover:text-green-400 transition-all cursor-pointer font-semibold">
+        <p className="translate-x-1/2 text-gray-200 hover:text-green-400 transition-all cursor-pointer font-semibold">
           Recommend
         </p>
       </div>
