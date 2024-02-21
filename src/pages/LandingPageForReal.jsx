@@ -6,17 +6,16 @@ import { supabase } from "./loginsystem";
 import { Star } from "../components/destination/Star";
 import ProfileAndSearch from "../components/profileandsearch";
 
-
 const LandingPageForReal = () => {
   const navigate = useNavigate();
-  const {user, loading} = useUser();
+  const { user, loading } = useUser();
 
   // Handle user authentication navigation
-  useEffect(()=>{
-    if (loading) return
-    if (!user) return navigate("/")
-  }, [loading])
-  
+  useEffect(() => {
+    if (loading) return;
+    if (!user) return navigate("/");
+  }, [loading]);
+
   const onVectorSearchIcon1Click = useCallback(() => {
     navigate("/All");
   }, [navigate]);
@@ -29,36 +28,38 @@ const LandingPageForReal = () => {
     navigate("/review");
   }, [navigate]);
 
- 
   return (
     <div className="relative bg-white w-full h-full overflow-hidden text-left text-xl text-black font-inter">
-    
-      <ProfileAndSearch isTitleVisible={true} graybar={true}/>
-      
-      <BottomBar />
+      <ProfileAndSearch isTitleVisible={true} graybar={true} />
 
-      
-      <img
-        className="object-cover box-border w-[520px]  h-[197px]"
-        src="matcha.webp"
-        alt="" />
+      <BottomBar />
+      <ImageCover />
 
       <div className="flex flex-row mt-3 left-[180px] text-sm w-full mx-auto h-[17px]">
         <div className="w-full flex justify-end">
-          <p className="translate-x-1/2 hover:text-green-400 transition-all cursor-pointer font-semibold">Recommend</p>
+          <p className="translate-x-1/2 hover:text-green-400 transition-all cursor-pointer font-semibold">
+            Recommend
+          </p>
         </div>
         <div className="w-full flex justify-end">
-          <p className="underline underline-offset-4 mr-8 hover:text-green-400 transition-all cursor-pointer">All</p>
+          <p className="underline underline-offset-4 mr-8 hover:text-green-400 transition-all cursor-pointer">
+            All
+          </p>
         </div>
-              
-      </div> 
+      </div>
 
       <RestaurantList />
-      
+    </div>
+  );
+};
 
-      </div>
-     
-    
+const ImageCover = () => {
+  return (
+    <img
+      className="object-cover box-border w-full  h-[210px]"
+      src="matcha.webp"
+      alt=""
+    />
   );
 };
 
@@ -66,9 +67,12 @@ export const RestaurantList = () => {
   const navigate = useNavigate();
   const [sampleRestaurants, setSampleRestaurants] = useState(null);
 
-  const goReviewPage = useCallback((restaurantId) => {
-    navigate(`/Review?restaurantId=${restaurantId}`);
-  }, [navigate]);
+  const goReviewPage = useCallback(
+    (restaurantId) => {
+      navigate(`/Review?restaurantId=${restaurantId}`);
+    },
+    [navigate]
+  );
 
   useEffect(() => {
     const fetchRestaurants = async () => {
@@ -104,13 +108,14 @@ export const RestaurantList = () => {
                 {restaurant.close}
               </p>
               <p className="m-0 text-sm text-gray-100 ">{restaurant.name}</p>
-              <p className="m-0 text-sm text-gray-100">ราคา {restaurant.price}</p>
-              <p className="m-0 text-sm text-gray-200">จ. {restaurant.province}</p>
-              
+              <p className="m-0 text-sm text-gray-100">
+                ราคา {restaurant.price}
+              </p>
+              <p className="m-0 text-sm text-gray-200">
+                จ. {restaurant.province}
+              </p>
             </div>
-            
           </div>
-          
         );
       })}
     </div>
