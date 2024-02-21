@@ -66,8 +66,8 @@ export const RestaurantList = () => {
   const navigate = useNavigate();
   const [sampleRestaurants, setSampleRestaurants] = useState(null);
 
-  const goReviewPage = useCallback((index) => {
-    navigate(`/Review?restaurantId=${index}`);
+  const goReviewPage = useCallback((restaurantId) => {
+    navigate(`/Review?restaurantId=${restaurantId}`);
   }, [navigate]);
 
   useEffect(() => {
@@ -93,7 +93,7 @@ export const RestaurantList = () => {
             <img
               src={restaurant.imageUrl}
               className="w-[150px] h-[150px] rounded-lg"
-              onClick={() => goReviewPage(index)}
+              onClick={() => goReviewPage(restaurant.id)}
               alt={restaurant.name}
             />
             <div className="flex flex-col rounded">
