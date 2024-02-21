@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { getPublicUrl, uploadRestaurantImage } from "../utils/restaurant";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +17,7 @@ import {
   uploadRestaurantSubImages,
 } from "../models/storage.ts";
 import Input from "../components/form/Input.jsx";
+import { UploadResContext } from "../contexts/UploadResProvider.jsx";
 
 const UploadRes = () => {
   let [searchParams, _] = useSearchParams();
@@ -224,176 +225,188 @@ const UploadRes = () => {
   }
 
   return (
-    <div className="flex flex-col items-center relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-sans">
-      <div className="flex w-full items-end pb-1.5 justify-between mb-5 px-5 box-border font-bold border-solid border-b-2 border-gray-400 pt-10">
-        <button
-          onClick={Pushtolandingpage}
-          className="text-material-theme-sys-dark-error-container bg-transparent text-left inline-block"
-        >
-          <p className="p-0 m-0 text-red-500 font-bold text-sm">ยกเลิก </p>
-        </button>
-        <p className="p-0 m-0 font-bold text-sm">สร้างร้านใหม่</p>
-        <button
-          onClick={handleUploadImage}
-          className="text-material-theme-sys-light-primary-fixed text-left inline-block bg-transparent text-sm font-bold"
-        >
-          {isUploading ? "สร้าง" : "แก้ไข"}
-        </button>
-      </div>
-
-      <RestaurantMainImage imgSrc={imgSrc}/>
-
-      <div>
-        <label htmlFor="fileInput" className="relative">
-          <img
-            className="w-[26px] h-[26px] object-cover"
-            alt=""
-            src="/uploadbutton.png"
-          />
-          <input
-            id="fileInput"
-            ref={image}
-            className="w-[26px] h-[26px] object-cover opacity-0 cursor-pointer"
-            alt=""
-            type="file"
-            onChange={() => {
-              let reader = new FileReader();
-              let file = image.current.files[image.current.files.length - 1];
-              reader.readAsDataURL(file);
-
-              reader.onload = function () {
-                setFormData((prev) => ({
-                  ...prev,
-                  imgSrc: reader.result,
-                }));
-              };
-            }}
-          />
-        </label>
-      </div>
-
-      <InputList formData={formData} onUpdateFormData={handleUpdateFormData} />
-
-      <img
-        className="rounded-[50%] w-[37px] h-[37px] object-cover"
-        alt=""
-        src="/ellipse-4@2x.png"
-      />
-      <b className="text-sm inline-block w-[142px] h-[27px]">Annette Black</b>
-      <div className="w-[350px] h-[150px] overflow-x-auto p-0 m-0">
-        <ul className="flex items-center justify-between w-full h-full gap-x-2 p-0 m-0">
-          <input
-            onChange={() => {
-              let reader = new FileReader();
-              let file =
-                subImage1.current.files[subImage1.current.files.length - 1];
-              reader.readAsDataURL(file);
-
-              reader.onload = function () {
-                setSubImages((prev) => ({
-                  ...prev,
-                  subImage1Src: reader.result,
-                }));
-              };
-            }}
-            ref={subImage1}
-            type="file"
-            className="w-full border-2 hidden"
-            accept=".png"
-          />
-          <div
-            className={`relative w-full h-full ${subImage1Src ? "" : "bg-gray-400"} rounded-2xl`}
+    <UploadResContext.Provider
+      value={{
+        image,
+        imgSrc,
+        setFormData
+      }}
+    >
+      <div className="flex flex-col items-center relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-sans">
+        <div className="flex w-full items-end pb-1.5 justify-between mb-5 px-5 box-border font-bold border-solid border-b-2 border-gray-400 pt-10">
+          <button
+            onClick={Pushtolandingpage}
+            className="text-material-theme-sys-dark-error-container bg-transparent text-left inline-block"
           >
-            {subImage1Src && (
-              <img
-                className="w-full h-full object-cover rounded-2xl"
-                src={subImage1Src}
-              />
-            )}
-            <FaCamera
-              onClick={() => {
-                subImage1.current.click();
-              }}
-              className="x-[-50%] translate-y-[-50%]"
-            />
-          </div>
-          <input
-            onChange={() => {
-              let reader = new FileReader();
-              let file =
-                subImage2.current.files[subImage2.current.files.length - 1];
-              reader.readAsDataURL(file);
-
-              reader.onload = function () {
-                setSubImages((prev) => ({
-                  ...prev,
-                  subImage2Src: reader.result,
-                }));
-              };
-            }}
-            ref={subImage2}
-            type="file"
-            className="w-full border-2 hidden"
-            accept=".png"
-          />
-          <div
-            className={`relative w-full h-full ${subImage2Src ? "" : "bg-gray-400"} rounded-2xl`}
+            <p className="p-0 m-0 text-red-500 font-bold text-sm">ยกเลิก </p>
+          </button>
+          <p className="p-0 m-0 font-bold text-sm">สร้างร้านใหม่</p>
+          <button
+            onClick={handleUploadImage}
+            className="text-material-theme-sys-light-primary-fixed text-left inline-block bg-transparent text-sm font-bold"
           >
-            {subImage2Src && (
-              <img
-                className="w-full h-full object-cover rounded-2xl"
-                src={subImage2Src}
-              />
-            )}
-            <FaCamera
-              onClick={() => {
-                subImage2.current.click();
-              }}
-              className="x-[-50%] translate-y-[-50%]"
-            />
-          </div>
-          <input
-            onChange={() => {
-              let reader = new FileReader();
-              let file =
-                subImage3.current.files[subImage3.current.files.length - 1];
-              reader.readAsDataURL(file);
+            {isUploading ? "สร้าง" : "แก้ไข"}
+          </button>
+        </div>
 
-              reader.onload = function () {
-                setSubImages((prev) => ({
-                  ...prev,
-                  subImage3Src: reader.result,
-                }));
-              };
-            }}
-            ref={subImage3}
-            type="file"
-            className="w-full border-2 hidden"
-            accept=".png"
-          />
-          <div
-            className={`relative w-full h-full ${subImage3Src ? "" : "bg-gray-400"} rounded-2xl`}
-          >
-            {subImage3Src && (
-              <img
-                className="w-full h-full object-cover rounded-2xl"
-                src={subImage3Src}
-              />
-            )}
-            <FaCamera
-              onClick={() => {
-                subImage3.current.click();
-              }}
-              className="x-[-50%] translate-y-[-50%]"
+        <RestaurantMainImage />
+
+        {/* <div>
+          <label htmlFor="fileInput" className="relative">
+            <img
+              className="w-[26px] h-[26px] object-cover"
+              alt=""
+              src="/uploadbutton.png"
             />
-          </div>
-        </ul>
+            <input
+              id="fileInput"
+              ref={image}
+              className="w-[26px] h-[26px] object-cover opacity-0 cursor-pointer"
+              alt=""
+              type="file"
+              onChange={() => {
+                let reader = new FileReader();
+                let file = image.current.files[image.current.files.length - 1];
+                reader.readAsDataURL(file);
+  
+                reader.onload = function () {
+                  setFormData((prev) => ({
+                    ...prev,
+                    imgSrc: reader.result,
+                  }));
+                };
+              }}
+            />
+          </label>
+        </div> */}
+
+        <InputList
+          formData={formData}
+          onUpdateFormData={handleUpdateFormData}
+        />
+
+        <img
+          className="rounded-[50%] w-[37px] h-[37px] object-cover"
+          alt=""
+          src="/ellipse-4@2x.png"
+        />
+        <b className="text-sm inline-block w-[142px] h-[27px]">Annette Black</b>
+        <div className="w-[350px] h-[150px] overflow-x-auto p-0 m-0">
+          <ul className="flex items-center justify-between w-full h-full gap-x-2 p-0 m-0">
+            <input
+              onChange={() => {
+                let reader = new FileReader();
+                let file =
+                  subImage1.current.files[subImage1.current.files.length - 1];
+                reader.readAsDataURL(file);
+
+                reader.onload = function () {
+                  setSubImages((prev) => ({
+                    ...prev,
+                    subImage1Src: reader.result,
+                  }));
+                };
+              }}
+              ref={subImage1}
+              type="file"
+              className="w-full border-2 hidden"
+              accept=".png"
+            />
+            <div
+              className={`relative w-full h-full ${subImage1Src ? "" : "bg-gray-400"} rounded-2xl`}
+            >
+              {subImage1Src && (
+                <img
+                  className="w-full h-full object-cover rounded-2xl"
+                  src={subImage1Src}
+                />
+              )}
+              <FaCamera
+                onClick={() => {
+                  subImage1.current.click();
+                }}
+                className="x-[-50%] translate-y-[-50%]"
+              />
+            </div>
+            <input
+              onChange={() => {
+                let reader = new FileReader();
+                let file =
+                  subImage2.current.files[subImage2.current.files.length - 1];
+                reader.readAsDataURL(file);
+
+                reader.onload = function () {
+                  setSubImages((prev) => ({
+                    ...prev,
+                    subImage2Src: reader.result,
+                  }));
+                };
+              }}
+              ref={subImage2}
+              type="file"
+              className="w-full border-2 hidden"
+              accept=".png"
+            />
+            <div
+              className={`relative w-full h-full ${subImage2Src ? "" : "bg-gray-400"} rounded-2xl`}
+            >
+              {subImage2Src && (
+                <img
+                  className="w-full h-full object-cover rounded-2xl"
+                  src={subImage2Src}
+                />
+              )}
+              <FaCamera
+                onClick={() => {
+                  subImage2.current.click();
+                }}
+                className="x-[-50%] translate-y-[-50%]"
+              />
+            </div>
+            <input
+              onChange={() => {
+                let reader = new FileReader();
+                let file =
+                  subImage3.current.files[subImage3.current.files.length - 1];
+                reader.readAsDataURL(file);
+
+                reader.onload = function () {
+                  setSubImages((prev) => ({
+                    ...prev,
+                    subImage3Src: reader.result,
+                  }));
+                };
+              }}
+              ref={subImage3}
+              type="file"
+              className="w-full border-2 hidden"
+              accept=".png"
+            />
+            <div
+              className={`relative w-full h-full ${subImage3Src ? "" : "bg-gray-400"} rounded-2xl`}
+            >
+              {subImage3Src && (
+                <img
+                  className="w-full h-full object-cover rounded-2xl"
+                  src={subImage3Src}
+                />
+              )}
+              <FaCamera
+                onClick={() => {
+                  subImage3.current.click();
+                }}
+                className="x-[-50%] translate-y-[-50%]"
+              />
+            </div>
+          </ul>
+        </div>
       </div>
-    </div>
+    </UploadResContext.Provider>
   );
 };
 
-const RestaurantMainImage = ({imgSrc}) => {
+const RestaurantMainImage = () => {
+  const {imgSrc} = useContext(UploadResContext);
   return (
     <>
       {imgSrc ? (
@@ -404,7 +417,42 @@ const RestaurantMainImage = ({imgSrc}) => {
       ) : (
         <div className="rounded-3xs bg-gainsboro w-[220px] h-[183px]" />
       )}
+      <InputUploadMainImage />
     </>
+  );
+};
+
+const InputUploadMainImage = () => {
+  const {image, setFormData} = useContext(UploadResContext);
+  return (
+    <div>
+      <label htmlFor="fileInput" className="relative">
+        <img
+          className="w-[26px] h-[26px] object-cover"
+          alt=""
+          src="/uploadbutton.png"
+        />
+        <input
+          id="fileInput"
+          ref={image}
+          className="w-[26px] h-[26px] object-cover opacity-0 cursor-pointer"
+          alt=""
+          type="file"
+          onChange={() => {
+            let reader = new FileReader();
+            let file = image.current.files[image.current.files.length - 1];
+            reader.readAsDataURL(file);
+
+            reader.onload = function () {
+              setFormData((prev) => ({
+                ...prev,
+                imgSrc: reader.result,
+              }));
+            };
+          }}
+        />
+      </label>
+    </div>
   );
 };
 
