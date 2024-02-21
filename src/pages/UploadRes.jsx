@@ -39,6 +39,7 @@ const UploadRes = () => {
     googlemap: "",
   });
   const {name, operationTime, price, province, phoneNum, comment, imgSrc, FavMenu, googlemap} = formData;
+  const formLabels = ["ชื่อร้าน", "ราคา" ,"จังหวัด" ,"เบอร์" ,"Recommend" ,"MAP"]
   const [rectangleInput5Value, setRectangleInput5Value] = useState("");
   const { user } = useUser();
   const [subImages, setSubImages] = useState({
@@ -258,19 +259,13 @@ const UploadRes = () => {
           />
         </label>
       </div>
+
       {
-        Object.keys(formData).map(key => (
-          <Input key={key} name={key} value={formData[key]} onChange={handleUpdateFormData} />
+        Object.keys(formData).map((key, index) => (
+          <Input label={formLabels[index]} key={key} name={key} value={formData[key]} onChange={handleUpdateFormData} />
         ))
       }
-      <b className="inline-block w-[57px] h-[25px]">ชื่อร้าน</b>
-      <b className="inline-block w-[93px] h-[25px]">เวลา เปิด/ปิด</b>
-      <b className="inline-block w-[93px] h-[25px]">ราคา</b>
-      <b className="inline-block w-[93px] h-[25px]">จังหวัด</b>
-      <b className="inline-block w-[93px] h-[25px]">เบอร์</b>
-      <b className="inline-block w-[115px] h-[25px]">Recommend</b>
-      <b className="inline-block w-[115px] h-[25px]">MAP</b>
-
+      
       <img
         className="rounded-[50%] w-[37px] h-[37px] object-cover"
         alt=""
