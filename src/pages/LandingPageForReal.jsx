@@ -29,12 +29,12 @@ const LandingPageForReal = () => {
   }, [navigate]);
 
   return (
-    <div className="relative bg-white w-full h-full overflow-hidden text-left text-xl text-black font-inter">
+    <div className="relative bg-white w-full h-screen overflow-hidden text-left text-xl text-black font-inter">
       <ProfileAndSearch isTitleVisible={true} graybar={true} />
-      <BottomBar />
       <ImageCover />
       <SectionHeader />
       <RestaurantList />
+      <BottomBar />
     </div>
   );
 };
@@ -93,7 +93,7 @@ export const RestaurantList = () => {
   }, [navigate]);
 
   return (
-    <div className="flex flex-col mx-0 p-10 gap-y-5 h-[400px] overflow-y-scroll">
+    <section className="flex flex-col gap-y-5 h-[40%] box-border overflow-y-scroll px-5 pt-5">
       {sampleRestaurants?.map((restaurant, index) => {
         return (
           <div className="flex gap-x-5" key={index}>
@@ -121,7 +121,7 @@ export const RestaurantList = () => {
           </div>
         );
       })}
-    </div>
+    </section>
   );
 };
 

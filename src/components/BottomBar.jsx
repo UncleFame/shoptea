@@ -10,7 +10,7 @@ export const BottomBar = () => {
   const currentPage = pathname.split("/")[1];
   const iconSize = 25;
   return (
-    <nav className="flex flex-col fixed bg-white bottom-0 w-full box-border border-t border-solid border-gray-300 h-[70px] px-24">
+    <div className="flex flex-col fixed bg-white bottom-0 w-full box-border border-t border-solid border-gray-300 h-[10%] px-24">
       <ul className="flex items-center w-full justify-between h-full p-0 m-0">
         <FaHome
           size={iconSize}
@@ -23,7 +23,7 @@ export const BottomBar = () => {
           onClick={() => navigate("/res-preupload")}
         />
       </ul>
-    </nav>
+    </div>
   );
 };
 
