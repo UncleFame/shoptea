@@ -258,16 +258,11 @@ const UploadRes = () => {
           />
         </label>
       </div>
-      <div></div>
-      <Input name="name" value={name} onChange={handleUpdateFormData} />
-      <Input name="operationTime" value={operationTime} onChange={handleUpdateFormData} />
-      <Input name="price" value={price} onChange={handleUpdateFormData} />
-      <Input name="province" value={province} onChange={handleUpdateFormData} />
-      <Input name="phoneNum" value={phoneNum} onChange={handleUpdateFormData} />
-      <Input name="FavMenu" value={FavMenu} onChange={handleUpdateFormData} />
-      <Input name="googlemap" value={googlemap} onChange={handleUpdateFormData} />
-      <Input name="comment" value={comment} onChange={handleUpdateFormData} />
-
+      {
+        Object.keys(formData).map(key => (
+          <Input key={key} name={key} value={formData[key]} onChange={handleUpdateFormData} />
+        ))
+      }
       <b className="inline-block w-[57px] h-[25px]">ชื่อร้าน</b>
       <b className="inline-block w-[93px] h-[25px]">เวลา เปิด/ปิด</b>
       <b className="inline-block w-[93px] h-[25px]">ราคา</b>
