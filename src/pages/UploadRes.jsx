@@ -229,7 +229,7 @@ const UploadRes = () => {
       value={{
         image,
         imgSrc,
-        setFormData
+        setFormData,
       }}
     >
       <div className="flex flex-col items-center relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-sans">
@@ -251,46 +251,12 @@ const UploadRes = () => {
 
         <RestaurantMainImage />
 
-        {/* <div>
-          <label htmlFor="fileInput" className="relative">
-            <img
-              className="w-[26px] h-[26px] object-cover"
-              alt=""
-              src="/uploadbutton.png"
-            />
-            <input
-              id="fileInput"
-              ref={image}
-              className="w-[26px] h-[26px] object-cover opacity-0 cursor-pointer"
-              alt=""
-              type="file"
-              onChange={() => {
-                let reader = new FileReader();
-                let file = image.current.files[image.current.files.length - 1];
-                reader.readAsDataURL(file);
-  
-                reader.onload = function () {
-                  setFormData((prev) => ({
-                    ...prev,
-                    imgSrc: reader.result,
-                  }));
-                };
-              }}
-            />
-          </label>
-        </div> */}
-
         <InputList
           formData={formData}
           onUpdateFormData={handleUpdateFormData}
         />
 
-        <img
-          className="rounded-[50%] w-[37px] h-[37px] object-cover"
-          alt=""
-          src="/ellipse-4@2x.png"
-        />
-        <b className="text-sm inline-block w-[142px] h-[27px]">Annette Black</b>
+        <UserProfileCard />
         <div className="w-[350px] h-[150px] overflow-x-auto p-0 m-0">
           <ul className="flex items-center justify-between w-full h-full gap-x-2 p-0 m-0">
             <input
@@ -406,9 +372,9 @@ const UploadRes = () => {
 };
 
 const RestaurantMainImage = () => {
-  const {imgSrc} = useContext(UploadResContext);
+  const { imgSrc } = useContext(UploadResContext);
   return (
-    <>
+    <div className="relative ">
       {imgSrc ? (
         <img
           src={imgSrc}
@@ -418,40 +384,53 @@ const RestaurantMainImage = () => {
         <div className="rounded-3xs bg-gainsboro w-[220px] h-[183px]" />
       )}
       <InputUploadMainImage />
-    </>
+    </div>
   );
 };
 
 const InputUploadMainImage = () => {
-  const {image, setFormData} = useContext(UploadResContext);
+  const { image, setFormData } = useContext(UploadResContext);
   return (
-    <div>
-      <label htmlFor="fileInput" className="relative">
-        <img
-          className="w-[26px] h-[26px] object-cover"
-          alt=""
-          src="/uploadbutton.png"
-        />
-        <input
-          id="fileInput"
-          ref={image}
-          className="w-[26px] h-[26px] object-cover opacity-0 cursor-pointer"
-          alt=""
-          type="file"
-          onChange={() => {
-            let reader = new FileReader();
-            let file = image.current.files[image.current.files.length - 1];
-            reader.readAsDataURL(file);
+    <div className="absolute top-1/2 right-1/2 w-[26px] h-[26px]">
+      <img
+        onClick={() => image.current.click()}
+        className="w-[26px] h-[26px] object-cover"
+        alt=""
+        src="/uploadbutton.png"
+      />
+      <input
+        id="fileInput"
+        ref={image}
+        className="w-[26px] h-[26px] object-cover opacity-0 cursor-pointer"
+        alt=""
+        type="file"
+        onChange={() => {
+          let reader = new FileReader();
+          let file = image.current.files[image.current.files.length - 1];
+          reader.readAsDataURL(file);
 
-            reader.onload = function () {
-              setFormData((prev) => ({
-                ...prev,
-                imgSrc: reader.result,
-              }));
-            };
-          }}
-        />
-      </label>
+          reader.onload = function () {
+            setFormData((prev) => ({
+              ...prev,
+              imgSrc: reader.result,
+            }));
+          };
+        }}
+      />
+    </div>
+  );
+};
+
+const UserProfileCard = () => {
+  const {user} = useUser();
+  return (
+    <div className="flex items-center gap-x-2">
+      <img
+        className="rounded-[50%] w-[37px] h-[37px] object-cover"
+        alt=""
+        src="/ellipse-4@2x.png"
+      />
+      <b className="text-sm inline-block w-[142px] h-[27px] p-0">{user.email}</b>
     </div>
   );
 };
