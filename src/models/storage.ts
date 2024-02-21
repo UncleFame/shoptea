@@ -36,6 +36,7 @@ export async function uploadRestaurantSubImages(files : File[], restaurantName :
 
 export async function updateRestaurantSubImage(file : File, restaurantName : string, imageIndex : number){
     try {
+        if (!file) throw new Error("File not found")
         const {error} = await supabase
         .storage
         .from('Shoplist')

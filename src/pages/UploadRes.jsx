@@ -202,7 +202,7 @@ const UploadRes = () => {
         name: name,
         open,
         close,
-        price: Number(price),
+        price,
         province: province,
         phoneNum: phoneNum,
         comment,
@@ -230,6 +230,13 @@ const UploadRes = () => {
         image,
         imgSrc,
         setFormData,
+        subImage1,
+        subImage1Src,
+        subImage2,
+        subImage2Src,
+        subImage3,
+        subImage3Src,
+        setSubImages,
       }}
     >
       <div className="flex flex-col items-center relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-sans">
@@ -250,124 +257,138 @@ const UploadRes = () => {
         </div>
 
         <RestaurantMainImage />
-
         <InputList
           formData={formData}
           onUpdateFormData={handleUpdateFormData}
         />
-
         <UserProfileCard />
-        <div className="w-[350px] h-[150px] overflow-x-auto p-0 m-0">
-          <ul className="flex items-center justify-between w-full h-full gap-x-2 p-0 m-0">
-            <input
-              onChange={() => {
-                let reader = new FileReader();
-                let file =
-                  subImage1.current.files[subImage1.current.files.length - 1];
-                reader.readAsDataURL(file);
 
-                reader.onload = function () {
-                  setSubImages((prev) => ({
-                    ...prev,
-                    subImage1Src: reader.result,
-                  }));
-                };
-              }}
-              ref={subImage1}
-              type="file"
-              className="w-full border-2 hidden"
-              accept=".png"
-            />
-            <div
-              className={`relative w-full h-full ${subImage1Src ? "" : "bg-gray-400"} rounded-2xl`}
-            >
-              {subImage1Src && (
-                <img
-                  className="w-full h-full object-cover rounded-2xl"
-                  src={subImage1Src}
-                />
-              )}
-              <FaCamera
-                onClick={() => {
-                  subImage1.current.click();
-                }}
-                className="x-[-50%] translate-y-[-50%]"
-              />
-            </div>
-            <input
-              onChange={() => {
-                let reader = new FileReader();
-                let file =
-                  subImage2.current.files[subImage2.current.files.length - 1];
-                reader.readAsDataURL(file);
-
-                reader.onload = function () {
-                  setSubImages((prev) => ({
-                    ...prev,
-                    subImage2Src: reader.result,
-                  }));
-                };
-              }}
-              ref={subImage2}
-              type="file"
-              className="w-full border-2 hidden"
-              accept=".png"
-            />
-            <div
-              className={`relative w-full h-full ${subImage2Src ? "" : "bg-gray-400"} rounded-2xl`}
-            >
-              {subImage2Src && (
-                <img
-                  className="w-full h-full object-cover rounded-2xl"
-                  src={subImage2Src}
-                />
-              )}
-              <FaCamera
-                onClick={() => {
-                  subImage2.current.click();
-                }}
-                className="x-[-50%] translate-y-[-50%]"
-              />
-            </div>
-            <input
-              onChange={() => {
-                let reader = new FileReader();
-                let file =
-                  subImage3.current.files[subImage3.current.files.length - 1];
-                reader.readAsDataURL(file);
-
-                reader.onload = function () {
-                  setSubImages((prev) => ({
-                    ...prev,
-                    subImage3Src: reader.result,
-                  }));
-                };
-              }}
-              ref={subImage3}
-              type="file"
-              className="w-full border-2 hidden"
-              accept=".png"
-            />
-            <div
-              className={`relative w-full h-full ${subImage3Src ? "" : "bg-gray-400"} rounded-2xl`}
-            >
-              {subImage3Src && (
-                <img
-                  className="w-full h-full object-cover rounded-2xl"
-                  src={subImage3Src}
-                />
-              )}
-              <FaCamera
-                onClick={() => {
-                  subImage3.current.click();
-                }}
-                className="x-[-50%] translate-y-[-50%]"
-              />
-            </div>
-          </ul>
-        </div>
+        <InputSubImages />
       </div>
     </UploadResContext.Provider>
+  );
+};
+
+const InputSubImages = () => {
+  const {
+    subImage1,
+    subImage1Src,
+    subImage2,
+    subImage2Src,
+    subImage3,
+    subImage3Src,
+    setSubImages,
+  } = useContext(UploadResContext);
+  return (
+    <div className="w-[350px] h-[150px] overflow-x-auto p-0 m-0">
+      <ul className="flex items-center justify-between w-full h-full gap-x-2 p-0 m-0">
+        <input
+          onChange={() => {
+            let reader = new FileReader();
+            let file =
+              subImage1.current.files[subImage1.current.files.length - 1];
+            reader.readAsDataURL(file);
+
+            reader.onload = function () {
+              setSubImages((prev) => ({
+                ...prev,
+                subImage1Src: reader.result,
+              }));
+            };
+          }}
+          ref={subImage1}
+          type="file"
+          className="w-full border-2 hidden"
+          accept=".png"
+        />
+        <div
+          className={`relative w-full h-full ${subImage1Src ? "" : "bg-gray-400"} rounded-2xl`}
+        >
+          {subImage1Src && (
+            <img
+              className="w-full h-full object-cover rounded-2xl"
+              src={subImage1Src}
+            />
+          )}
+          <FaCamera
+            onClick={() => {
+              subImage1.current.click();
+            }}
+            className="x-[-50%] translate-y-[-50%]"
+          />
+        </div>
+        <input
+          onChange={() => {
+            let reader = new FileReader();
+            let file =
+              subImage2.current.files[subImage2.current.files.length - 1];
+            reader.readAsDataURL(file);
+
+            reader.onload = function () {
+              setSubImages((prev) => ({
+                ...prev,
+                subImage2Src: reader.result,
+              }));
+            };
+          }}
+          ref={subImage2}
+          type="file"
+          className="w-full border-2 hidden"
+          accept=".png"
+        />
+        <div
+          className={`relative w-full h-full ${subImage2Src ? "" : "bg-gray-400"} rounded-2xl`}
+        >
+          {subImage2Src && (
+            <img
+              className="w-full h-full object-cover rounded-2xl"
+              src={subImage2Src}
+            />
+          )}
+          <FaCamera
+            onClick={() => {
+              subImage2.current.click();
+            }}
+            className="x-[-50%] translate-y-[-50%]"
+          />
+        </div>
+        <input
+          onChange={() => {
+            let reader = new FileReader();
+            let file =
+              subImage3.current.files[subImage3.current.files.length - 1];
+            reader.readAsDataURL(file);
+
+            reader.onload = function () {
+              setSubImages((prev) => ({
+                ...prev,
+                subImage3Src: reader.result,
+              }));
+            };
+          }}
+          ref={subImage3}
+          type="file"
+          className="w-full border-2 hidden"
+          accept=".png"
+        />
+        <div
+          className={`relative w-full h-full ${subImage3Src ? "" : "bg-gray-400"} rounded-2xl`}
+        >
+          {subImage3Src && (
+            <img
+              className="w-full h-full object-cover rounded-2xl"
+              src={subImage3Src}
+            />
+          )}
+          <FaCamera
+            onClick={() => {
+              subImage3.current.click();
+            }}
+            className="x-[-50%] translate-y-[-50%]"
+          />
+        </div>
+      </ul>
+    </div>
   );
 };
 
@@ -422,7 +443,7 @@ const InputUploadMainImage = () => {
 };
 
 const UserProfileCard = () => {
-  const {user} = useUser();
+  const { user } = useUser();
   return (
     <div className="flex items-center gap-x-2">
       <img
@@ -430,7 +451,9 @@ const UserProfileCard = () => {
         alt=""
         src="/ellipse-4@2x.png"
       />
-      <b className="text-sm inline-block w-[142px] h-[27px] p-0">{user.email}</b>
+      <b className="text-sm inline-block w-[142px] h-[27px] p-0">
+        {user?.email}
+      </b>
     </div>
   );
 };
