@@ -15,7 +15,9 @@ export const ProfileAndSearch = ({
       {isTitleVisible && (
         <div className="flex flex-col gap-y-2">
           <p className="m-0 text-[16px] font-bold text-gray-200">MatCha&Tea</p>
-          <p className="m-0 text-green-700 font-semibold text-[16px]">เรานำชามาให้คุณ</p>
+          <p className="m-0 text-green-700 font-semibold text-[16px]">
+            เรานำชามาให้คุณ
+          </p>
         </div>
       )}
       <p className="absolute left-1/2 translate-x-[-50%] text-gray-500 font-semibold">
@@ -25,13 +27,23 @@ export const ProfileAndSearch = ({
         className={`flex gap-x-2.5 ${isTitleVisible ? "" : "ml-auto"} justify-end`}
       >
         <IoSearchOutline
-          className="text-black bg-gray-300 p-2.5 rounded-full"
+          className="text-black bg-gray-300 p-[9px] rounded-full"
           size={17}
           onClick={() => navigate("/All")}
         />
-        <CgProfile size={35} onClick={() => navigate("/profile")} />
+        <ProfileImage onClick={() => navigate("/profile")} />
       </span>
     </nav>
+  );
+};
+
+const ProfileImage = ({ onClick }) => {
+  return (
+    <img
+      className="w-[35px] h-[35px] object-cover rounded-full"
+      onClick={onClick}
+      src="https://cdn2.momjunction.com/wp-content/uploads/2021/02/What-Is-A-Sigma-Male-And-Their-Common-Personality-Trait-624x702.jpg"
+    />
   );
 };
 
