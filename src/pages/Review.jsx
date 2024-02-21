@@ -1,7 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
-
-import { supabase } from "./loginsystem";
 import { Star } from "../components/destination/Star";
 import { LuCupSoda } from "react-icons/lu";
 import { CiLocationOn } from "react-icons/ci";
@@ -9,6 +7,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { IoIosArrowBack } from "react-icons/io";
 import { getRestaurantInfoById } from "../models/restaurant";
+import { getAllRestaurantSubImagesPublicUrl } from "../models/storage.ts";
 
 const Review = () => {
   const navigate = useNavigate();
@@ -35,6 +34,7 @@ const RestaurantList = () => {
   const restaurantId = searchParams.get("restaurantId");
   const navigate = useNavigate();
   const [firstRestaurant, setFirstRestaurant] = useState(null);
+  const [subImages, setSubImages] = useState(null);
   const GotoMap = useCallback(() => {
     window.location.href = firstRestaurant && firstRestaurant.googlemap;
   }, [firstRestaurant]);
@@ -46,6 +46,12 @@ const RestaurantList = () => {
     const fetchRestaurants = async () => {
       const fetchedRestaurant = await getRestaurantInfoById(restaurantId);
       setFirstRestaurant(fetchedRestaurant);
+      // get public url for sub images of the restaurant
+      const fetchedSubImages = getAllRestaurantSubImagesPublicUrl(
+        fetchedRestaurant.name
+      );
+      console.log(fetchedSubImages)
+      setSubImages(fetchedSubImages);
     };
 
     fetchRestaurants();
@@ -90,21 +96,7 @@ const RestaurantList = () => {
           <p>{firstRestaurant.recommeded}</p>
 
           <p>{firstRestaurant.recommededmenuprice}</p>
-
-          <div className="flex gap-6 h-[380px] ">
-            <img
-              className="h-full object-cover w-1/3"
-              src={firstRestaurant.imageUrl}
-            />
-            <img
-              className="h-full object-cover w-1/3"
-              src={firstRestaurant.imageUrl}
-            />
-            <img
-              className="h-full object-cover w-1/3"
-              src={firstRestaurant.imageUrl}
-            />
-          </div>
+          <SubImages images={subImages} />
           <div className="flex flex-col  text-slate-500 ">
             Location
             <p>
@@ -136,6 +128,20 @@ const RestaurantList = () => {
           </div>
         </div>
       )}
+    </div>
+  );
+};
+
+const SubImages = ({ images }) => {
+  return (
+    <div className="flex gap-6 h-[380px] ">
+      {images?.map((image) => (
+        <img
+          key={image}
+          className="h-full object-cover w-1/3"
+          src={image}
+        />
+      ))}
     </div>
   );
 };
