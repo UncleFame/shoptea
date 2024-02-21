@@ -240,14 +240,8 @@ const UploadRes = () => {
           {isUploading ? "สร้าง" : "แก้ไข"}
         </button>
       </div>
-      {imgSrc ? (
-        <img
-          src={imgSrc}
-          className="w-[220px] h-[183px] object-cover rounded-2xl"
-        />
-      ) : (
-        <div className="rounded-3xs bg-gainsboro w-[220px] h-[183px]" />
-      )}
+
+      <RestaurantMainImage imgSrc={imgSrc}/>
 
       <div>
         <label htmlFor="fileInput" className="relative">
@@ -396,6 +390,21 @@ const UploadRes = () => {
         </ul>
       </div>
     </div>
+  );
+};
+
+const RestaurantMainImage = ({imgSrc}) => {
+  return (
+    <>
+      {imgSrc ? (
+        <img
+          src={imgSrc}
+          className="w-[220px] h-[183px] object-cover rounded-2xl"
+        />
+      ) : (
+        <div className="rounded-3xs bg-gainsboro w-[220px] h-[183px]" />
+      )}
+    </>
   );
 };
 
