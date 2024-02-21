@@ -134,7 +134,7 @@ const RestaurantList = () => {
 
 const SubImages = ({ images }) => {
   return (
-    <div className="flex gap-6 h-[380px] ">
+    <div className="flex gap-6 h-[200px] ">
       {images?.map((image) => (
         <SubImage key={image} image={image} />
       ))}
@@ -156,7 +156,9 @@ const SubImage = ({ image }) => {
           src={image}
         />
       ) : (
-        <p>Not found</p>
+        <div className="flex flex-col items-center justify-center h-full w-1/3 bg-gray-300 rounded-2xl">
+          <p className="text-[14px] text-center">ไม่มีรูปภาพย่อยร้านค้า</p>
+        </div>
       )}
     </>
   );
