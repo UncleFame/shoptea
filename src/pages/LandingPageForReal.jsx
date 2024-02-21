@@ -7,16 +7,19 @@ import { Star } from "../components/destination/Star";
 import ProfileAndSearch from "../components/profileandsearch";
 
 const LandingPageForReal = () => {
+  
   const navigate = useNavigate();
   const { user, loading } = useUser();
 
   // Handle user authentication navigation
   useEffect(() => {
+    
     if (loading) return;
     if (!user) return navigate("/");
   }, [loading]);
 
   return (
+    
     <div className="relative bg-white w-full h-screen overflow-hidden text-left text-xl text-black font-inter">
       <ProfileAndSearch isTitleVisible={true} graybar={true} />
       <ImageCover />
@@ -28,6 +31,8 @@ const LandingPageForReal = () => {
 };
 
 const SectionHeader = () => {
+  
+  const navigate = useNavigate();
   return (
     <div className="flex items-center text-sm w-full mx-auto h-[45px] border-b-2 border-solid border-gray-300">
       <div className="w-full flex justify-end">
@@ -36,7 +41,7 @@ const SectionHeader = () => {
         </p>
       </div>
       <div className="w-full flex justify-end">
-        <p className="underline underline-offset-4 mr-8 hover:text-green-400 transition-all cursor-pointer">
+        <p className="underline underline-offset-4 mr-8 hover:text-green-400 transition-all cursor-pointer"  onClick={() => navigate("/All")}>
           All
         </p>
       </div>
