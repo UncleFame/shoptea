@@ -14,7 +14,7 @@ const Review = () => {
   return (
     <main className="flex flex-col">
       <NavBar />
-      <RestaurantList />
+      <RestaurantDetail />
     </main>
   );
 };
@@ -26,7 +26,7 @@ const NavBar = () => {
   }, [navigate]);
 
   return (
-    <nav className="flex items-center gap-x-1 pt-5 px-[5%] justify-start w-full mx-auto font-sans border-b-2 border-solid border-gray-300 font-semibold">
+    <nav className="flex items-center gap-x-1 pt-5 px-[5%] justify-start w-full mx-auto font-sans border-b-2 border-solid border-gray-300 font-semibold box-border">
       <IoIosArrowBack className="text-gray-200 text-lg" onClick={GOhomepage}/>
       <p
         className="items-center text-gray-200"
@@ -38,7 +38,7 @@ const NavBar = () => {
   )
 }
 
-const RestaurantList = () => {
+const RestaurantDetail = () => {
   const [searchParams, _] = useSearchParams();
   const restaurantId = searchParams.get("restaurantId");
   const navigate = useNavigate();
@@ -67,14 +67,14 @@ const RestaurantList = () => {
   }, []);
 
   return (
-    <div className="flex flex-col mx-0 p-10 border">
+    <div className="flex flex-col mx-0 border">
       {firstRestaurant && (
         <div className="flex flex-col  ">
           <img
             src={firstRestaurant.imageUrl}
-            className=" object-cover  w-full h-[350px] mx-auto "
+            className="object-cover w-full h-[300px]"
           />
-          <p className="m-0 flex flex text-slate-800 font-bold   justify-between">
+          <p className="m-0 flex text-slate-800 font-bold   justify-between">
             {" "}
             
             {firstRestaurant.name}
