@@ -16,7 +16,7 @@ const SearchBar = ({ onSearch }) => {
   return (
     <div className="flex flex-row relative mx-8">
       <input
-        className=" bg-gray-400 w-full text-black placeholder-gray-500 rounded-xl px-8"
+        className=" bg-gray-300 w-full text-black placeholder-gray-500 rounded-xl px-5 py-3"
         type="text"
         placeholder="ค้นหา ชื้อร้านค้า จังหวัด"
         onChange={handleChange}
@@ -109,18 +109,18 @@ const All = () => {
 
   return (
     <>
-      <div className="flex flex-row items-center w-full" onClick={goToLandingPage}>
+      <div className="flex flex-row items-center w-full font-sans" onClick={goToLandingPage}>
         <IoIosArrowBack className="" />
-      <p>Home</p>
-      </div>
-      <p className="flex row-auto justify-center text-gray-500 font-bold">All</p>
-      <SearchBar onSearch={handleSearch} 
-        className="bg-gray-200 "  
-      />
-      <div className="flex flex-col mx-0 p-5 gap-y-5 font-sans">
-        {filteredRestaurants?.map((restaurant) => (
-          <RestaurantItem key={restaurant.id} restaurant={restaurant}/>
-        ))}
+        <p>Home</p>
+        </div>
+        <p className="flex row-auto justify-center text-gray-500 font-bold font-sans">All</p>
+        <SearchBar onSearch={handleSearch} 
+          className="bg-gray-200"  
+        />
+        <div className="flex flex-col mx-0 p-5 gap-y-5">
+          {filteredRestaurants?.map((restaurant) => (
+            <RestaurantItem key={restaurant.id} restaurant={restaurant}/>
+          ))}
       </div>
     </>
   );
