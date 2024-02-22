@@ -291,7 +291,8 @@ const InputSubImages = () => {
   } = useContext(UploadResContext);
   
   return (
-    <div className="w-[90%] mx-auto h-[150px] overflow-hidden p-0 m-0">
+    <div className="w-[90%] mx-auto h-[200px] p-0 m-0">
+      <h1 className="text-[17px] text-gray-200 w-full">รูปภาพย่อยร้านค้า</h1>
       <ul className="flex items-center justify-between w-full h-full gap-x-2 p-0 m-0">
         <input
           onChange={() => {
@@ -325,7 +326,7 @@ const InputSubImages = () => {
             onClick={() => {
               subImage1.current.click();
             }}
-            className="x-[-50%] translate-y-[-50%]"
+            className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]"
           />
         </div>
         <input
@@ -360,7 +361,7 @@ const InputSubImages = () => {
             onClick={() => {
               subImage2.current.click();
             }}
-            className="x-[-50%] translate-y-[-50%]"
+            className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]"
           />
         </div>
         <input
@@ -395,7 +396,7 @@ const InputSubImages = () => {
             onClick={() => {
               subImage3.current.click();
             }}
-            className="x-[-50%] translate-y-[-50%]"
+            className="absolute left-1/2 top-1/2 translate-x-[-50%] translate-y-[-50%]"
           />
         </div>
       </ul>
