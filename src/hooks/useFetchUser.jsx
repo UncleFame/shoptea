@@ -5,6 +5,7 @@ import { getUserInfo } from "../models/users";
 export function useFetchUser(userId){
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  
   useEffect(()=>{
     const fetchUser = async () => {
       const fetchedUser = await getUserInfo(userId);

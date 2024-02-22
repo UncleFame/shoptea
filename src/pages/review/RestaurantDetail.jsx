@@ -93,7 +93,9 @@ export const RestaurantDetail = () => {
               <OwnerReview firstRestaurant={firstRestaurant}/>
             </div>
 
-            <div className="flex justify-center">
+            <div className="w-full h-[2px] bg-gray-300"></div>
+
+            <div className="flex justify-center mt-10">
               <IoMdAddCircleOutline size={"30"} onClick={GoComment} />
             </div>
           </div>
@@ -107,7 +109,7 @@ const OwnerReview = ({firstRestaurant}) => {
   const ownerId = firstRestaurant.user_id
   const {user, loading} = useFetchUser(ownerId);
   return (
-    <>
+    <div className="flex flex-col">
       <div className="flex items-center gap-x-2">
         <img src="profileicon.png" alt="" className="h-[35px] w-[35px]" />
         <div className="flex-col">
@@ -117,8 +119,8 @@ const OwnerReview = ({firstRestaurant}) => {
           <Star rating={3}/>
         </div>
       </div>
-      <p>{firstRestaurant.Comment}</p>
-    </>
+      <h3 className="text-sm font-normal">{firstRestaurant.comment}</h3>
+    </div>
   )
 }
 
