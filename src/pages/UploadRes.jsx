@@ -245,7 +245,7 @@ const UploadRes = () => {
         handleUpdateFormData
       }}
     >
-      <div className="flex flex-col items-center relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-sans">
+      <div className="flex flex-col items-center relative bg-white w-full h-full overflow-y-scroll text-left text-base text-gray-200 font-sans">
         <NavBar />
         <RestaurantMainImage />
         <InputList
@@ -474,13 +474,13 @@ const InputComment = ({name}) => {
 const UserProfileCard = () => {
   const { user } = useUser();
   return (
-    <div className="flex items-center gap-x-2">
+    <div className="flex w-full items-center gap-x-2.5">
       <img
         className="rounded-[50%] w-[37px] h-[37px] object-cover"
         alt=""
         src="/ellipse-4@2x.png"
       />
-      <b className="text-sm inline-block w-[142px] h-[27px] p-0">
+      <b className="text-sm inline-block w-[142px] p-0">
         {user?.email}
       </b>
     </div>
