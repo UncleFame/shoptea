@@ -35,8 +35,8 @@ const UploadRes = () => {
     province: "",
     phoneNum: "",
     imgSrc: "",
-    FavMenu: "",
     comment: "",
+    FavMenu: "",
     googlemap: "",
   });
   const {
@@ -82,6 +82,7 @@ const UploadRes = () => {
         comment,
         imageUrl,
         googlemap,
+        FavMenu
       } = restaurantInfo;
       // Set value to corresponding local state
       setFormData((_) => ({
@@ -496,6 +497,7 @@ const InputList = ({ formData }) => {
       "จังหวัด",
       "เบอร์",
       "Comment",
+      "Location",
       "เมนูแนะนำ",
       "Location",
     ];
@@ -503,17 +505,22 @@ const InputList = ({ formData }) => {
   return (
     <ul className="flex flex-col gap-y-3 w-[90%] m-0 p-0 mx-auto">
       {Object.keys(formData).map((key, index) => {
-        if (key === "comment"){
-          return <InputComment name={key} key={key}/>
+        switch (key){
+          case "comment":
+            return <InputComment name={key} key={key}/>
+          case "imgSrc":
+            return null
+          default :
+            return <Input
+            label={formLabels[index]}
+            key={key}
+            name={key}
+            value={formData[key]}
+            onChange={handleUpdateFormData}
+          />;
         }
 
-        return <Input
-          label={formLabels[index]}
-          key={key}
-          name={key}
-          value={formData[key]}
-          onChange={handleUpdateFormData}
-        />;
+        
       })}
     </ul>
   );
