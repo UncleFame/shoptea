@@ -7,7 +7,6 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { getRestaurantInfoById } from "../../models/restaurant";
 import { getAllRestaurantSubImagesPublicUrl } from "../../models/storage.ts";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
-import { SubImages } from "./Review";
 
 
 export const RestaurantDetail = () => {
@@ -48,26 +47,21 @@ export const RestaurantDetail = () => {
             className="object-cover w-full h-[300px]" />
 
           <div className="p-7 w-full h-full box-border">
-            <p className="m-0 flex text-slate-800 font-bold   justify-between">
-              {" "}
-
-              {firstRestaurant.name}
+            <span className="m-0 flex text-slate-800 font-bold  justify-between">
+              <p className="box-border p-0 m-0 text-gray-200">{firstRestaurant.name}</p>
               <MdOutlineBookmarkAdd size={20} />
-
-            </p>
+            </span>
 
             <Star rating={firstRestaurant.star} />
-            <p className="m-0 text-gray-100 ">
-              <span>Open</span>
-              {firstRestaurant.open}- {firstRestaurant.close}
+            <p className="m-0 text-gray-100 text-sm">
+              <span>Open {firstRestaurant.open}- {firstRestaurant.close}</span>
             </p>
-            <p className="m-0 text-slate-500">
-              <span>ราคา</span>
-              {firstRestaurant.price}
+            <p className="m-0 text-gray-200 text-sm">
+              <span>ราคา {firstRestaurant.price}</span>
             </p>
 
-            <p className="m-0  text-slate-500">{firstRestaurant.review}</p>
-            <p className="m-0  text-slate-500">{firstRestaurant.phoneNum}</p>
+            <p className="m-0  text-gray-200">{firstRestaurant.review}</p>
+            <p className="m-0  text-gray-200 text-sm">เบอร์ {firstRestaurant.phoneNum}</p>
 
             <p className=" font-bold "> Recommended</p>
             <div className="flex flex-row">
@@ -108,6 +102,41 @@ export const RestaurantDetail = () => {
               <IoMdAddCircleOutline size={"30"} onClick={GoComment} />
             </div>
           </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const SubImages = ({ images }) => {
+  return (
+    <div className="flex flex-col w-full items-start justify-center box-border">
+      <h1 className="text-[17px] text-gray-500">รูปภาพย่อยของร้าน</h1>
+      <ul className="flex w-full h-[200px] gap-x-5 box-border p-0 m-0">
+        {images?.map((image) => (
+          <SubImage key={image} image={image} />
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+const SubImage = ({ image }) => {
+  const [isImageFound, setIsImageFound] = useState(true);
+  return (
+    <div className="rounded-2xl overflow-hidden w-full">
+      {isImageFound ? (
+        <img
+          onError={() => {
+            setIsImageFound(false);
+          }}
+          key={image}
+          className="h-full object-cover w-full box-border"
+          src={image}
+        />
+      ) : (
+        <div className="flex flex-col items-center justify-center h-full w-full bg-gray-300 rounded-2xl">
+          <p className="text-[14px] text-center">ไม่มีรูปภาพย่อยร้านค้า</p>
         </div>
       )}
     </div>

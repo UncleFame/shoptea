@@ -32,39 +32,5 @@ const NavBar = () => {
   )
 }
 
-export const SubImages = ({ images }) => {
-  return (
-    <div className="flex flex-col w-full items-start justify-center box-border">
-      <h1 className="text-[17px] text-gray-500">รูปภาพย่อยของร้าน</h1>
-      <ul className="flex w-full h-[200px] gap-x-5 box-border p-0 m-0">
-        {images?.map((image) => (
-          <SubImage key={image} image={image} />
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-const SubImage = ({ image }) => {
-  const [isImageFound, setIsImageFound] = useState(true);
-  return (
-    <div className="rounded-2xl overflow-hidden w-full">
-      {isImageFound ? (
-        <img
-          onError={() => {
-            setIsImageFound(false);
-          }}
-          key={image}
-          className="h-full object-cover w-full box-border"
-          src={image}
-        />
-      ) : (
-        <div className="flex flex-col items-center justify-center h-full w-full bg-gray-300 rounded-2xl">
-          <p className="text-[14px] text-center">ไม่มีรูปภาพย่อยร้านค้า</p>
-        </div>
-      )}
-    </div>
-  );
-};
 
 export default Review;
