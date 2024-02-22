@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import { getPublicUrl, uploadRestaurantImage } from "../utils/restaurant";
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
@@ -34,9 +34,9 @@ const UploadRes = () => {
     price: "",
     province: "",
     phoneNum: "",
-    comment: "",
     imgSrc: "",
     FavMenu: "",
+    comment: "",
     googlemap: "",
   });
   const {
@@ -239,19 +239,18 @@ const UploadRes = () => {
         setSubImages,
         Pushtolandingpage,
         handleUploadImage,
-        isUploading
+        isUploading,
+        comment,
+        handleUpdateFormData
       }}
     >
       <div className="flex flex-col items-center relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-sans">
         <NavBar />
-
         <RestaurantMainImage />
         <InputList
           formData={formData}
           onUpdateFormData={handleUpdateFormData}
         />
-        <UserProfileCard />
-
         <InputSubImages />
       </div>
     </UploadResContext.Provider>
@@ -259,7 +258,8 @@ const UploadRes = () => {
 };
 
 const NavBar = () => {
-  const {Pushtolandingpage, handleUploadImage, isUploading} = useContext(UploadResContext);
+  const { Pushtolandingpage, handleUploadImage, isUploading } =
+    useContext(UploadResContext);
   return (
     <div className="flex w-full items-end pb-1.5 justify-between mb-5 px-5 box-border font-bold border-solid border-b-2 border-gray-400 pt-10">
       <button
@@ -289,7 +289,7 @@ const InputSubImages = () => {
     subImage3Src,
     setSubImages,
   } = useContext(UploadResContext);
-  
+
   return (
     <div className="w-[90%] mx-auto h-[200px] p-0 m-0">
       <h1 className="text-[17px] text-gray-200 w-full">รูปภาพย่อยร้านค้า</h1>
@@ -454,6 +454,22 @@ const InputUploadMainImage = () => {
   );
 };
 
+const InputComment = ({name}) => {
+  const { comment, handleUpdateFormData } = useContext(UploadResContext);
+  return (
+    <div className="flex flex-col gap-y-1.5 items-start w-full mx-auto h-[150px]">
+      <UserProfileCard />
+      <textarea
+        name={name}
+        className="border-2 outline-none border-solid border-gray-300 rounded-lg w-full h-full p-3 box-border font-sans"
+        value={comment}
+        placeholder="Comment"
+        onChange={handleUpdateFormData}
+      ></textarea>
+    </div>
+  );
+};
+
 const UserProfileCard = () => {
   const { user } = useUser();
   return (
@@ -470,27 +486,34 @@ const UserProfileCard = () => {
   );
 };
 
-const InputList = ({ formData, onUpdateFormData }) => {
-  const formLabels = [
-    "ชื่อร้าน",
-    "เวลา เปิด/ปิด",
-    "ราคา",
-    "จังหวัด",
-    "เบอร์",
-    "Recommend",
-    "Location",
-  ];
+const InputList = ({ formData }) => {
+  const {handleUpdateFormData} = useContext(UploadResContext);
+  const formLabels = useMemo(() => {
+    return [
+      "ชื่อร้าน",
+      "เวลา เปิด/ปิด",
+      "ราคา",
+      "จังหวัด",
+      "เบอร์",
+      "เมนูแนะนำ",
+      "Location",
+    ];
+  }, []);
   return (
     <ul className="flex flex-col gap-y-3 w-[90%] m-0 p-0 mx-auto">
-      {Object.keys(formData).map((key, index) => (
-        <Input
+      {Object.keys(formData).map((key, index) => {
+        if (key === "comment"){
+          return <InputComment name={key} key={key}/>
+        }
+
+        return <Input
           label={formLabels[index]}
           key={key}
           name={key}
           value={formData[key]}
-          onChange={onUpdateFormData}
-        />
-      ))}
+          onChange={handleUpdateFormData}
+        />;
+      })}
     </ul>
   );
 };
