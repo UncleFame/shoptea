@@ -85,16 +85,11 @@ export const RestaurantDetail = () => {
               <img className="w-full rounded-2xl mt-3" src="Mappic.jpg" alt="ffds" onClick={GotoMap} />
             </div>
 
+            <div className="w-full h-[2px] bg-gray-300"></div>
 
-            <div className="flex flex-col gap gap-y-5  ">
-              <span className="-8 w-full h-1 bg-gray-300"></span>
-              review
-              <div className="flex gap-y-5 ">
-                <img src="profileicon.png" alt="" className="h-[50px] w-[50px]" />
-
-                <p>Profile Name</p>
-              </div>
-              <p>{firstRestaurant.Comment}</p>
+            <div className="flex flex-col gap gap-y-5 mt-3">
+              <h3 className="text-gray-200 font-semibold text-sm">Review</h3>
+              <OwnerReview firstRestaurant={firstRestaurant}/>
             </div>
 
             <div className="flex justify-center">
@@ -106,6 +101,21 @@ export const RestaurantDetail = () => {
     </div>
   );
 };
+
+const OwnerReview = ({firstRestaurant}) => {
+  const ownerId = firstRestaurant.user_id
+  
+  return (
+    <>
+      <div className="flex gap-y-5 ">
+        <img src="profileicon.png" alt="" className="h-[50px] w-[50px]" />
+
+        <p>Profile Name</p>
+      </div>
+      <p>{firstRestaurant.Comment}</p>
+    </>
+  )
+}
 
 const SubImages = ({ images }) => {
   return (
