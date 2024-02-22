@@ -88,7 +88,7 @@ export const RestaurantDetail = () => {
 
             <div className="w-full h-[2px] bg-gray-300"></div>
 
-            <div className="flex flex-col gap-y-3 mt-10">
+            <div className="flex flex-col gap-y-5 mt-10">
               <h3 className="text-gray-200 font-semibold text-sm m-0 p-0">Review</h3>
               <OwnerReview firstRestaurant={firstRestaurant}/>
             </div>
@@ -110,9 +110,12 @@ const OwnerReview = ({firstRestaurant}) => {
     <>
       <div className="flex items-center gap-x-2">
         <img src="profileicon.png" alt="" className="h-[35px] w-[35px]" />
-        {
-          loading ? null : <p className="text-sm text-gray-200 font-semibold">{user.email}</p>
-        }
+        <div className="flex-col">
+          {
+            loading ? null : <p className="text-sm text-gray-200 font-semibold p-0 m-0">{user.email}</p>
+          }
+          <Star rating={3}/>
+        </div>
       </div>
       <p>{firstRestaurant.Comment}</p>
     </>
