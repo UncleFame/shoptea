@@ -495,6 +495,7 @@ const InputList = ({ formData }) => {
       "ราคา",
       "จังหวัด",
       "เบอร์",
+      "Comment",
       "เมนูแนะนำ",
       "Location",
     ];
