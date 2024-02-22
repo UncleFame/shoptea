@@ -15,7 +15,7 @@ import LoginPage1 from "./pages/LoginPage1";
 import LandingPageForReal from "./pages/LandingPageForReal";
 import Profile from "./pages/Profile";
 import SigninPage from "./pages/SigninPage";
-import Review from "./pages/Review";
+import Review from "./pages/review/Review";
 import Comment from "./pages/Comment";
 import Editprofile from "./pages/editprofile";
 
