@@ -36,10 +36,14 @@ export const ProfileAndSearch = ({
   );
 };
 
-const ProfileImage = ({ onClick }) => {
+export const ProfileImage = ({ onClick, size = 35 }) => {
   return (
     <img
-      className="w-[35px] h-[35px] object-cover rounded-full"
+      style={{
+        width : `${size}px`,
+        heigth :  `${size}px`
+      }}
+      className="object-cover rounded-full"
       onClick={onClick}
       src="https://cdn2.momjunction.com/wp-content/uploads/2021/02/What-Is-A-Sigma-Male-And-Their-Common-Personality-Trait-624x702.jpg"
     />

@@ -6,6 +6,8 @@ import { FaUserCircle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 
 import { IoLogoFacebook } from "react-icons/io";
+import { useUser } from "../hooks/useUser";
+import { ProfileImage } from "../components/profileandsearch";
 
 const Profile = () => {
   const [mrETCValue, setMrETCValue] = useState("");
@@ -43,17 +45,14 @@ const Profile = () => {
 
   return (
     <div className="relative bg-white w-full h-ful overflow-hidden text-left  font-inter">
-      <div className="flex flex-row items-center justify-start w-f">
+      <div className="flex flex-row items-center justify-start">
         <p className="" onClick={onBacktohome1ImageClick}>
           <IoChevronBack />
           Home
         </p>
       </div>
-      <div className="flex-col border-solid  border-4 text-center item-center w-full justify-center gap-y-[px] ">
-        <FaUserCircle size={80} />
-
-        <p>Username</p>
-        <p>เเนะนำตัว</p>
+      <div className="flex-col border-solid  border-4 text-center item-center w-full justify-center gap-y-[px] mt-[10%]">
+        <ProfileCard />
         <div className="container py-10 mx-0 min-w-full flex flex-col items-center">
           <p
             className="text-center button-center  py-2 px-4 mt-3 rounded-lg  cursor-pointer   border-solid border-2  text-gray-200 "
@@ -84,5 +83,17 @@ const Profile = () => {
     </div>
   );
 };
+
+const ProfileCard = () => {
+  const {user, loading} = useUser();
+  
+  return (
+    <div className="translate-y-[-30%] h-full max-h-[300px] w-max mx-auto">
+      <ProfileImage size={80}/>
+      <p className="text-gray-200 font-semibold">{user?.email}</p>
+      <p className="text-gray-200 font-semibold">เเนะนำตัว</p>
+    </div>
+  )
+}
 
 export default Profile;
