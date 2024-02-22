@@ -289,8 +289,9 @@ const InputSubImages = () => {
     subImage3Src,
     setSubImages,
   } = useContext(UploadResContext);
+  
   return (
-    <div className="w-[350px] h-[150px] overflow-x-auto p-0 m-0">
+    <div className="w-[90%] mx-auto h-[150px] overflow-hidden p-0 m-0">
       <ul className="flex items-center justify-between w-full h-full gap-x-2 p-0 m-0">
         <input
           onChange={() => {

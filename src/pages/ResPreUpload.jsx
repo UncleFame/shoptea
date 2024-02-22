@@ -95,7 +95,7 @@ const RestaurantItem = ({ restaurant }) => {
   return (
     <div className="flex h-[150px] box-border border-solid border-2 rounded-lg border-gray-300 justify-between gap-x-5 w-full p-[10px]">
       <div className="flex w-full gap-x-5">
-        <div className="flex flex-col w-1/3 h-full ">
+        <div className="flex flex-col w-full h-full ">
           <img
             className=" w-full h-5/6  object-cover rounded-2xl"
             src={restaurant.imageUrl}
@@ -107,11 +107,11 @@ const RestaurantItem = ({ restaurant }) => {
           </div>
         </div>
 
-        <div className="flex w-1/3 flex-col gap-y-1 h-full justify-start items-start py-3">
+        <div className="flex w-full flex-col gap-y-1 h-full justify-start items-start py-3">
           <p className=" font-bold text-gray-200 w-full p-0 m-0">{restaurant.name}</p>
           <div className="flex items-center gap-x-2 ">
             <FaUserLarge className="text-gray-200"/>
-            <p className="w-full break-words text-slate-300 p-0 m-0 font-semibold translate-y-[-2px]"> {owner?.email}</p>
+            <p className="w-full break-words text-slate-300 text-sm p-0 m-0 font-semibold translate-y-[-2px]"> {owner?.email}</p>
           </div>
         </div>
       </div>
