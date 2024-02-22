@@ -20,7 +20,7 @@ const LandingPageForReal = () => {
 
   return (
     
-    <div className="relative bg-white w-full h-screen overflow-hidden text-left text-xl text-black font-inter">
+    <div className="relative bg-white w-full h-screen text-left text-xl text-black font-inter">
       <ProfileAndSearch isTitleVisible={true} graybar={true} />
       <ImageCover />
       <SectionHeader />
@@ -74,7 +74,7 @@ export const RestaurantList = () => {
   }, []);
 
   return (
-    <section className="flex flex-col gap-y-5 h-[40%] box-border overflow-y-scroll px-5 pt-5">
+    <section className="flex flex-col gap-y-5 h-full box-border px-5 pt-5">
       {sampleRestaurants?.map((restaurant) => {
         return <RestaurantItem restaurant={restaurant} />;
       })}
