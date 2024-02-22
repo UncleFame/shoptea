@@ -63,12 +63,12 @@ export const RestaurantDetail = () => {
             <p className="m-0  text-gray-200">{firstRestaurant.review}</p>
             <p className="m-0  text-gray-200 text-sm">เบอร์ {firstRestaurant.phoneNum}</p>
 
-            <p className=" font-bold "> Recommended</p>
+            <p className="text-gray-200 font-bold text-sm">Recommended</p>
             <div className="flex flex-row">
               <LuCupSoda size={"40"} />
               <div className="flex flex-col ">
                 <p className="m-0 font-medium">{firstRestaurant.FavMenu}</p>
-                <p className=" text-gray-500 m-0">
+                <p className=" text-gray-200 m-0 font-semibold">
                   {firstRestaurant.FavMenuPrice}บาท
                 </p>
               </div>
@@ -78,12 +78,10 @@ export const RestaurantDetail = () => {
 
             <p>{firstRestaurant.recommededmenuprice}</p>
             <SubImages images={subImages} />
-            <div className="flex flex-col  text-slate-500 ">
-              Location
-              <p>
-                {" "}
-                <CiLocationOn /> จ.{firstRestaurant.province}
-              </p>
+
+            <div className="flex flex-col text-slate-500 my-5">
+              <h3 className="text-gray-200 p-0 m-0 text-sm">Location</h3>
+              <span className="flex items-center gap-x-1"><CiLocationOn /> <p className="m-0 p-0 translate-y-[-3px]">จ.{firstRestaurant.province}</p></span>
             </div>
 
             <div className="flex flex-col gap gap-y-5  ">
