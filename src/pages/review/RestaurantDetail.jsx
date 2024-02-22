@@ -7,6 +7,7 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { getRestaurantInfoById } from "../../models/restaurant";
 import { getAllRestaurantSubImagesPublicUrl } from "../../models/storage.ts";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
+import { useFetchUser } from "../../hooks/useFetchUser";
 
 
 export const RestaurantDetail = () => {
@@ -87,8 +88,8 @@ export const RestaurantDetail = () => {
 
             <div className="w-full h-[2px] bg-gray-300"></div>
 
-            <div className="flex flex-col gap gap-y-5 mt-3">
-              <h3 className="text-gray-200 font-semibold text-sm">Review</h3>
+            <div className="flex flex-col gap-y-3 mt-10">
+              <h3 className="text-gray-200 font-semibold text-sm m-0 p-0">Review</h3>
               <OwnerReview firstRestaurant={firstRestaurant}/>
             </div>
 
@@ -104,13 +105,14 @@ export const RestaurantDetail = () => {
 
 const OwnerReview = ({firstRestaurant}) => {
   const ownerId = firstRestaurant.user_id
-  
+  const {user, loading} = useFetchUser(ownerId);
   return (
     <>
-      <div className="flex gap-y-5 ">
-        <img src="profileicon.png" alt="" className="h-[50px] w-[50px]" />
-
-        <p>Profile Name</p>
+      <div className="flex items-center gap-x-2">
+        <img src="profileicon.png" alt="" className="h-[35px] w-[35px]" />
+        {
+          loading ? null : <p className="text-sm text-gray-200 font-semibold">{user.email}</p>
+        }
       </div>
       <p>{firstRestaurant.Comment}</p>
     </>
