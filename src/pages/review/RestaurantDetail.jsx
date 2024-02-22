@@ -82,10 +82,11 @@ export const RestaurantDetail = () => {
             <div className="flex flex-col text-slate-500 my-5">
               <h3 className="text-gray-200 p-0 m-0 text-sm">Location</h3>
               <span className="flex items-center gap-x-1"><CiLocationOn /> <p className="m-0 p-0 translate-y-[-3px]">จ.{firstRestaurant.province}</p></span>
+              <img className="w-full rounded-2xl mt-3" src="Mappic.jpg" alt="ffds" onClick={GotoMap} />
             </div>
 
+
             <div className="flex flex-col gap gap-y-5  ">
-              <img src="Mappic.jpg" alt="ffds" onClick={GotoMap} />
               <span className="-8 w-full h-1 bg-gray-300"></span>
               review
               <div className="flex gap-y-5 ">
