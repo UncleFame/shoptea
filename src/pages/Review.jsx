@@ -11,24 +11,32 @@ import { getAllRestaurantSubImagesPublicUrl } from "../models/storage.ts";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 
 const Review = () => {
+  return (
+    <main className="flex flex-col">
+      <NavBar />
+      <RestaurantList />
+    </main>
+  );
+};
+
+const NavBar = () => {
   const navigate = useNavigate();
   const GOhomepage = useCallback(() => {
     navigate("/landing-page-for-real");
   }, [navigate]);
+
   return (
-    <div className="flex flex-col">
+    <nav className="flex items-center gap-x-1 pt-5 px-[5%] justify-start w-full mx-auto font-sans border-b-2 border-solid border-gray-300 font-semibold">
+      <IoIosArrowBack className="text-gray-200 text-lg" onClick={GOhomepage}/>
       <p
-        className="mx-5 my-5 items-center text-gray-200  font-semibold "
+        className="items-center text-gray-200"
         onClick={GOhomepage}
       >
-        <IoIosArrowBack />
-        Home{" "}
+        Home
       </p>
-
-      <RestaurantList />
-    </div>
-  );
-};
+    </nav>
+  )
+}
 
 const RestaurantList = () => {
   const [searchParams, _] = useSearchParams();
