@@ -5,6 +5,7 @@ import BottomBar from "../components/BottomBar";
 import { IoIosArrowBack } from "react-icons/io";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { Star } from "../components/destination/Star";
+import {RestaurantItem} from "../components/RestaurantItem"
 
 const SearchBar = ({ onSearch }) => {
   const handleChange = (event) => {
@@ -116,21 +117,9 @@ const All = () => {
       <SearchBar onSearch={handleSearch} 
         className="bg-gray-200 "  
       />
-      <div className="flex flex-col mx-0 p-10 gap-y-5 ">
+      <div className="flex flex-col mx-0 p-5 gap-y-5 font-sans">
         {filteredRestaurants?.map((restaurant) => (
-          <div className="flex gap-x-5 " key={restaurant.id}>
-            <img src={restaurant.imageUrl} className=" rounded-lg max-w-[150px]" alt={restaurant.name} />
-            <div className="flex flex-col">
-              <p className="m-0">{restaurant.name}</p>
-              <p className="m-0">ราคา {restaurant.price}</p>
-              <p className="m-0">สถานที่ {restaurant.province}</p>
-              <p className="m-0">เวลาเปิด {restaurant.open}</p>
-              <p className="m-0">{restaurant.review}</p>
-              <p className="m-0">{restaurant.phoneNum}</p>
-              <Star rating={restaurant.star}/>
-            </div>
-            <BottomBar />
-          </div>
+          <RestaurantItem key={restaurant.id} restaurant={restaurant}/>
         ))}
       </div>
     </>
