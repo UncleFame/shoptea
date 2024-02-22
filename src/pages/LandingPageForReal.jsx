@@ -89,7 +89,7 @@ const RestaurantItem = ({ restaurant }) => {
     <div className="flex gap-x-5" key={restaurant.title}>
       <img
         src={restaurant.imageUrl}
-        className="w-[150px] h-[150px] rounded-lg"
+        className="w-[150px] h-[150px] object-cover rounded-lg"
         onClick={() => navigate(`/Review?restaurantId=${restaurant.id}`)}
         alt={restaurant.name}
       />
