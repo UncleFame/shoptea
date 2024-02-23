@@ -1,18 +1,19 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import { ProfileImage } from "../components/profileandsearch";
+import { useUser } from "../hooks/useUser";
 
 const Editprofile = () => {
   const Navigte = useNavigate();
-
+  const { user, loading } = useUser();
   const Goeditpage = useCallback(() => {
     Navigte("/Profile");
   }, [Navigte]);
 
   return (
-    <div className="relative bg-white w-full h-ful overflow-hidden text-left  font-inter font-sans">
+    <div className="relative bg-white w-full h-ful overflow-hidden text-left  font-sans">
       <NavBar Goeditpage={Goeditpage} />
       <Content />
     </div>
@@ -44,24 +45,46 @@ function Content({}) {
 }
 
 function Form({}) {
+  const [formData, setFormData] = useState({
+    email: "",
+    introduction: "",
+    faceBookUrl: "",
+  });
+  const { user } = useUser();
+  const { email, introduction, faceBookUrl } = formData;
+
+  useEffect(() => {
+    if (!user) return 
+    setFormData((_) => ({
+      email : user.email,
+      introduction : "",
+      faceBookUrl : ""
+    }));
+  }, [user]);
+
   return (
     <form class="container py-10 w-11/12 flex flex-col gap-y-2 px-4">
-      <Input label="ชื่อ" placeholder="ชื่อ"/>
-      <TextArea label="แนะนำตัว" />
-      <Input label="URL Facebook" placeholder="Url facebook"/>
+      <Input value={email} label="ชื่อ" placeholder="ชื่อ" />
+      <TextArea value={introduction} label="แนะนำตัว" />
+      <Input
+        value={faceBookUrl}
+        label="URL Facebook"
+        placeholder="Url facebook"
+      />
     </form>
   );
 }
 
 export default Editprofile;
 
-function Input({ label, placeholder }) {
+function Input({ label, placeholder, value }) {
   return (
     <>
       <div>
         <p className="w-full text-start p-0 m-0">{label}</p>
       </div>
       <input
+        value={value}
         type="text"
         placeholder={placeholder}
         className="rounded-lg border-gray-300 border-solid border-2 h-4 p-2"
