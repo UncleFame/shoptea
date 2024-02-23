@@ -21,12 +21,11 @@ import { FaRegEdit } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaUserLarge } from "react-icons/fa6";
 import { IoMdInformationCircle } from "react-icons/io";
-
 import ProfileAndSearch from "../components/profileandsearch";
 
 const ResPreupload = () => {
   return (
-    <main className="flex flex-col overflow-x-hidden w-full items-center gap-y-5 box-border relative font-sans">
+    <main className="flex flex-col h-full overflow-x-hidden w-full items-center gap-y-5 box-border relative font-sans">
       <ResPreUploadProvider>
         <ProfileAndSearch graybar={true} header="Review" />
         <DisplayRestaurant />
