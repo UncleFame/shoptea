@@ -4,10 +4,11 @@ import { CgProfile } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
 import { ProfileImage } from "../components/profileandsearch";
 import { useUser } from "../hooks/useUser";
+import { useFetchUser } from "../hooks/useFetchUser";
+import { getUserInfo } from "../models/users";
 
 const Editprofile = () => {
   const Navigte = useNavigate();
-  const { user, loading } = useUser();
   const Goeditpage = useCallback(() => {
     Navigte("/Profile");
   }, [Navigte]);
@@ -54,12 +55,18 @@ function Form({}) {
   const { email, introduction, faceBookUrl } = formData;
 
   useEffect(() => {
-    if (!user) return 
-    setFormData((_) => ({
-      email : user.email,
-      introduction : "",
-      faceBookUrl : ""
-    }));
+    if (!user) return;
+    const fetchUser = async () => {
+      const fetchedUser = await getUserInfo(user.id);
+      console.log(fetchedUser)
+      setFormData((_) => ({
+        email: fetchedUser.email,
+        introduction: fetchedUser.introduction,
+        faceBookUrl : fetchedUser.faceBookUrl
+      }));
+    };
+
+    fetchUser();
   }, [user]);
 
   return (
@@ -93,11 +100,12 @@ function Input({ label, placeholder, value }) {
   );
 }
 
-function TextArea({ label }) {
+function TextArea({ label, value }) {
   return (
     <>
       <p className="w-full text-start p-0 m-0">{label}</p>
       <textarea
+        value={value}
         type="text"
         placeholder=""
         className="h-[90px] border-gray-300 rounded-lg border-solid border-2 p-2"
