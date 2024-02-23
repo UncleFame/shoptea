@@ -5,6 +5,7 @@ import BottomBar from "../components/BottomBar";
 import { IoIosArrowBack } from "react-icons/io";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { Star } from "../components/destination/Star";
+import { RestaurantItem } from "../components/RestaurantItem";
 
 const SearchBar = ({ onSearch }) => {
   const handleChange = (event) => {
@@ -13,14 +14,14 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="flex flex-row relative mx-8">
+    <div className="flex flex-row relative w-[90%]">
       <input
-        className=" bg-gray-400 w-full text-black placeholder-gray-500 rounded-xl px-8"
+        className=" bg-gray-400 w-full text-black placeholder-gray-500 rounded-xl px-4 py-3"
         type="text"
         placeholder="ค้นหา ชื้อร้านค้า จังหวัด"
         onChange={handleChange}
       />
-      <span className="absolute right-3 top-1/2 transform -translate-y-1/2">
+      <span className="absolute right-3 top-1/2 transform ">
         <FaMagnifyingGlass 
         size={10}
         className=" text-gray-500" />
@@ -107,33 +108,21 @@ const All = () => {
   }, [navigate]);
 
   return (
-    <>
-      <div className="flex flex-row items-center w-full" onClick={goToLandingPage}>
+    <div className="flex flex-col items-center font-sans w-full">
+      <div className="flex flex-row items-center w-full font-sans" onClick={goToLandingPage}>
         <IoIosArrowBack className="" />
-      <p>Home</p>
+        <p>Home</p>
       </div>
-      <p className="flex row-auto justify-center text-gray-500 font-bold">All</p>
+      <p className="flex row-auto w-full justify-center text-gray-500 font-bold">All</p>
       <SearchBar onSearch={handleSearch} 
         className="bg-gray-200 "  
       />
-      <div className="flex flex-col mx-0 p-10 gap-y-5 ">
+      <div className="flex flex-col mx-auto gap-y-5 w-[90%] mt-5">
         {filteredRestaurants?.map((restaurant) => (
-          <div className="flex gap-x-5 " key={restaurant.id}>
-            <img src={restaurant.imageUrl} className=" rounded-lg max-w-[150px]" alt={restaurant.name} />
-            <div className="flex flex-col">
-              <p className="m-0">{restaurant.name}</p>
-              <p className="m-0">ราคา {restaurant.price}</p>
-              <p className="m-0">สถานที่ {restaurant.province}</p>
-              <p className="m-0">เวลาเปิด {restaurant.open}</p>
-              <p className="m-0">{restaurant.review}</p>
-              <p className="m-0">{restaurant.phoneNum}</p>
-              <Star rating={restaurant.star}/>
-            </div>
-            <BottomBar />
-          </div>
+          <RestaurantItem restaurant={restaurant} key={restaurant.id}/>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
