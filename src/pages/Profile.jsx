@@ -44,18 +44,18 @@ const Profile = () => {
   }, [navigate]);
 
   return (
-    <div className="relative bg-white w-full h-ful overflow-hidden text-left  font-inter">
+    <div className="relative bg-white w-full h-ful overflow-hidden text-left font-inter">
       <div className="flex flex-row items-center justify-start">
         <p className="" onClick={onBacktohome1ImageClick}>
           <IoChevronBack />
           Home
         </p>
       </div>
-      <div className="flex-col border-solid  border-4 text-center item-center w-full justify-center gap-y-[px] mt-[10%]">
+      <div className="flex-col border-solid rounded-xl border-gray-300 border-2 text-center item-center w-[95%] mx-auto justify-center gap-y-[px] mt-[10%]">
         <ProfileCard />
         <div className="container py-10 mx-0 min-w-full flex flex-col items-center">
           <p
-            className="text-center button-center  py-2 px-4 mt-3 rounded-lg  cursor-pointer   border-solid border-2  text-gray-200 "
+            className="text-center button-center w-[100px] py-1.5 px-4 mt-3 rounded-lg  cursor-pointer border-gray-300  border-solid border-2  text-gray-200 "
             onClick={onTextClick}
           >
             แก้ไข
@@ -69,12 +69,12 @@ const Profile = () => {
         </div>
       </div>
 
-      <div className="  w-full bg-white  box-border mt-4  h-[2px] gap-y-5 border-solid border-gray-400" />
-      <div className="   w-full bg-darkgray box-border h-[2px] gap-y-5 border-solid border-gray-400" />
+      <div className="w-full bg-white  box-border mt-4  h-[2px] gap-y-5 border-solid border-gray-400" />
+      <div className="w-full bg-darkgray box-border h-[2px] gap-y-5 border-solid border-gray-400" />
 
-      <div className="w-full flex flex-col items-center px-4 mt-4]">
+      <div className="flex flex-col w-[95%] mx-auto items-center px-4 mt-2 box-border">
         <p
-          className=" rounded-lg mx-auto w-[450px]  cursor-pointer text-center border-solid border-2 text-gray-200 "
+          className=" rounded-lg w-full cursor-pointer py-1 text-center border-gray-300 border-solid border-2 text-gray-200 "
           onClick={handleSignOut}
         >
           ออกระบบ
