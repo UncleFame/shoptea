@@ -76,7 +76,7 @@ export const RestaurantList = () => {
   return (
     <section className="flex flex-col gap-y-5 h-full box-border px-5 pt-5">
       {sampleRestaurants?.map((restaurant) => {
-        return <RestaurantItem restaurant={restaurant} />;
+        return <RestaurantItem key={restaurant.id} restaurant={restaurant} />;
       })}
     </section>
   );

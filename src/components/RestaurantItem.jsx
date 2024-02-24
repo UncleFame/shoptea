@@ -11,6 +11,8 @@ export const RestaurantItem = ({ restaurant }) => {
   });
   const {star, amount} = rating;
   useEffect(() => {
+    if (!restaurant) return
+
     const fetchRating = async () => {
       const fetchedRating = await fetchAllReviewsByRestaurantId(restaurant.id);
       const averageRating = fetchedRating.reduce((accu, item) => accu + item.star,0);
@@ -21,7 +23,7 @@ export const RestaurantItem = ({ restaurant }) => {
     };
 
     fetchRating();
-  }, []);
+  }, [restaurant]);
 
   return (
     <div className="flex gap-x-5" key={restaurant.title}>

@@ -5,10 +5,11 @@ export async function fetchAllReviewsByRestaurantId(restaurantId){
     const {data, error} = await supabase
     .from("reviews")
     .select()
-    .eq('restaurant_id', restaurantId)
+    .eq("restaurant_id", restaurantId)
 
     if (error) throw new Error(error.message)
-
+    
+    console.log(data)
     return data
      
   } catch (error) {
