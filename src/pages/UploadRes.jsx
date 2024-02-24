@@ -18,6 +18,7 @@ import {
 } from "../models/storage.ts";
 import Input from "../components/form/Input.jsx";
 import { UploadResContext } from "../contexts/UploadResProvider.jsx";
+import {StarInput} from "../components/form/StarInput"
 
 const UploadRes = () => {
   let [searchParams, _] = useSearchParams();
@@ -38,6 +39,7 @@ const UploadRes = () => {
     comment: "",
     FavMenu: "",
     googlemap: "",
+    star : 0
   });
   const {
     name,
@@ -49,6 +51,7 @@ const UploadRes = () => {
     imgSrc,
     FavMenu,
     googlemap,
+    star
   } = formData;
 
   const { user } = useUser();
@@ -83,6 +86,7 @@ const UploadRes = () => {
         imageUrl,
         googlemap,
         FavMenu,
+        star
       } = restaurantInfo;
       // Set value to corresponding local state
       setFormData((_) => ({
@@ -95,6 +99,7 @@ const UploadRes = () => {
         imgSrc: imageUrl,
         FavMenu,
         googlemap,
+        star
       }));
       // Fetch restaurant sub images if there are
       const imageArray = await listAllRestaurantImages(name);
@@ -243,6 +248,7 @@ const UploadRes = () => {
         isUploading,
         comment,
         handleUpdateFormData,
+        star
       }}
     >
       <div className="flex flex-col items-center relative bg-white w-full h-full overflow-y-scroll text-left text-base text-gray-200 font-sans">
@@ -456,10 +462,12 @@ const InputUploadMainImage = () => {
 };
 
 const InputComment = ({ name }) => {
-  const { comment, handleUpdateFormData } = useContext(UploadResContext);
+  const { comment, handleUpdateFormData, star } = useContext(UploadResContext);
+
   return (
     <div className="flex flex-col gap-y-1.5 items-start w-full mx-auto h-[150px]">
       <UserProfileCard />
+      <StarInput />
       <textarea
         name={name}
         className="border-2 outline-none border-solid border-gray-300 rounded-lg w-full h-full p-3 box-border font-sans"
