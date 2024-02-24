@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "../utils/auth";
 import { IoChevronBack } from "react-icons/io5";
@@ -8,10 +8,9 @@ import { FaFacebook } from "react-icons/fa";
 import { IoLogoFacebook } from "react-icons/io";
 import { useUser } from "../hooks/useUser";
 import { ProfileImage } from "../components/profileandsearch";
+import { getProfilePublicUrl } from "../models/storage.ts";
 
 const Profile = () => {
-  const [mrETCValue, setMrETCValue] = useState("");
-  const [favoriteValue, setFavoriteValue] = useState("");
   const navigate = useNavigate();
   const { user } = useUser();
 
@@ -24,13 +23,6 @@ const Profile = () => {
       setTimeout(() => {
         window.location.href = "/";
       }, 1000);
-    } catch (error) {
-      alert(error.message);
-    }
-  }
-
-  function handleEdit() {
-    try {
     } catch (error) {
       alert(error.message);
     }
@@ -82,11 +74,20 @@ const Profile = () => {
 };
 
 const ProfileCard = () => {
+  const [profileImage, setProfileImage] = useState("");
   const { user, loading } = useUser();
+
+  useEffect(() => {
+    if (!user) return;
+    async function fetchProfileImage() {
+      setProfileImage((_) => getProfilePublicUrl(user.id));
+    }
+    fetchProfileImage();
+  }, [user]);
 
   return (
     <div className="translate-y-[-30%] h-full max-h-[300px] w-max mx-auto">
-      <ProfileImage size={80} />
+      <ProfileImage imgSrc={profileImage} size={80} />
       <p className="text-gray-200 font-semibold">{user?.email}</p>
       <p className="text-gray-200 font-semibold">เเนะนำตัว</p>
     </div>
