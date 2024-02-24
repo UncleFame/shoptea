@@ -8,7 +8,7 @@ export const ProfileAndSearch = ({
   graybar = false,
 }) => {
   const navigate = useNavigate();
-
+  
   return (
     <nav
       className={`flex relative items-center w-full justify-between gap-4 py-5 box-border px-5 ${graybar ? "border-solid border-b-2 border-gray-300" : ""}`}

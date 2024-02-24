@@ -114,3 +114,17 @@ export async function uploadUserProfileImage(file: File, userId: string) {
     throw new Error(error.message);
   }
 }
+
+export function getProfilePublicUrl(userId : string) : string{
+  try {
+    const {data} = supabase
+    .storage
+    .from("Shoplist")
+    .getPublicUrl(`profiles/${userId}/profile.png`)
+
+    return data.publicUrl
+
+  } catch (error : any) {
+    throw new Error(error.message)
+  }
+}
