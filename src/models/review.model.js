@@ -15,3 +15,16 @@ export async function fetchAllReviewsByRestaurantId(restaurantId){
     throw new Error(error.message)
   }
 }
+
+export async function addReview(newReview){
+  try {
+    const {error} = await supabase
+    .from("reviews")
+    .insert(newReview)
+
+    if (error) throw new Error(error.message)
+    
+  } catch (error) {
+    throw new Error(error.message)
+  }
+}
