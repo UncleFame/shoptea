@@ -15,9 +15,9 @@ export const RestaurantItem = ({ restaurant }) => {
 
     const fetchRating = async () => {
       const fetchedRating = await fetchAllReviewsByRestaurantId(restaurant.id);
-      const averageRating = fetchedRating.reduce((accu, item) => accu + item.star,0);
+      const averageRating = fetchedRating.reduce((accu, item) => accu + item.star,0) / fetchedRating.length;
       setRating(_ => ({
-        star : averageRating,
+        star : averageRating.toFixed(2),
         amount : fetchedRating.length
       }))
     };
