@@ -4,7 +4,7 @@ import { ProfileImage } from "../components/profileandsearch";
 import { getProfilePublicUrl } from "../models/storage.ts";
 import {StarInput} from "../components/form/StarInput"
 import { addReview } from "../models/review.model";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate} from "react-router-dom";
 const Comment = () => {
   const [formData, setFormData] = useState({
     comment: "",
@@ -14,7 +14,7 @@ const Comment = () => {
   const {user} = useUser();
   const [searchParams, _] = useSearchParams();
   const restaurantId = searchParams.get('restaurantId');
-
+  const navigate = useNavigate();
   function handleUpdateFormData(e) {
     setFormData((prev) => ({
       ...prev,
@@ -41,7 +41,7 @@ const Comment = () => {
   return (
     <div className="relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-inter">
       <div className="flex w-full justify-between mt-50 px-5 box-border font-bold">
-        <button className="text-material-theme-sys-dark-error-container bg-transparent text-left inline-block">
+        <button onClick={()=>navigate("/")} className="text-material-theme-sys-dark-error-container bg-transparent text-left inline-block">
           <p>ยกเลิก </p>
         </button>
         <p>Comment</p>
