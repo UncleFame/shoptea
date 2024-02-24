@@ -32,6 +32,7 @@ const Comment = () => {
         restaurant_id : restaurantId
       }
       await addReview(newReview)
+      alert("สร้างรีวิวสำเร็จ")
     } catch (error) {
       alert(error.message)
     }
@@ -44,7 +45,7 @@ const Comment = () => {
           <p>ยกเลิก </p>
         </button>
         <p>Comment</p>
-        <button className="text-material-theme-sys-light-primary-fixed text-left inline-block bg-transparent">
+        <button onClick={handleAddReview} className="text-material-theme-sys-light-primary-fixed text-left inline-block bg-transparent">
           สร้าง
         </button>
       </div>

@@ -20,7 +20,7 @@ export const RestaurantDetail = () => {
     window.location.href = firstRestaurant && firstRestaurant.googlemap;
   }, [firstRestaurant]);
   const GoComment = useCallback(() => {
-    navigate("/Comment");
+    navigate(`/Comment?restaurantId=${restaurantId}`);
   }, [navigate]);
 
   useEffect(() => {
