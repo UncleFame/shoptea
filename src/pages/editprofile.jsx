@@ -12,7 +12,7 @@ import { ProfileImage } from "../components/profileandsearch";
 import { useUser } from "../hooks/useUser";
 import { getUserInfo, updateUser } from "../models/users";
 import {FaCamera} from "react-icons/fa"
-import { uploadUserProfileImage } from "../models/storage.ts";
+import { getProfilePublicUrl, uploadUserProfileImage } from "../models/storage.ts";
 
 const EditProfileContext = createContext();
 
@@ -59,11 +59,12 @@ const Editprofile = () => {
     if (!user) return;
     const fetchUser = async () => {
       const fetchedUser = await getUserInfo(user.id);
-      console.log(fetchedUser);
+      const fetchedProfileImage = getProfilePublicUrl(user.id);
       setFormData((_) => ({
         email: fetchedUser.email,
         introduction: fetchedUser.introduction,
         faceBookUrl: fetchedUser.faceBookUrl,
+        profileImgUrl : fetchedProfileImage
       }));
     };
 
