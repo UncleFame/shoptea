@@ -1,60 +1,108 @@
 import { useEffect, useRef, useState } from "react";
-import { getPublicUrl, uploadRestaurantImage } from "../utils/restaurant";
-import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import { getRestaurantInfoById, insertNewRestaurant, updateRestaurant } from "../models/restaurant";
-import {useUser} from "../hooks/useUser"
-import { useSearchParams } from "react-router-dom";
-
-
-
+import { useUser } from "../hooks/useUser";
+import { ProfileImage } from "../components/profileandsearch";
+import { getProfilePublicUrl } from "../models/storage.ts";
+import {StarInput} from "../components/form/StarInput"
+import { addReview } from "../models/review.model";
+import { useSearchParams, useNavigate} from "react-router-dom";
 const Comment = () => {
-  const [comment,setComment] = useState("")
-  const handleUploadImage = () => {
-
+  const [formData, setFormData] = useState({
+    comment: "",
+    rating: 0,
+  });
+  const { comment, rating } = formData;
+  const {user} = useUser();
+  const [searchParams, _] = useSearchParams();
+  const restaurantId = searchParams.get('restaurantId');
+  const navigate = useNavigate();
+  function handleUpdateFormData(e) {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   }
 
-    return ( 
-  <div className="relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-inter">
-    <div className="flex w-full justify-between mt-50 px-5 box-border font-bold">
-      <button  className="text-material-theme-sys-dark-error-container bg-transparent text-left inline-block">
-        <p>ยกเลิก </p>
-      </button>
-      <p>rest</p>
-      <button onClick={handleUploadImage} className="text-material-theme-sys-light-primary-fixed text-left inline-block bg-transparent">
-      สร้าง 
-      </button>
-    </div>
-     
+  async function handleAddReview(){
+    try {
+      const newReview = {
+        email : user.email,
+        comment,
+        star : rating,
+        user_id : user.id,
+        restaurant_id : restaurantId
+      }
+      await addReview(newReview)
+      alert("สร้างรีวิวสำเร็จ")
+    } catch (error) {
+      alert(error.message)
+    }
+  }
 
-      <div>
+  return (
+    <div className="relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-inter">
+      <div className="flex w-full justify-between mt-50 px-5 box-border font-bold">
+        <button onClick={()=>navigate("/")} className="text-material-theme-sys-dark-error-container bg-transparent text-left inline-block">
+          <p>ยกเลิก </p>
+        </button>
+        <p>Comment</p>
+        <button onClick={handleAddReview} className="text-material-theme-sys-light-primary-fixed text-left inline-block bg-transparent">
+          สร้าง
+        </button>
       </div>
-      <div>
-        
 
-      </div>
-
-    <div className="flex flex-col">
-        <div className="flex flex">
-        <img
-        className="rounded-[50%] w-[37px] h-[37px] object-cover"
-        alt=""
-        src="/ellipse-4@2x.png"
+      <CommentInput
+        comment={comment}
+        handleUpdateFormData={handleUpdateFormData}
+        formData={formData}
+        setFormData={setFormData}
       />
-      <p>Annette Black</p>
-    
-        </div>
-        
-      <input
-        className="mx-8 rounded-lg"
-        value={comment}
-        onChange={e => setComment(e.target.value)}
-        placeholder="comment"
-      />
-
     </div>
-        </div>
-  
+  );
+};
+export default Comment;
+
+function ProfileCard({}) {
+  const { user } = useUser();
+  const [imgSrc, setImgSrc] = useState("");
+
+  useEffect(() => {
+    if (!user) return;
+    const fetchProfileImage = () => {
+      const fetchedProfileImage = getProfilePublicUrl(user.id);
+      setImgSrc(fetchedProfileImage);
+    };
+
+    fetchProfileImage();
+  }, [user]);
+  return (
+    <div className="flex gap-x-2">
+      <ProfileImage imgSrc={imgSrc} size={50} />
+      <p className="font-semibold">{user?.email}</p>
+    </div>
   );
 }
-export default Comment
+
+function CommentInput({ comment, handleUpdateFormData, formData, setFormData }) {
+  const {rating} = formData;
+
+  function handleInputStar(star){
+    setFormData(prev => ({
+      ...prev,
+      rating : star
+    }))
+  }
+
+  return (
+    <div className="flex flex-col gap-y-3 font-sans w-[90%] mx-auto">
+      <ProfileCard />
+      <StarInput onClick={handleInputStar} rating={rating}/>
+      <textarea
+        className="w-full h-[120px] bg-gray-300 rounded-lg p-4 box-border"
+        name="comment"
+        value={comment}
+        onChange={handleUpdateFormData}
+        placeholder="comment"
+      ></textarea>
+    </div>
+  );
+}

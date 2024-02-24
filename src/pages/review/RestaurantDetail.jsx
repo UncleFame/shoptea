@@ -8,7 +8,7 @@ import { getRestaurantInfoById } from "../../models/restaurant";
 import { getAllRestaurantSubImagesPublicUrl } from "../../models/storage.ts";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { useFetchUser } from "../../hooks/useFetchUser";
-
+import { fetchAllReviewsByRestaurantId } from "../../models/review.model";
 
 export const RestaurantDetail = () => {
   const [searchParams, _] = useSearchParams();
@@ -20,7 +20,7 @@ export const RestaurantDetail = () => {
     window.location.href = firstRestaurant && firstRestaurant.googlemap;
   }, [firstRestaurant]);
   const GoComment = useCallback(() => {
-    navigate("/Comment");
+    navigate(`/Comment?restaurantId=${restaurantId}`);
   }, [navigate]);
 
   useEffect(() => {
@@ -42,27 +42,33 @@ export const RestaurantDetail = () => {
     <div className="flex flex-col mx-0 border font-sans">
       {firstRestaurant && (
         <div className="flex flex-col  ">
-
           <img
             src={firstRestaurant.imageUrl}
-            className="object-cover w-full h-[300px]" />
+            className="object-cover w-full h-[300px]"
+          />
 
           <div className="p-7 w-full h-full box-border">
             <span className="m-0 flex text-slate-800 font-bold  justify-between">
-              <p className="box-border p-0 m-0 text-gray-200">{firstRestaurant.name}</p>
+              <p className="box-border p-0 m-0 text-gray-200">
+                {firstRestaurant.name}
+              </p>
               <MdOutlineBookmarkAdd size={20} />
             </span>
 
             <Star rating={firstRestaurant.star} />
             <p className="m-0 text-gray-100 text-sm">
-              <span>Open {firstRestaurant.open}- {firstRestaurant.close}</span>
+              <span>
+                Open {firstRestaurant.open}- {firstRestaurant.close}
+              </span>
             </p>
             <p className="m-0 text-gray-200 text-sm">
               <span>ราคา {firstRestaurant.price}</span>
             </p>
 
             <p className="m-0  text-gray-200">{firstRestaurant.review}</p>
-            <p className="m-0  text-gray-200 text-sm">เบอร์ {firstRestaurant.phoneNum}</p>
+            <p className="m-0  text-gray-200 text-sm">
+              เบอร์ {firstRestaurant.phoneNum}
+            </p>
 
             <p className="text-gray-200 font-bold text-sm">Recommended</p>
             <div className="flex flex-row">
@@ -82,15 +88,29 @@ export const RestaurantDetail = () => {
 
             <div className="flex flex-col text-slate-500 my-5">
               <h3 className="text-gray-200 p-0 m-0 text-sm">Location</h3>
-              <span className="flex items-center gap-x-1"><CiLocationOn /> <p className="m-0 p-0 translate-y-[-3px]">จ.{firstRestaurant.province}</p></span>
-              <img className="w-full rounded-2xl mt-3" src="Mappic.jpg" alt="ffds" onClick={GotoMap} />
+              <span className="flex items-center gap-x-1">
+                <CiLocationOn />{" "}
+                <p className="m-0 p-0 translate-y-[-3px]">
+                  จ.{firstRestaurant.province}
+                </p>
+              </span>
+              <img
+                className="w-full rounded-2xl mt-3"
+                src="Mappic.jpg"
+                alt="ffds"
+                onClick={GotoMap}
+              />
             </div>
 
             <div className="w-full h-[2px] bg-gray-300"></div>
 
             <div className="flex flex-col gap-y-5 mt-10">
-              <h3 className="text-gray-200 font-semibold text-sm m-0 p-0">Review</h3>
-              <OwnerReview firstRestaurant={firstRestaurant}/>
+              <h3 className="text-gray-200 font-semibold text-sm m-0 p-0">
+                Review
+              </h3>
+              <OwnerReview firstRestaurant={firstRestaurant} />
+
+              <ReviewList restaurantId={restaurantId}/>
             </div>
 
             <div className="w-full h-[2px] bg-gray-300"></div>
@@ -105,24 +125,26 @@ export const RestaurantDetail = () => {
   );
 };
 
-const OwnerReview = ({firstRestaurant}) => {
-  const ownerId = firstRestaurant.user_id
-  const {user, loading} = useFetchUser(ownerId);
+const OwnerReview = ({ firstRestaurant }) => {
+  const ownerId = firstRestaurant.user_id;
+  const { user, loading } = useFetchUser(ownerId);
   return (
     <div className="flex flex-col">
       <div className="flex items-center gap-x-2">
         <img src="profileicon.png" alt="" className="h-[35px] w-[35px]" />
         <div className="flex-col">
-          {
-            loading ? null : <p className="text-sm text-gray-200 font-semibold p-0 m-0">{user.email}</p>
-          }
-          <Star rating={3}/>
+          {loading ? null : (
+            <p className="text-sm text-gray-200 font-semibold p-0 m-0">
+              {user.email}
+            </p>
+          )}
+          <Star rating={3} />
         </div>
       </div>
       <h3 className="text-sm font-normal">{firstRestaurant.comment}</h3>
     </div>
-  )
-}
+  );
+};
 
 const SubImages = ({ images }) => {
   return (
@@ -158,3 +180,44 @@ const SubImage = ({ image }) => {
     </div>
   );
 };
+
+function Review({ review }) {
+  return (
+    <div className="flex flex-col">
+      <div className="flex items-center gap-x-2">
+        <img src="profileicon.png" alt="" className="h-[35px] w-[35px]" />
+        <div className="flex-col">
+          <p className="text-sm text-gray-200 font-semibold p-0 m-0">
+            {review?.email}
+          </p>
+          <Star rating={review?.star} />
+        </div>
+      </div>
+      <h3 className="text-sm font-normal">{review?.comment}</h3>
+    </div>
+  );
+}
+
+function ReviewList({restaurantId}) {
+  const [reviews, setReviews] = useState(null);
+
+  useEffect(()=>{
+    const fetchReviews = async () => {
+      const fetchedReviews = await fetchAllReviewsByRestaurantId(restaurantId);
+      console.log(fetchedReviews)
+      setReviews(_ => fetchedReviews);
+
+    }
+
+    fetchReviews();
+  }, [])
+  return (
+    <ul className="flex flex-col m-0 p-0">
+      {
+        reviews?.map((review)=>{
+          return <Review key={review.id} review={review}/>
+        })
+      }
+    </ul>
+  );
+}

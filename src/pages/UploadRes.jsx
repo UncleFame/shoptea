@@ -18,6 +18,7 @@ import {
 } from "../models/storage.ts";
 import Input from "../components/form/Input.jsx";
 import { UploadResContext } from "../contexts/UploadResProvider.jsx";
+import {StarInput} from "../components/form/StarInput"
 
 const UploadRes = () => {
   let [searchParams, _] = useSearchParams();
@@ -38,6 +39,7 @@ const UploadRes = () => {
     comment: "",
     FavMenu: "",
     googlemap: "",
+    star : 0
   });
   const {
     name,
@@ -49,6 +51,7 @@ const UploadRes = () => {
     imgSrc,
     FavMenu,
     googlemap,
+    star
   } = formData;
 
   const { user } = useUser();
@@ -82,7 +85,8 @@ const UploadRes = () => {
         comment,
         imageUrl,
         googlemap,
-        FavMenu
+        FavMenu,
+        star
       } = restaurantInfo;
       // Set value to corresponding local state
       setFormData((_) => ({
@@ -95,6 +99,7 @@ const UploadRes = () => {
         imgSrc: imageUrl,
         FavMenu,
         googlemap,
+        star
       }));
       // Fetch restaurant sub images if there are
       const imageArray = await listAllRestaurantImages(name);
@@ -170,7 +175,8 @@ const UploadRes = () => {
           id: restaurantId,
           imageUrl,
           FavMenu,
-          googlemap: googlemap,
+          googlemap,
+          star
         };
         // update restaurant
         await updateRestaurant(updatedRestaurant);
@@ -242,7 +248,8 @@ const UploadRes = () => {
         handleUploadImage,
         isUploading,
         comment,
-        handleUpdateFormData
+        handleUpdateFormData,
+        star
       }}
     >
       <div className="flex flex-col items-center relative bg-white w-full h-full overflow-y-scroll text-left text-base text-gray-200 font-sans">
@@ -455,11 +462,20 @@ const InputUploadMainImage = () => {
   );
 };
 
-const InputComment = ({name}) => {
-  const { comment, handleUpdateFormData } = useContext(UploadResContext);
+const InputComment = ({ name }) => {
+  const { comment, handleUpdateFormData, star, setFormData } = useContext(UploadResContext);
+  
+  function handleUpdateRating(rating){
+    setFormData(prev => ({
+      ...prev,
+      star : rating
+    }))
+  }
+
   return (
     <div className="flex flex-col gap-y-1.5 items-start w-full mx-auto h-[150px]">
       <UserProfileCard />
+      <StarInput onClick={handleUpdateRating} rating={star}/>
       <textarea
         name={name}
         className="border-2 outline-none border-solid border-gray-300 rounded-lg w-full h-full p-3 box-border font-sans"
@@ -480,15 +496,13 @@ const UserProfileCard = () => {
         alt=""
         src="/ellipse-4@2x.png"
       />
-      <b className="text-sm inline-block w-[142px] p-0">
-        {user?.email}
-      </b>
+      <b className="text-sm inline-block w-[142px] p-0">{user?.email}</b>
     </div>
   );
 };
 
 const InputList = ({ formData }) => {
-  const {handleUpdateFormData} = useContext(UploadResContext);
+  const { handleUpdateFormData } = useContext(UploadResContext);
   const formLabels = useMemo(() => {
     return [
       "ชื่อร้าน",
@@ -505,22 +519,22 @@ const InputList = ({ formData }) => {
   return (
     <ul className="flex flex-col gap-y-3 w-[90%] m-0 p-0 mx-auto">
       {Object.keys(formData).map((key, index) => {
-        switch (key){
+        switch (key) {
           case "comment":
-            return <InputComment name={key} key={key}/>
+            return <InputComment name={key} key={key} />;
           case "imgSrc":
-            return null
-          default :
-            return <Input
-            label={formLabels[index]}
-            key={key}
-            name={key}
-            value={formData[key]}
-            onChange={handleUpdateFormData}
-          />;
+            return null;
+          default:
+            return (
+              <Input
+                label={formLabels[index]}
+                key={key}
+                name={key}
+                value={formData[key]}
+                onChange={handleUpdateFormData}
+              />
+            );
         }
-
-        
       })}
     </ul>
   );

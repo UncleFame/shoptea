@@ -5,7 +5,11 @@ import BottomBar from "../components/BottomBar";
 import { IoIosArrowBack } from "react-icons/io";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { Star } from "../components/destination/Star";
+<<<<<<< HEAD
 import { RestaurantItem } from "../components/RestaurantItem";
+=======
+import {RestaurantItem} from "../components/RestaurantItem"
+>>>>>>> fix-search
 
 const SearchBar = ({ onSearch }) => {
   const handleChange = (event) => {
@@ -16,7 +20,11 @@ const SearchBar = ({ onSearch }) => {
   return (
     <div className="flex flex-row relative w-[90%]">
       <input
+<<<<<<< HEAD
         className=" bg-gray-400 w-full text-black placeholder-gray-500 rounded-xl px-4 py-3"
+=======
+        className=" bg-gray-300 w-full text-black placeholder-gray-500 rounded-xl px-5 py-3"
+>>>>>>> fix-search
         type="text"
         placeholder="ค้นหา ชื้อร้านค้า จังหวัด"
         onChange={handleChange}
@@ -108,6 +116,7 @@ const All = () => {
   }, [navigate]);
 
   return (
+<<<<<<< HEAD
     <div className="flex flex-col items-center font-sans w-full">
       <div className="flex flex-row items-center w-full font-sans" onClick={goToLandingPage}>
         <IoIosArrowBack className="" />
@@ -121,6 +130,21 @@ const All = () => {
         {filteredRestaurants?.map((restaurant) => (
           <RestaurantItem restaurant={restaurant} key={restaurant.id}/>
         ))}
+=======
+    <>
+      <div className="flex flex-row items-center w-full font-sans" onClick={goToLandingPage}>
+        <IoIosArrowBack className="" />
+        <p>Home</p>
+        </div>
+        <p className="flex row-auto justify-center text-gray-500 font-bold font-sans">All</p>
+        <SearchBar onSearch={handleSearch} 
+          className="bg-gray-200"  
+        />
+        <div className="flex flex-col mx-0 p-5 gap-y-5">
+          {filteredRestaurants?.map((restaurant) => (
+            <RestaurantItem key={restaurant.id} restaurant={restaurant}/>
+          ))}
+>>>>>>> fix-search
       </div>
     </div>
   );

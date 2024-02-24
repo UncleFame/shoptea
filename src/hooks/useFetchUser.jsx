@@ -3,6 +3,7 @@ import { useState } from "react";
 import { getUserInfo } from "../models/users";
 
 export function useFetchUser(userId){
+  
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   

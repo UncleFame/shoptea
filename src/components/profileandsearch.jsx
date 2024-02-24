@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoSearchOutline } from "react-icons/io5";
+import { getProfilePublicUrl } from "../models/storage.ts";
+import {useUser} from "../hooks/useUser.jsx"
 
 export const ProfileAndSearch = ({
   isTitleVisible = false,
@@ -8,9 +10,23 @@ export const ProfileAndSearch = ({
   graybar = false,
 }) => {
   const navigate = useNavigate();
+  const [profileImage, setProfileImage] = useState("");
+  const {user} = useUser();
+
+  useEffect(() => {
+    const fetchProfileImage = () => {
+      if (!user) return
+      const fetchedUrl = getProfilePublicUrl(user.id)
+      setProfileImage(fetchedUrl);
+    }
+
+    fetchProfileImage();
+  }, [user]);
 
   return (
-    <nav className={`flex relative items-center w-full justify-between gap-4 py-5 box-border px-5 ${graybar ? "border-solid border-b-2 border-gray-300" : ""}`}>
+    <nav
+      className={`flex relative items-center w-full justify-between gap-4 py-5 box-border px-5 ${graybar ? "border-solid border-b-2 border-gray-300" : ""}`}
+    >
       {isTitleVisible && (
         <div className="flex flex-col gap-y-2">
           <p className="m-0 text-[16px] font-bold text-gray-200">MatCha&Tea</p>
@@ -30,18 +46,39 @@ export const ProfileAndSearch = ({
           size={17}
           onClick={() => navigate("/All")}
         />
-        <ProfileImage onClick={() => navigate("/profile")} />
+        <ProfileImage imgSrc={profileImage} onClick={() => navigate("/profile")} />
       </span>
     </nav>
   );
 };
 
-const ProfileImage = ({ onClick }) => {
+export const ProfileImage = ({ onClick, size = 35, imgSrc = "" }) => {
+  if (!imgSrc)
+    return (
+      <div
+        onClick={onClick}
+        className={`w-[${size}px] h-[${size}px] rounded-full bg-gray-300`}
+      ></div>
+    );
+
+  if (size === "full")
+    return (
+      <img
+        className="object-cover rounded-full w-full h-full"
+        onClick={onClick}
+        src={imgSrc}
+      />
+    );
+
   return (
     <img
-      className="w-[35px] h-[35px] object-cover rounded-full"
+      style={{
+        width: `${size}px`,
+        heigth: `${size}px`,
+      }}
+      className="object-cover rounded-full"
       onClick={onClick}
-      src="https://cdn2.momjunction.com/wp-content/uploads/2021/02/What-Is-A-Sigma-Male-And-Their-Common-Personality-Trait-624x702.jpg"
+      src={imgSrc}
     />
   );
 };

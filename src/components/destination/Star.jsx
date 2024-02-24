@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { FaStar } from "react-icons/fa";
 
-export const Star = ({ rating, textColor = "text-gray-500" }) => {
+export const Star = ({ rating, numberOfReview, textColor = "text-gray-500" }) => {
   const isNumber = Math.floor(rating) === rating;
   return (
     <div className="flex items-center justify-start gap-x-2 h-[20px]">
@@ -13,7 +13,7 @@ export const Star = ({ rating, textColor = "text-gray-500" }) => {
         </ul>
       )}
       <p className={`${textColor ? textColor : "text-gray-300"} text-sm font-semibold`}>
-        {isNumber ? `${rating}.0` : rating}
+        {isNumber ? `${rating}.0` : rating}({numberOfReview})
       </p>
     </div>
   );
