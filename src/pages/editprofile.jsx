@@ -28,7 +28,8 @@ const Editprofile = () => {
   const imageInput = useRef(null);
 
   function handleUpdateFormData(e) {
-    setFormData((_) => ({
+    setFormData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
     }));
   }
