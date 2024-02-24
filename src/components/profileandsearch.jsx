@@ -39,7 +39,15 @@ export const ProfileAndSearch = ({
 };
 
 export const ProfileImage = ({ onClick, size = 35, imgSrc = "" }) => {
-  if (!imgSrc) return <div className={`w-[${size}px] h-[${size}px] rounded-full bg-gray-300`}></div>;
+  if (!imgSrc) return <div onClick={onClick} className={`w-[${size}px] h-[${size}px] rounded-full bg-gray-300`}></div>;
+
+  if (size === "full") return (
+    <img
+      className="object-cover rounded-full w-full h-full"
+      onClick={onClick}
+      src={imgSrc}
+    />
+  );
 
   return (
     <img

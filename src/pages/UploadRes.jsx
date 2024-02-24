@@ -82,7 +82,7 @@ const UploadRes = () => {
         comment,
         imageUrl,
         googlemap,
-        FavMenu
+        FavMenu,
       } = restaurantInfo;
       // Set value to corresponding local state
       setFormData((_) => ({
@@ -242,7 +242,7 @@ const UploadRes = () => {
         handleUploadImage,
         isUploading,
         comment,
-        handleUpdateFormData
+        handleUpdateFormData,
       }}
     >
       <div className="flex flex-col items-center relative bg-white w-full h-full overflow-y-scroll text-left text-base text-gray-200 font-sans">
@@ -455,7 +455,7 @@ const InputUploadMainImage = () => {
   );
 };
 
-const InputComment = ({name}) => {
+const InputComment = ({ name }) => {
   const { comment, handleUpdateFormData } = useContext(UploadResContext);
   return (
     <div className="flex flex-col gap-y-1.5 items-start w-full mx-auto h-[150px]">
@@ -480,15 +480,13 @@ const UserProfileCard = () => {
         alt=""
         src="/ellipse-4@2x.png"
       />
-      <b className="text-sm inline-block w-[142px] p-0">
-        {user?.email}
-      </b>
+      <b className="text-sm inline-block w-[142px] p-0">{user?.email}</b>
     </div>
   );
 };
 
 const InputList = ({ formData }) => {
-  const {handleUpdateFormData} = useContext(UploadResContext);
+  const { handleUpdateFormData } = useContext(UploadResContext);
   const formLabels = useMemo(() => {
     return [
       "ชื่อร้าน",
@@ -505,22 +503,22 @@ const InputList = ({ formData }) => {
   return (
     <ul className="flex flex-col gap-y-3 w-[90%] m-0 p-0 mx-auto">
       {Object.keys(formData).map((key, index) => {
-        switch (key){
+        switch (key) {
           case "comment":
-            return <InputComment name={key} key={key}/>
+            return <InputComment name={key} key={key} />;
           case "imgSrc":
-            return null
-          default :
-            return <Input
-            label={formLabels[index]}
-            key={key}
-            name={key}
-            value={formData[key]}
-            onChange={handleUpdateFormData}
-          />;
+            return null;
+          default:
+            return (
+              <Input
+                label={formLabels[index]}
+                key={key}
+                name={key}
+                value={formData[key]}
+                onChange={handleUpdateFormData}
+              />
+            );
         }
-
-        
       })}
     </ul>
   );

@@ -13,6 +13,7 @@ const Profile = () => {
   const [mrETCValue, setMrETCValue] = useState("");
   const [favoriteValue, setFavoriteValue] = useState("");
   const navigate = useNavigate();
+  const { user } = useUser();
 
   function handleSignOut() {
     try {
@@ -35,10 +36,6 @@ const Profile = () => {
     }
   }
 
-  const onTextClick = useCallback(() => {
-    navigate("/EditProfile");
-  }, [navigate]);
-
   const onBacktohome1ImageClick = useCallback(() => {
     navigate("/landing-page-for-real");
   }, [navigate]);
@@ -56,7 +53,7 @@ const Profile = () => {
         <div className="container py-10 mx-0 min-w-full flex flex-col items-center">
           <p
             className="text-center button-center w-[100px] py-1.5 px-4 mt-3 rounded-lg  cursor-pointer border-gray-300  border-solid border-2  text-gray-200 "
-            onClick={onTextClick}
+            onClick={() => navigate(`/EditProfile?userId=${user.id}`)}
           >
             แก้ไข
           </p>
@@ -85,15 +82,15 @@ const Profile = () => {
 };
 
 const ProfileCard = () => {
-  const {user, loading} = useUser();
-  
+  const { user, loading } = useUser();
+
   return (
     <div className="translate-y-[-30%] h-full max-h-[300px] w-max mx-auto">
-      <ProfileImage size={80}/>
+      <ProfileImage size={80} />
       <p className="text-gray-200 font-semibold">{user?.email}</p>
       <p className="text-gray-200 font-semibold">เเนะนำตัว</p>
     </div>
-  )
-}
+  );
+};
 
 export default Profile;

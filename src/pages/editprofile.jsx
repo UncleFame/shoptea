@@ -7,11 +7,12 @@ import React, {
   useState,
 } from "react";
 import { IoIosArrowBack } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { ProfileImage } from "../components/profileandsearch";
 import { useUser } from "../hooks/useUser";
 import { getUserInfo, updateUser } from "../models/users";
 import {FaCamera} from "react-icons/fa"
+import { uploadUserProfileImage } from "../models/storage.ts";
 
 const EditProfileContext = createContext();
 
@@ -34,11 +35,20 @@ const Editprofile = () => {
 
   async function handleUpdateUser() {
     try {
+      // update user info
       await updateUser(user.id, {
         email,
         introduction,
         faceBookUrl,
       });
+
+      // update user profile image
+      const files = imageInput.current.files;
+      if (files.length <= 0) return alert("แก้ไขข้อมูลสำเร็จ");
+      // file to upload
+      const file = files[files.length - 1];
+      // upload to storage
+      await uploadUserProfileImage(file, user.id)
       alert("แก้ไขข้อมูลสำเร็จ");
     } catch (error) {
       alert(error.message);
@@ -86,8 +96,8 @@ const Editprofile = () => {
 };
 
 function NavBar({ Goeditpage }) {
-  const { handleUpdateUser } = useContext(EditProfileContext);
-  const image = useRef(null);
+  const { handleUpdateUser, imageInput } = useContext(EditProfileContext);
+
   return (
     <div className="flex flex-row items-center justify-between w-[90%] mx-auto font-semibold">
       <p className="flex items-center text-gray-200" onClick={Goeditpage}>
@@ -207,7 +217,7 @@ function UploadProfile({}) {
     <div className="relative w-[80px] h-[80px]">
       <UploadIcon onClick={handleUpload}/>
       <input onChange={handleInputChange} ref={imageInput} className="hidden top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]" type="file" accept="png" />
-      <ProfileImage imgSrc={profileImgUrl}  size={80} />
+      <ProfileImage imgSrc={profileImgUrl} size="full" />
     </div>
   );
 }
