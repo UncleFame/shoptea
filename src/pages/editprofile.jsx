@@ -3,6 +3,7 @@ import React, {
   useCallback,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import { IoIosArrowBack } from "react-icons/io";
@@ -10,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { ProfileImage } from "../components/profileandsearch";
 import { useUser } from "../hooks/useUser";
 import { getUserInfo, updateUser } from "../models/users";
+import {FaCamera} from "react-icons/fa"
 
 const EditProfileContext = createContext();
 
@@ -18,9 +20,11 @@ const Editprofile = () => {
     email: "",
     introduction: "",
     faceBookUrl: "",
+    profileImgUrl : ""
   });
   const { user } = useUser();
-  const { email, introduction, faceBookUrl } = formData;
+  const { email, introduction, faceBookUrl, profileImgUrl } = formData;
+  const imageInput = useRef(null);
 
   function handleUpdateFormData(e) {
     setFormData((_) => ({
@@ -66,8 +70,11 @@ const Editprofile = () => {
         email,
         introduction,
         faceBookUrl,
+        imageInput,
+        profileImgUrl,
+        setFormData,
         handleUpdateFormData,
-        handleUpdateUser
+        handleUpdateUser,
       }}
     >
       <div className="relative bg-white w-full h-ful overflow-hidden text-left  font-sans">
@@ -79,15 +86,15 @@ const Editprofile = () => {
 };
 
 function NavBar({ Goeditpage }) {
-  const {handleUpdateUser} = useContext(EditProfileContext);
+  const { handleUpdateUser } = useContext(EditProfileContext);
+  const image = useRef(null);
   return (
     <div className="flex flex-row items-center justify-between w-[90%] mx-auto font-semibold">
       <p className="flex items-center text-gray-200" onClick={Goeditpage}>
         <IoIosArrowBack />
         Profile
       </p>
-      <p
-        className="text-green-400" onClick={handleUpdateUser}>
+      <p className="text-green-400" onClick={handleUpdateUser}>
         {" "}
         บันทึก
       </p>
@@ -98,14 +105,15 @@ function NavBar({ Goeditpage }) {
 function Content({}) {
   return (
     <div className="flex items-center flex-col text-center item-center w-full justify-center ">
-      <ProfileImage size={80} />
+      <UploadProfile />
       <Form />
     </div>
   );
 }
 
 function Form({}) {
-  const { email, introduction, faceBookUrl, handleUpdateFormData } = useContext(EditProfileContext);
+  const { email, introduction, faceBookUrl, handleUpdateFormData } =
+    useContext(EditProfileContext);
   return (
     <form class="container py-10 w-11/12 flex flex-col gap-y-2 px-4">
       <Input
@@ -167,4 +175,47 @@ function TextArea({ label, value, name, onChange }) {
       ></textarea>
     </>
   );
+}
+
+function UploadProfile({}) {
+  const {imageInput, setFormData, profileImgUrl} = useContext(EditProfileContext);
+
+  function handleUpload(){
+    // trigger image input
+    imageInput.current.click();
+  }
+
+  function handleInputChange(){
+    // create file reader
+    const reader = new FileReader();
+    // target file
+    const file = imageInput.current.files[imageInput.current.files.length - 1];
+    // configure reader to read file as data url
+    reader.readAsDataURL(file);
+    // onload
+    reader.onload = () => {
+      // result
+      let result = reader.result;
+      // assign the result to profileImgUrl
+      setFormData(prev => ({
+        ...prev,
+        profileImgUrl : result
+      }))
+    }
+  }
+  return (
+    <div className="relative w-[80px] h-[80px]">
+      <UploadIcon onClick={handleUpload}/>
+      <input onChange={handleInputChange} ref={imageInput} className="hidden top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]" type="file" accept="png" />
+      <ProfileImage imgSrc={profileImgUrl}  size={80} />
+    </div>
+  );
+}
+
+function UploadIcon({onClick}) {
+  return (
+    <div onClick={onClick} className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] cursor-pointer">
+      <FaCamera className="text-white bg-black opacity-60 p-1 rounded-full"/>
+    </div>
+  )
 }

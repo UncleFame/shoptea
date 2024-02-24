@@ -10,7 +10,9 @@ export const ProfileAndSearch = ({
   const navigate = useNavigate();
 
   return (
-    <nav className={`flex relative items-center w-full justify-between gap-4 py-5 box-border px-5 ${graybar ? "border-solid border-b-2 border-gray-300" : ""}`}>
+    <nav
+      className={`flex relative items-center w-full justify-between gap-4 py-5 box-border px-5 ${graybar ? "border-solid border-b-2 border-gray-300" : ""}`}
+    >
       {isTitleVisible && (
         <div className="flex flex-col gap-y-2">
           <p className="m-0 text-[16px] font-bold text-gray-200">MatCha&Tea</p>
@@ -36,16 +38,18 @@ export const ProfileAndSearch = ({
   );
 };
 
-export const ProfileImage = ({ onClick, size = 35 }) => {
+export const ProfileImage = ({ onClick, size = 35, imgSrc = "" }) => {
+  if (!imgSrc) return <div className={`w-[${size}px] h-[${size}px] rounded-full bg-gray-300`}></div>;
+
   return (
     <img
       style={{
-        width : `${size}px`,
-        heigth :  `${size}px`
+        width: `${size}px`,
+        heigth: `${size}px`,
       }}
       className="object-cover rounded-full"
       onClick={onClick}
-      src="https://cdn2.momjunction.com/wp-content/uploads/2021/02/What-Is-A-Sigma-Male-And-Their-Common-Personality-Trait-624x702.jpg"
+      src={imgSrc}
     />
   );
 };
