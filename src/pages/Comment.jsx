@@ -3,12 +3,17 @@ import { useUser } from "../hooks/useUser";
 import { ProfileImage } from "../components/profileandsearch";
 import { getProfilePublicUrl } from "../models/storage.ts";
 import {StarInput} from "../components/form/StarInput"
+import { addReview } from "../models/review.model";
+import { useSearchParams } from "react-router-dom";
 const Comment = () => {
   const [formData, setFormData] = useState({
     comment: "",
     rating: 0,
   });
-  const { comment } = formData;
+  const { comment, rating } = formData;
+  const {user} = useUser();
+  const [searchParams, _] = useSearchParams();
+  const restaurantId = searchParams.get('restaurantId');
 
   function handleUpdateFormData(e) {
     setFormData((prev) => ({
@@ -17,10 +22,21 @@ const Comment = () => {
     }));
   }
 
-  function handleAddReview(){
-
+  async function handleAddReview(){
+    try {
+      const newReview = {
+        email : user.email,
+        comment,
+        star : rating,
+        user_id : user.id,
+        restaurant_id : restaurantId
+      }
+      await addReview(newReview)
+    } catch (error) {
+      alert(error.message)
+    }
   }
-  
+
   return (
     <div className="relative bg-white w-full h-[2494px] overflow-hidden text-left text-base text-gray-200 font-inter">
       <div className="flex w-full justify-between mt-50 px-5 box-border font-bold">
