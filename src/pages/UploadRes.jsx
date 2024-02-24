@@ -175,7 +175,8 @@ const UploadRes = () => {
           id: restaurantId,
           imageUrl,
           FavMenu,
-          googlemap: googlemap,
+          googlemap,
+          star
         };
         // update restaurant
         await updateRestaurant(updatedRestaurant);
@@ -462,12 +463,19 @@ const InputUploadMainImage = () => {
 };
 
 const InputComment = ({ name }) => {
-  const { comment, handleUpdateFormData, star } = useContext(UploadResContext);
+  const { comment, handleUpdateFormData, star, setFormData } = useContext(UploadResContext);
+  
+  function handleUpdateRating(rating){
+    setFormData(prev => ({
+      ...prev,
+      star : rating
+    }))
+  }
 
   return (
     <div className="flex flex-col gap-y-1.5 items-start w-full mx-auto h-[150px]">
       <UserProfileCard />
-      <StarInput rating={star}/>
+      <StarInput onClick={handleUpdateRating} rating={star}/>
       <textarea
         name={name}
         className="border-2 outline-none border-solid border-gray-300 rounded-lg w-full h-full p-3 box-border font-sans"
