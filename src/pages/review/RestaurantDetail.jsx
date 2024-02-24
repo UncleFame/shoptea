@@ -214,7 +214,7 @@ function ReviewList({restaurantId}) {
   return (
     <ul className="flex flex-col m-0 p-0">
       {
-        reviews.map((review)=>{
+        reviews?.map((review)=>{
           return <Review key={review.id} review={review}/>
         })
       }
