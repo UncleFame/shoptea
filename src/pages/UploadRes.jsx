@@ -467,7 +467,7 @@ const InputComment = ({ name }) => {
   return (
     <div className="flex flex-col gap-y-1.5 items-start w-full mx-auto h-[150px]">
       <UserProfileCard />
-      <StarInput />
+      <StarInput rating={star}/>
       <textarea
         name={name}
         className="border-2 outline-none border-solid border-gray-300 rounded-lg w-full h-full p-3 box-border font-sans"

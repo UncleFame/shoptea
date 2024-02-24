@@ -7,7 +7,7 @@ export const StarInput = ({ rating, textColor = "text-gray-500" }) => {
     <div className="flex items-center justify-start gap-x-2 h-[20px]">
       <ul className="flex p-0 m-0 gap-x-1">
         {Array.from({ length: 5 }, (_, index) => {
-          if (index <= rating) {
+          if (index <= rating - 1) {
             return <FaStar key={index} className="text-yellow-400" />;
           }
           return <FaStar key={index} className="text-gray-300" />;
