@@ -135,12 +135,12 @@ const OwnerReview = ({ firstRestaurant }) => {
       <div className="flex items-center gap-x-2">
         <img src="profileicon.png" alt="" className="h-[35px] w-[35px]" />
         <div className="flex-col">
+          <p className="p-0 m-0 font-bold">Owner</p>
           {loading ? null : (
             <p className="text-sm text-gray-200 font-semibold p-0 m-0">
               {user.email}
             </p>
           )}
-          <Star rating={3} />
         </div>
       </div>
       <h3 className="text-sm font-normal">{firstRestaurant.comment}</h3>
