@@ -33,6 +33,7 @@ const Comment = () => {
       }
       await addReview(newReview)
       alert("สร้างรีวิวสำเร็จ")
+      window.location.href = `/Review?restaurantId=${restaurantId}`
     } catch (error) {
       alert(error.message)
     }

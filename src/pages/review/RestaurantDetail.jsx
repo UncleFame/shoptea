@@ -191,6 +191,7 @@ function Review({ review }) {
     try {
       await deleteReviewById(review.id);
       alert("ลบรีวิวสำเร็จ");
+      window.location.reload();
     } catch (error) {
       alert(error.message);
     }
