@@ -21,9 +21,7 @@ export const RestaurantDetail = () => {
   const navigate = useNavigate();
   const [firstRestaurant, setFirstRestaurant] = useState(null);
   const [subImages, setSubImages] = useState(null);
-  const GotoMap = useCallback(() => {
-    window.location.href = firstRestaurant && firstRestaurant.googlemap;
-  }, [firstRestaurant]);
+  const [restaurantReview, setRestaurantReview] = useState(0);
   const GoComment = useCallback(() => {
     navigate(`/Comment?restaurantId=${restaurantId}`);
   }, [navigate]);
@@ -38,6 +36,12 @@ export const RestaurantDetail = () => {
       );
       console.log(fetchedSubImages);
       setSubImages(fetchedSubImages);
+      // Get restaurant reviews
+      const fetchedReviews = await fetchAllReviewsByRestaurantId(restaurantId);
+      const sumReview = fetchedReviews.reduce((accu, review)=> accu + review.star,0);
+      const averageReview = sumReview / fetchedReviews.length
+      setRestaurantReview(averageReview);
+
     };
 
     fetchRestaurants();
@@ -59,7 +63,7 @@ export const RestaurantDetail = () => {
               </p>
             </span>
 
-            <Star rating={firstRestaurant.star} />
+            <Star rating={restaurantReview} />
             <p className="m-0 text-gray-100 text-sm">
               <span>
                 Open {firstRestaurant.open}- {firstRestaurant.close}
@@ -69,7 +73,6 @@ export const RestaurantDetail = () => {
               <span>ราคา {firstRestaurant.price} บาท</span>
             </p>
 
-            <p className="m-0  text-gray-200">{firstRestaurant.review}</p>
             <p className="m-0  text-gray-200 text-sm">
               เบอร์ {firstRestaurant.phoneNum}
             </p>
@@ -93,8 +96,14 @@ export const RestaurantDetail = () => {
                   จ.{firstRestaurant.province}
                 </p>
               </span>
-              <div onClick={()=>window.open(firstRestaurant.googlemap, "_blank")} className="flex items-center gap-x-2">
-                <img className="w-[30px] h-[30px] object-cover" src="https://miro.medium.com/v2/resize:fit:1024/0*oJK4t4_NTgdBPPgz.png" />
+              <div
+                onClick={() => window.open(firstRestaurant.googlemap, "_blank")}
+                className="flex items-center gap-x-2"
+              >
+                <img
+                  className="w-[30px] h-[30px] object-cover"
+                  src="https://miro.medium.com/v2/resize:fit:1024/0*oJK4t4_NTgdBPPgz.png"
+                />
                 <p className="p-0 m-0 font-semibold text-blue-500">Link</p>
               </div>
             </div>
