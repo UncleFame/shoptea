@@ -52,7 +52,7 @@ const Profile = () => {
         </div>
 
         <div className="flex flex-row items-center mt-4">
-          <IoLogoFacebook onClick={()=>window.location.href="https://facebook.com"} className="text-blue-500" size={50} />
+          <IoLogoFacebook onClick={()=> window.open("https://facebook.com", "_blank")} className="text-blue-500" size={50} />
 
           <p className="text-gray-200">facebook/profile</p>
         </div>

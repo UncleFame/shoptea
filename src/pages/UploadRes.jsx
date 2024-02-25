@@ -38,6 +38,7 @@ const UploadRes = () => {
     comment: "",
     FavMenu: "",
     googlemap: "",
+    operationDay : ""
   });
   const {
     name,
@@ -49,7 +50,7 @@ const UploadRes = () => {
     imgSrc,
     FavMenu,
     googlemap,
-    star,
+    operationDay
   } = formData;
 
   const { user } = useUser();
@@ -84,7 +85,7 @@ const UploadRes = () => {
         imageUrl,
         googlemap,
         FavMenu,
-        star,
+        operationDay
       } = restaurantInfo;
       // Set value to corresponding local state
       setFormData((_) => ({
@@ -97,7 +98,7 @@ const UploadRes = () => {
         imgSrc: imageUrl,
         FavMenu,
         googlemap,
-        star,
+        operationDay
       }));
       // Fetch restaurant sub images if there are
       const imageArray = await listAllRestaurantImages(name);
@@ -174,7 +175,7 @@ const UploadRes = () => {
           imageUrl,
           FavMenu,
           googlemap,
-          star,
+          operationDay
         };
         // update restaurant
         await updateRestaurant(updatedRestaurant);
@@ -215,6 +216,7 @@ const UploadRes = () => {
         user_id: user.id,
         FavMenu,
         googlemap,
+        operationDay
       };
 
       await insertNewRestaurant(newRestaurant);
@@ -247,7 +249,6 @@ const UploadRes = () => {
         isUploading,
         comment,
         handleUpdateFormData,
-        star,
       }}
     >
       <div className="flex flex-col items-center relative bg-white w-full h-full overflow-y-scroll text-left text-base text-gray-200 font-sans">
@@ -499,6 +500,7 @@ const InputList = ({ formData }) => {
       "Location",
       "เมนูแนะนำ",
       "Location",
+      "วันทำการ (เปิด/ปิด)"
     ];
   }, []);
   return (

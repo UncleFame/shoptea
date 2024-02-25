@@ -75,17 +75,12 @@ export const RestaurantDetail = () => {
             </p>
 
             <p className="text-gray-200 font-bold text-sm">Recommended</p>
-            <div className="flex flex-row">
+            <div className="flex flex-row items-center">
               <LuCupSoda size={"40"} />
-              <div className="flex flex-col ">
+              <div className="flex flex-col">
                 <p className="m-0 font-medium">{firstRestaurant.FavMenu}</p>
-                <p className=" text-gray-200 m-0 font-semibold">
-                  {firstRestaurant.FavMenuPrice}บาท
-                </p>
               </div>
             </div>
-
-            <p>{firstRestaurant.recommeded}</p>
 
             <p>{firstRestaurant.recommededmenuprice}</p>
             <SubImages images={subImages} />
@@ -98,7 +93,7 @@ export const RestaurantDetail = () => {
                   จ.{firstRestaurant.province}
                 </p>
               </span>
-              <div onClick={()=>window.location.href=firstRestaurant.googlemap} className="flex items-center gap-x-2">
+              <div onClick={()=>window.open(firstRestaurant.googlemap, "_blank")} className="flex items-center gap-x-2">
                 <img className="w-[30px] h-[30px] object-cover" src="https://miro.medium.com/v2/resize:fit:1024/0*oJK4t4_NTgdBPPgz.png" />
                 <p className="p-0 m-0 font-semibold text-blue-500">Link</p>
               </div>
