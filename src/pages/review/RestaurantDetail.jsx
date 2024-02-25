@@ -8,7 +8,7 @@ import { getRestaurantInfoById } from "../../models/restaurant";
 import { getAllRestaurantSubImagesPublicUrl } from "../../models/storage.ts";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { useFetchUser } from "../../hooks/useFetchUser";
-import { fetchAllReviewsByRestaurantId } from "../../models/review.model";
+import { deleteReviewById, fetchAllReviewsByRestaurantId } from "../../models/review.model";
 import { FaTrash } from "react-icons/fa";
 import {useUser} from "../../hooks/useUser"
 
@@ -188,8 +188,13 @@ function Review({ review }) {
   const {user} = useUser();
   const isBelongToCurrentUser = review?.email === user?.email;
   
-  function handleDeleteReview(){
-    
+  async function handleDeleteReview(){
+    try {
+      await deleteReviewById(review.id)
+      alert("ลบรีวิวสำเร็จ")
+    } catch (error) {
+      alert(error.message)
+    }
   }
 
   return (
@@ -202,7 +207,7 @@ function Review({ review }) {
           </p>
           <Star rating={review?.star}/>
         </div>
-        {isBelongToCurrentUser && <FaTrash className="mb-auto text-red-500 ml-auto" size={13}/>}
+        {isBelongToCurrentUser && <FaTrash onClick={handleDeleteReview} className="mb-auto text-red-500 ml-auto" size={13}/>}
       </div>
       <h3 className="text-sm font-normal">{review?.comment}</h3>
     </div>
