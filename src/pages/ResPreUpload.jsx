@@ -51,9 +51,9 @@ const DisplayRestaurant = () => {
 const RestaurantItem = ({ restaurant }) => {
   const [owner, setOwner] = useState("");
   const { user, setRestaurants } = useContext(ResPreUploadContext);
-  const splitTime = restaurant.updated_at.split("T")
-  const lastUpdated = `${splitTime[0]} - ${splitTime[1].split(":").slice(0,2).join(":")}`
   const navigate = useNavigate();
+  const restaurantUpdateDate = new Date(restaurant.updated_at);
+  const thaiUpdatedTime = restaurantUpdateDate.setHours(restaurantUpdateDate.getHours() + 29);
   async function handleDelete() {
     try {
       await deleteRestaurantById(restaurant.id);
@@ -104,7 +104,7 @@ const RestaurantItem = ({ restaurant }) => {
           />
           <div className="gap-x-1 flex flex-row text-[10px] text-gray-200 items-center h-1/6">
             <IoMdInformationCircle />
-            <p>{lastUpdated}</p>
+            <p>{new Date(thaiUpdatedTime).toLocaleDateString()} - {new Date(thaiUpdatedTime).toLocaleTimeString()}</p>
           </div>
         </div>
 
