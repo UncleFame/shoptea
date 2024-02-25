@@ -188,6 +188,10 @@ function Review({ review }) {
   const {user} = useUser();
   const isBelongToCurrentUser = review?.email === user?.email;
   
+  function handleDeleteReview(){
+    
+  }
+
   return (
     <div className="flex flex-col">
       <div className="flex items-center gap-x-2">
