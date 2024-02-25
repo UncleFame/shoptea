@@ -8,9 +8,12 @@ import { getRestaurantInfoById } from "../../models/restaurant";
 import { getAllRestaurantSubImagesPublicUrl } from "../../models/storage.ts";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { useFetchUser } from "../../hooks/useFetchUser";
-import { deleteReviewById, fetchAllReviewsByRestaurantId } from "../../models/review.model";
-import { FaTrash } from "react-icons/fa";
-import {useUser} from "../../hooks/useUser"
+import {
+  deleteReviewById,
+  fetchAllReviewsByRestaurantId,
+} from "../../models/review.model";
+import { FaMap, FaTrash } from "react-icons/fa";
+import { useUser } from "../../hooks/useUser";
 
 export const RestaurantDetail = () => {
   const [searchParams, _] = useSearchParams();
@@ -54,7 +57,6 @@ export const RestaurantDetail = () => {
               <p className="box-border p-0 m-0 text-gray-200">
                 {firstRestaurant.name}
               </p>
-              <MdOutlineBookmarkAdd size={20} />
             </span>
 
             <Star rating={firstRestaurant.star} />
@@ -64,7 +66,7 @@ export const RestaurantDetail = () => {
               </span>
             </p>
             <p className="m-0 text-gray-200 text-sm">
-              <span>ราคา {firstRestaurant.price}</span>
+              <span>ราคา {firstRestaurant.price} บาท</span>
             </p>
 
             <p className="m-0  text-gray-200">{firstRestaurant.review}</p>
@@ -96,12 +98,10 @@ export const RestaurantDetail = () => {
                   จ.{firstRestaurant.province}
                 </p>
               </span>
-              <img
-                className="w-full rounded-2xl mt-3"
-                src="Mappic.jpg"
-                alt="ffds"
-                onClick={GotoMap}
-              />
+              <div onClick={()=>window.location.href=firstRestaurant.googlemap} className="flex items-center gap-x-2">
+                <img className="w-[30px] h-[30px] object-cover" src="https://miro.medium.com/v2/resize:fit:1024/0*oJK4t4_NTgdBPPgz.png" />
+                <p className="p-0 m-0 font-semibold text-blue-500">Link</p>
+              </div>
             </div>
 
             <div className="w-full h-[2px] bg-gray-300"></div>
@@ -112,7 +112,7 @@ export const RestaurantDetail = () => {
               </h3>
               <OwnerReview firstRestaurant={firstRestaurant} />
 
-              <ReviewList restaurantId={restaurantId}/>
+              <ReviewList restaurantId={restaurantId} />
             </div>
 
             <div className="w-full h-[2px] bg-gray-300"></div>
@@ -184,16 +184,15 @@ const SubImage = ({ image }) => {
 };
 
 function Review({ review }) {
-
-  const {user} = useUser();
+  const { user } = useUser();
   const isBelongToCurrentUser = review?.email === user?.email;
-  
-  async function handleDeleteReview(){
+
+  async function handleDeleteReview() {
     try {
-      await deleteReviewById(review.id)
-      alert("ลบรีวิวสำเร็จ")
+      await deleteReviewById(review.id);
+      alert("ลบรีวิวสำเร็จ");
     } catch (error) {
-      alert(error.message)
+      alert(error.message);
     }
   }
 
@@ -205,35 +204,38 @@ function Review({ review }) {
           <p className="text-sm text-gray-200 font-semibold p-0 m-0">
             {review?.email}
           </p>
-          <Star rating={review?.star}/>
+          <Star rating={review?.star} />
         </div>
-        {isBelongToCurrentUser && <FaTrash onClick={handleDeleteReview} className="mb-auto text-red-500 ml-auto" size={13}/>}
+        {isBelongToCurrentUser && (
+          <FaTrash
+            onClick={handleDeleteReview}
+            className="mb-auto text-red-500 ml-auto"
+            size={13}
+          />
+        )}
       </div>
       <h3 className="text-sm font-normal">{review?.comment}</h3>
     </div>
   );
 }
 
-function ReviewList({restaurantId}) {
+function ReviewList({ restaurantId }) {
   const [reviews, setReviews] = useState(null);
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchReviews = async () => {
       const fetchedReviews = await fetchAllReviewsByRestaurantId(restaurantId);
-      console.log(fetchedReviews)
-      setReviews(_ => fetchedReviews);
-
-    }
+      console.log(fetchedReviews);
+      setReviews((_) => fetchedReviews);
+    };
 
     fetchReviews();
-  }, [])
+  }, []);
   return (
     <ul className="flex flex-col m-0 p-0">
-      {
-        reviews?.map((review)=>{
-          return <Review key={review.id} review={review}/>
-        })
-      }
+      {reviews?.map((review) => {
+        return <Review key={review.id} review={review} />;
+      })}
     </ul>
   );
 }
