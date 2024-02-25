@@ -51,6 +51,8 @@ const DisplayRestaurant = () => {
 const RestaurantItem = ({ restaurant }) => {
   const [owner, setOwner] = useState("");
   const { user, setRestaurants } = useContext(ResPreUploadContext);
+  const splitTime = restaurant.updated_at.split("T")
+  const lastUpdated = `${splitTime[0]} - ${splitTime[1].split(":").slice(0,2).join(":")}`
   const navigate = useNavigate();
   async function handleDelete() {
     try {
@@ -102,7 +104,7 @@ const RestaurantItem = ({ restaurant }) => {
           />
           <div className="gap-x-1 flex flex-row text-[10px] text-gray-200 items-center h-1/6">
             <IoMdInformationCircle />
-            <p>ข้อมูลแก้ไข วว/ดด/ปป</p>
+            <p>{lastUpdated}</p>
           </div>
         </div>
 
