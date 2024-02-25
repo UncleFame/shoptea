@@ -151,7 +151,7 @@ const OwnerReview = ({ firstRestaurant }) => {
 const SubImages = ({ images }) => {
   return (
     <div className="flex flex-col w-full items-start justify-center box-border">
-      <h1 className="text-[17px] text-gray-500">รูปภาพย่อยของร้าน</h1>
+      <h1 className="text-[17px] text-gray-500">รูปภาพเมนูแนะนำ</h1>
       <ul className="flex w-full h-[200px] gap-x-5 box-border p-0 m-0">
         {images?.map((image) => (
           <SubImage key={image} image={image} />
@@ -176,7 +176,7 @@ const SubImage = ({ image }) => {
         />
       ) : (
         <div className="flex flex-col items-center justify-center h-full w-full bg-gray-300 rounded-2xl">
-          <p className="text-[14px] text-center">ไม่มีรูปภาพย่อยร้านค้า</p>
+          <p className="text-[14px] text-center">ไม่มีรูปภาพเมนูแนะนำ</p>
         </div>
       )}
     </div>
