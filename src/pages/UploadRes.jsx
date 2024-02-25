@@ -18,7 +18,6 @@ import {
 } from "../models/storage.ts";
 import Input from "../components/form/Input.jsx";
 import { UploadResContext } from "../contexts/UploadResProvider.jsx";
-import {StarInput} from "../components/form/StarInput"
 
 const UploadRes = () => {
   let [searchParams, _] = useSearchParams();
@@ -39,7 +38,6 @@ const UploadRes = () => {
     comment: "",
     FavMenu: "",
     googlemap: "",
-    star : 0
   });
   const {
     name,
@@ -51,7 +49,7 @@ const UploadRes = () => {
     imgSrc,
     FavMenu,
     googlemap,
-    star
+    star,
   } = formData;
 
   const { user } = useUser();
@@ -86,7 +84,7 @@ const UploadRes = () => {
         imageUrl,
         googlemap,
         FavMenu,
-        star
+        star,
       } = restaurantInfo;
       // Set value to corresponding local state
       setFormData((_) => ({
@@ -99,7 +97,7 @@ const UploadRes = () => {
         imgSrc: imageUrl,
         FavMenu,
         googlemap,
-        star
+        star,
       }));
       // Fetch restaurant sub images if there are
       const imageArray = await listAllRestaurantImages(name);
@@ -176,7 +174,7 @@ const UploadRes = () => {
           imageUrl,
           FavMenu,
           googlemap,
-          star
+          star,
         };
         // update restaurant
         await updateRestaurant(updatedRestaurant);
@@ -198,7 +196,7 @@ const UploadRes = () => {
         subImage2FileLength < 1 ||
         subImage3FileLength < 1
       )
-        return alert("กรุณา upload รูปภาพย่อยของร้านค้าทั้งหมด");
+        return alert("กรุณา upload เมนูแนะนำ");
       await uploadRestaurantSubImages(subFiles, name);
 
       const [open, close] = operationTime.split("/");
@@ -249,7 +247,7 @@ const UploadRes = () => {
         isUploading,
         comment,
         handleUpdateFormData,
-        star
+        star,
       }}
     >
       <div className="flex flex-col items-center relative bg-white w-full h-full overflow-y-scroll text-left text-base text-gray-200 font-sans">
@@ -300,7 +298,7 @@ const InputSubImages = () => {
 
   return (
     <div className="w-[90%] mx-auto h-[200px] p-0 m-0">
-      <h1 className="text-[17px] text-gray-200 w-full">รูปภาพย่อยร้านค้า</h1>
+      <h1 className="text-[17px] text-gray-200 w-full">รูปภาพเมนูแนะนำ</h1>
       <ul className="flex items-center justify-between w-full h-full gap-x-2 p-0 m-0">
         <input
           onChange={() => {
@@ -432,13 +430,8 @@ const RestaurantMainImage = () => {
 const InputUploadMainImage = () => {
   const { image, setFormData } = useContext(UploadResContext);
   return (
-    <div className="absolute top-1/2 right-1/2 w-[26px] h-[26px]">
-      <img
-        onClick={() => image.current.click()}
-        className="w-[26px] h-[26px] object-cover"
-        alt=""
-        src="/uploadbutton.png"
-      />
+    <div className="absolute top-1/2 right-1/2 translate-x-[50%] translate-y-[-50%] w-[26px] h-[26px]">
+      <FaCamera className="absolute top-1/2 right-1/2 translate-y-[-50%] translate-x-[50%]" size={15}/>
       <input
         id="fileInput"
         ref={image}
@@ -463,19 +456,11 @@ const InputUploadMainImage = () => {
 };
 
 const InputComment = ({ name }) => {
-  const { comment, handleUpdateFormData, star, setFormData } = useContext(UploadResContext);
-  
-  function handleUpdateRating(rating){
-    setFormData(prev => ({
-      ...prev,
-      star : rating
-    }))
-  }
+  const { comment, handleUpdateFormData } = useContext(UploadResContext);
 
   return (
     <div className="flex flex-col gap-y-1.5 items-start w-full mx-auto h-[150px]">
       <UserProfileCard />
-      <StarInput onClick={handleUpdateRating} rating={star}/>
       <textarea
         name={name}
         className="border-2 outline-none border-solid border-gray-300 rounded-lg w-full h-full p-3 box-border font-sans"
