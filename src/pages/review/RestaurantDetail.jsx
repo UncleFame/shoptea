@@ -9,6 +9,8 @@ import { getAllRestaurantSubImagesPublicUrl } from "../../models/storage.ts";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { useFetchUser } from "../../hooks/useFetchUser";
 import { fetchAllReviewsByRestaurantId } from "../../models/review.model";
+import { FaTrash } from "react-icons/fa";
+import {useUser} from "../../hooks/useUser"
 
 export const RestaurantDetail = () => {
   const [searchParams, _] = useSearchParams();
@@ -182,6 +184,10 @@ const SubImage = ({ image }) => {
 };
 
 function Review({ review }) {
+
+  const {user} = useUser();
+  const isBelongToCurrentUser = review?.email === user?.email;
+  
   return (
     <div className="flex flex-col">
       <div className="flex items-center gap-x-2">
@@ -190,8 +196,9 @@ function Review({ review }) {
           <p className="text-sm text-gray-200 font-semibold p-0 m-0">
             {review?.email}
           </p>
-          <Star rating={review?.star} />
+          <Star rating={review?.star}/>
         </div>
+        {isBelongToCurrentUser && <FaTrash className="mb-auto text-red-500 ml-auto" size={13}/>}
       </div>
       <h3 className="text-sm font-normal">{review?.comment}</h3>
     </div>
