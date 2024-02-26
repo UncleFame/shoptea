@@ -424,7 +424,7 @@ const RestaurantMainImage = () => {
     <div className="relative ">
       {imgSrc ? (
         <img
-          src={`${imgSrc}?random=${crypto.randomUUID()}`}
+          src={imgSrc.includes("https:") ? `${imgSrc}?random=${crypto.randomUUID()}` : imgSrc}
           className="w-[220px] h-[183px] object-cover rounded-2xl"
         />
       ) : (
