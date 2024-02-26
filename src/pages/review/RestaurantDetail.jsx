@@ -63,7 +63,7 @@ export const RestaurantDetail = () => {
               </p>
             </span>
 
-            <Star rating={restaurantReview} />
+            <Star rating={firstRestaurant.star} />
             <p className="m-0 text-gray-100 text-sm">
               <span>
                 Open {firstRestaurant.open}- {firstRestaurant.close}
@@ -134,10 +134,20 @@ export const RestaurantDetail = () => {
 const OwnerReview = ({ firstRestaurant }) => {
   const ownerId = firstRestaurant.user_id;
   const { user, loading } = useFetchUser(ownerId);
+  const [profileImage, setProfileImage] = useState("");
+
+  useEffect(()=>{
+    if (!user) return
+    const fetchImage = () => {
+      const fetchedUrl = getProfilePublicUrl(user.id);
+      setProfileImage(fetchedUrl)
+    } 
+    fetchImage()
+  }, [user])
   return (
     <div className="flex flex-col">
       <div className="flex items-center gap-x-2">
-        <img src="profileicon.png" alt="" className="h-[35px] w-[35px]" />
+        <img src={profileImage} alt="" className="h-[35px] w-[35px] object-cover rounded-full" />
         <div className="flex-col">
           <p className="p-0 m-0 font-bold">Owner</p>
           {loading ? null : (

@@ -43,7 +43,7 @@ export const RestaurantItem = ({ restaurant }) => {
           {restaurant.open} - {restaurant.close}
         </p>
         <p className="m-0 text-sm text-gray-100 ">{restaurant.name}</p>
-        <p className="m-0 text-sm text-gray-100">ราคา {restaurant.price}</p>
+        <p className="m-0 text-sm text-gray-100">ราคา {restaurant.price} บาท</p>
         <p className="m-0 text-sm text-gray-200">จ. {restaurant.province}</p>
         <p className="m-0 text-sm text-gray-200">
           เปิดบริการ{" "}
