@@ -95,7 +95,7 @@ const RestaurantItem = ({ restaurant }) => {
 
   return (
     <div className="flex h-[150px] box-border border-solid border-2 rounded-lg border-gray-300 justify-between gap-x-5 w-full p-[10px]">
-      <div className="flex w-full gap-x-5">
+      <div className="flex w-full">
         <div className="flex flex-col w-full h-full ">
           <img
             className=" w-full h-5/6  object-cover rounded-2xl"
@@ -115,7 +115,6 @@ const RestaurantItem = ({ restaurant }) => {
             <p className="w-full break-words text-slate-300 text-sm p-0 m-0 font-semibold translate-y-[-2px]"> {owner?.email}</p>
           </div>
         </div>
-      </div>
       <div className="flex flex-col w-max h-full justify-between">
         <FaRegEdit
           onClick={() => navigatetordit(restaurant.id)}
@@ -127,6 +126,7 @@ const RestaurantItem = ({ restaurant }) => {
           className="p-2  text-red-600 "
           size={20}
         />
+      </div>
       </div>
     </div>
   );
