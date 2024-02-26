@@ -19,12 +19,10 @@ const EditProfileContext = createContext();
 const Editprofile = () => {
   const [formData, setFormData] = useState({
     email: "",
-    introduction: "",
-    faceBookUrl: "",
     profileImgUrl : ""
   });
   const { user } = useUser();
-  const { email, introduction, faceBookUrl, profileImgUrl } = formData;
+  const { email, profileImgUrl } = formData;
   const imageInput = useRef(null);
 
   function handleUpdateFormData(e) {
@@ -36,13 +34,6 @@ const Editprofile = () => {
 
   async function handleUpdateUser() {
     try {
-      // update user info
-      await updateUser(user.id, {
-        email,
-        introduction,
-        faceBookUrl,
-      });
-
       // update user profile image
       const files = imageInput.current.files;
       if (files.length <= 0) return alert("แก้ไขข้อมูลสำเร็จ");
@@ -63,8 +54,6 @@ const Editprofile = () => {
       const fetchedProfileImage = getProfilePublicUrl(user.id);
       setFormData((_) => ({
         email: fetchedUser.email,
-        introduction: fetchedUser.introduction,
-        faceBookUrl: fetchedUser.faceBookUrl,
         profileImgUrl : fetchedProfileImage
       }));
     };
@@ -80,8 +69,6 @@ const Editprofile = () => {
     <EditProfileContext.Provider
       value={{
         email,
-        introduction,
-        faceBookUrl,
         imageInput,
         profileImgUrl,
         setFormData,
@@ -124,29 +111,16 @@ function Content({}) {
 }
 
 function Form({}) {
-  const { email, introduction, faceBookUrl, handleUpdateFormData } =
+  const { email, handleUpdateFormData } =
     useContext(EditProfileContext);
   return (
     <form class="container py-10 w-11/12 flex flex-col gap-y-2 px-4">
       <Input
-        onChange={handleUpdateFormData}
+        onChange={()=>alert('ไม่สามารแก้ไขชื่อemail ได้')}
         name="email"
         value={email}
         label="ชื่อ"
         placeholder="ชื่อ"
-      />
-      <TextArea
-        onChange={handleUpdateFormData}
-        name="introduction"
-        value={introduction}
-        label="แนะนำตัว"
-      />
-      <Input
-        onChange={handleUpdateFormData}
-        name="faceBookUrl"
-        value={faceBookUrl}
-        label="URL Facebook"
-        placeholder="Url facebook"
       />
     </form>
   );
