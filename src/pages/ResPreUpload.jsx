@@ -53,7 +53,7 @@ const RestaurantItem = ({ restaurant }) => {
   const { user, setRestaurants } = useContext(ResPreUploadContext);
   const navigate = useNavigate();
   const restaurantUpdateDate = new Date(restaurant.updated_at);
-  const thaiUpdatedTime = restaurantUpdateDate.setHours(restaurantUpdateDate.getHours() + 29);
+  const thaiUpdatedTime = restaurantUpdateDate.setHours(restaurantUpdateDate.getHours());
   async function handleDelete() {
     try {
       await deleteRestaurantById(restaurant.id);

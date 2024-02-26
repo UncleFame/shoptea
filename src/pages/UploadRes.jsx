@@ -38,7 +38,7 @@ const UploadRes = () => {
     comment: "",
     FavMenu: "",
     googlemap: "",
-    operationDay : ""
+    operationDay: "",
   });
   const {
     name,
@@ -50,7 +50,7 @@ const UploadRes = () => {
     imgSrc,
     FavMenu,
     googlemap,
-    operationDay
+    operationDay,
   } = formData;
 
   const { user } = useUser();
@@ -85,7 +85,7 @@ const UploadRes = () => {
         imageUrl,
         googlemap,
         FavMenu,
-        operationDay
+        operationDay,
       } = restaurantInfo;
       // Set value to corresponding local state
       setFormData((_) => ({
@@ -98,7 +98,7 @@ const UploadRes = () => {
         imgSrc: imageUrl,
         FavMenu,
         googlemap,
-        operationDay
+        operationDay,
       }));
       // Fetch restaurant sub images if there are
       const imageArray = await listAllRestaurantImages(name);
@@ -175,7 +175,8 @@ const UploadRes = () => {
           imageUrl,
           FavMenu,
           googlemap,
-          operationDay
+          operationDay,
+          updated_at: new Date(),
         };
         // update restaurant
         await updateRestaurant(updatedRestaurant);
@@ -216,7 +217,8 @@ const UploadRes = () => {
         user_id: user.id,
         FavMenu,
         googlemap,
-        operationDay
+        operationDay,
+        updated_at : new Date()
       };
 
       await insertNewRestaurant(newRestaurant);
@@ -432,7 +434,10 @@ const InputUploadMainImage = () => {
   const { image, setFormData } = useContext(UploadResContext);
   return (
     <div className="absolute top-1/2 right-1/2 translate-x-[50%] translate-y-[-50%] w-[26px] h-[26px]">
-      <FaCamera className="absolute top-1/2 right-1/2 translate-y-[-50%] translate-x-[50%]" size={15}/>
+      <FaCamera
+        className="absolute top-1/2 right-1/2 translate-y-[-50%] translate-x-[50%]"
+        size={15}
+      />
       <input
         id="fileInput"
         ref={image}
@@ -500,7 +505,7 @@ const InputList = ({ formData }) => {
       "Location",
       "เมนูแนะนำ",
       "Location",
-      "วันทำการ (เปิด/ปิด)"
+      "วันทำการ (เปิด/ปิด)",
     ];
   }, []);
   return (
