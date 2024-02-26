@@ -99,7 +99,7 @@ const RestaurantItem = ({ restaurant }) => {
         <div className="flex flex-col w-full h-full ">
           <img
             className=" w-full h-5/6  object-cover rounded-2xl"
-            src={restaurant.imageUrl}
+            src={`${restaurant.imageUrl}?random=${crypto.randomUUID()}`}
             alt="restaurant image"
           />
           <div className="gap-x-1 flex flex-row text-[10px] text-gray-200 items-center h-1/6">

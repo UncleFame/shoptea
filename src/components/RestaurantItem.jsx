@@ -30,7 +30,7 @@ export const RestaurantItem = ({ restaurant }) => {
   return (
     <div className="flex gap-x-5" key={restaurant.title}>
       <img
-        src={restaurant.imageUrl}
+        src={`${restaurant.imageUrl}?random=${crypto.randomUUID()}`}
         className="w-[150px] h-[150px] object-cover rounded-lg"
         onClick={() => navigate(`/Review?restaurantId=${restaurant.id}`)}
         alt={restaurant.name}

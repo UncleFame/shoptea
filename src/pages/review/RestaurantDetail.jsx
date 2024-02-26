@@ -52,7 +52,7 @@ export const RestaurantDetail = () => {
       {firstRestaurant && (
         <div className="flex flex-col  ">
           <img
-            src={firstRestaurant.imageUrl}
+            src={`${firstRestaurant.imageUrl}?random=${crypto.randomUUID()}`}
             className="object-cover w-full h-[300px]"
           />
 
@@ -186,7 +186,7 @@ const SubImage = ({ image }) => {
           }}
           key={image}
           className="h-full object-cover w-full box-border"
-          src={image}
+          src={`${image}?random=${crypto.randomUUID()}`}
         />
       ) : (
         <div className="flex flex-col items-center justify-center h-full w-full bg-gray-300 rounded-2xl">
