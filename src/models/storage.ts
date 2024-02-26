@@ -1,3 +1,4 @@
+import { MdNoEncryptionGmailerrorred } from "react-icons/md";
 import { supabase } from "../pages/loginsystem";
 
 export async function deleteRestaurantCover(restaurantName: string) {
@@ -37,6 +38,20 @@ export async function uploadRestaurantSubImages(
   }
 }
 
+export async function uploadRestaurantSubImage(file : File, restaurantName : string, imageIndex : number){
+  try {
+    const { error } = await supabase.storage
+      .from("Shoplist")
+      .upload(`restaurants/${restaurantName}/sub-image-${imageIndex + 1}.png`, file, {
+        upsert: true,
+      });
+
+      if (error) throw new Error(error.message)
+  } catch (error : any) {
+    throw new Error(error.message)
+  }
+}
+
 export async function updateRestaurantSubImage(
   file: File,
   restaurantName: string,
@@ -44,6 +59,8 @@ export async function updateRestaurantSubImage(
 ) {
   try {
     if (!file) throw new Error("File not found");
+    // Check if file already exist or not
+    if (!await doesFileExist(`restaurants/${restaurantName}/sub-image-${imageIndex + 1}.png`)) return await uploadRestaurantSubImage(file, restaurantName, imageIndex)
     const { error } = await supabase.storage
       .from("Shoplist")
       .update(
