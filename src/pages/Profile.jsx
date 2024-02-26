@@ -51,11 +51,6 @@ const Profile = () => {
           </p>
         </div>
 
-        <div className="flex flex-row items-center mt-4">
-          <IoLogoFacebook onClick={()=> window.open("https://facebook.com", "_blank")} className="text-blue-500" size={50} />
-
-          <p className="text-gray-200">facebook/profile</p>
-        </div>
       </div>
 
       <div className="w-full bg-white  box-border mt-4  h-[2px] gap-y-5 border-solid border-gray-400" />
@@ -89,7 +84,6 @@ const ProfileCard = () => {
     <div className="translate-y-[-30%] h-full max-h-[300px] w-max mx-auto">
       <ProfileImage imgSrc={profileImage} size={80} />
       <p className="text-gray-200 font-semibold">{user?.email}</p>
-      <p className="text-gray-200 font-semibold">เเนะนำตัว</p>
     </div>
   );
 };
