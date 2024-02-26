@@ -29,7 +29,6 @@ const SearchBar = ({ onSearch }) => {
 const All = () => {
   
   const [searchTerm, setSearchTerm] = useState('');
-  const [sampleRestaurants, setSampleRestaurants] = useState(null);
   const [filteredRestaurants, setFilteredRestaurants] = useState(null);
   const navigate = useNavigate();
 
@@ -37,7 +36,6 @@ const All = () => {
     const fetchRestaurants = async () => {
       try {
         const { data } = await supabase.from("restaurant_details").select();
-        setSampleRestaurants(data);
         setFilteredRestaurants(data); // Initialize filtered restaurants with all restaurants
       } catch (error) {
         console.error("Error fetching restaurants:", error.message);
@@ -47,52 +45,6 @@ const All = () => {
     fetchRestaurants();
   }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        let results = [];
-  
-        if (searchTerm.trim() === '') {
-          // Fetch all restaurants if the search term is empty
-          const { data } = await supabase.from("restaurant_details").select();
-          results = data;
-        } else {
-          // Fetch data for name search
-          const searchTermLower = searchTerm.toLowerCase();
-          const { data: nameData, error: nameError } = await supabase
-            .from("restaurant_details")
-            .select()
-            .textSearch(["name"], searchTermLower);
-  
-          if (nameError) {
-            console.error("Error fetching data by name:", nameError.message);
-          } else {
-            const nameResults = nameData.filter(restaurant => restaurant.name.toLowerCase().startsWith(searchTermLower));
-            results.push(...nameResults);
-          }
-  
-          // Fetch data for province search
-          const { data: provinceData, error: provinceError } = await supabase
-            .from("restaurant_details")
-            .select()
-            .textSearch(["province"], searchTermLower);
-  
-          if (provinceError) {
-            console.error("Error fetching data by province:", provinceError.message);
-          } else {
-            const provinceResults = provinceData.filter(restaurant => restaurant.province.toLowerCase().startsWith(searchTermLower));
-            results.push(...provinceResults);
-          }
-        }
-  
-        setFilteredRestaurants(results);
-      } catch (error) {
-        console.error("Error fetching data:", error.message);
-      }
-    };
-  
-    fetchData();
-  }, [searchTerm]);
     
   
   const handleSearch = useCallback((value) => {
@@ -115,7 +67,10 @@ const All = () => {
       />
       <div className="flex flex-col mx-auto gap-y-5 w-[90%] mt-5">
         {filteredRestaurants?.map((restaurant) => (
-          <RestaurantItem restaurant={restaurant} key={restaurant.id}/>
+          (
+            restaurant.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            restaurant.province.toLowerCase().includes(searchTerm.toLowerCase())
+          ) ? <RestaurantItem restaurant={restaurant} key={restaurant.id}/> : null
         ))}
       </div>
     </div>
