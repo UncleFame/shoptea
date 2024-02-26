@@ -14,18 +14,16 @@ const SearchBar = ({ onSearch }) => {
   };
 
   return (
-    <div className="flex flex-row relative w-[90%]">
+    <div className="flex flex-row relative justify-between items-center bg-gray-400 w-[90%] rounded-xl px-4 box-border">
       <input
-        className=" bg-gray-400 w-full text-black placeholder-gray-500 rounded-xl px-4 py-3"
+        className="bg-transparent text-black placeholder-gray-500 py-3"
         type="text"
         placeholder="ค้นหา ชื้อร้านค้า จังหวัด"
         onChange={handleChange}
       />
-      <span className="absolute right-3 top-1/2 transform ">
         <FaMagnifyingGlass 
-        size={10}
+        size={12}
         className=" text-gray-500" />
-      </span>
     </div>
   );
 };
