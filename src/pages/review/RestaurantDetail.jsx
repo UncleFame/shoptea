@@ -40,7 +40,7 @@ export const RestaurantDetail = () => {
       const fetchedReviews = await fetchAllReviewsByRestaurantId(restaurantId);
       const sumReview = fetchedReviews.reduce((accu, review)=> accu + review.star,0);
       const averageReview = sumReview / fetchedReviews.length
-      setRestaurantReview(averageReview);
+      setRestaurantReview(_ => sumReview > 0 ? averageReview : 0);
 
     };
 
@@ -63,7 +63,7 @@ export const RestaurantDetail = () => {
               </p>
             </span>
 
-            <Star rating={firstRestaurant.star} />
+            <Star rating={restaurantReview} />
             <p className="m-0 text-gray-100 text-sm">
               <span>
                 Open {firstRestaurant.open}- {firstRestaurant.close}
