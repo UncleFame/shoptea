@@ -79,6 +79,22 @@ export async function listAllRestaurantImages(restaurantName: string) {
   }
 }
 
+export async function doesFileExist(path : string){
+  try {
+    const {data, error}  = await supabase.storage
+    .from("Shoplist")
+    .list(`${path}`, {
+      limit : 100,
+      offset : 0
+    })
+    if (error) throw new Error(error.message)
+
+    return data.length > 0
+  } catch (error : any) {
+    throw new Error(error.message)
+  }
+}
+
 export function getAllRestaurantSubImagesPublicUrl(
   restaurantName: string
 ): String[] {

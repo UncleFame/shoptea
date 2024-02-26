@@ -156,9 +156,9 @@ const UploadRes = () => {
         }
 
         [subImage1FileLength, subImage2FileLength, subImage3FileLength].map(
-          (item, index) => {
+          async (item, index) => {
             if (item >= 1)
-              updateRestaurantSubImage(subFiles[index], name, index);
+            await updateRestaurantSubImage(subFiles[index], name, index);
           }
         );
 
@@ -233,6 +233,7 @@ const UploadRes = () => {
         navigate("/res-preupload");
       }, 1500);
     } catch (error) {
+      console.error(error.message)
       alert(error.message);
     }
   }
