@@ -99,7 +99,7 @@ const LandingPage = () => {
 
             
         <div className="= flex flex-col w-full">
-        <p className="flex text-xs   ">email</p>
+        <p className="flex text-xs   ">Email</p>
         <input 
             
             className="outline outline-2 h-[40px] rounded-md outline-gray-400"
@@ -109,7 +109,7 @@ const LandingPage = () => {
             
 
             <p className="flex text-xs "> 
-              password
+              Password
               </p>
            <input 
             className="outline outline-2 h-[40px] rounded-md outline-gray-400"
