@@ -9,13 +9,14 @@ export function useFetchUser(userId){
   
   useEffect(()=>{
     const fetchUser = async () => {
+      if (!userId) return 
       const fetchedUser = await getUserInfo(userId);
       setUser(_ => fetchedUser)
       setLoading(_ => false)
     }
 
     fetchUser();
-  }, [])
+  }, [userId])
 
   return {user, loading}
 }

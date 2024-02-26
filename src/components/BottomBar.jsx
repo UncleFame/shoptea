@@ -2,9 +2,13 @@ import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { MdOutlineRateReview } from "react-icons/md";
+import { useUser } from "../hooks/useUser";
+import { useFetchUser } from "../hooks/useFetchUser";
 
 export const BottomBar = () => {
   const navigate = useNavigate();
+  const {user} = useUser();
+  const {user : fetchedUser} = useFetchUser(user?.id)
   let location = useLocation();
   const { pathname } = location;
   const currentPage = pathname.split("/")[1];
@@ -20,7 +24,10 @@ export const BottomBar = () => {
         <MdOutlineRateReview
           size={iconSize}
           className={`cursor-pointer ${currentPage === "res-preupload" ? "text-[#B9CCB5]" : "text-black"}`}
-          onClick={() => navigate("/res-preupload")}
+          onClick={() =>{
+            if (fetchedUser.type !== "ร้านค้า") return alert("คุณไม่ใช่ร้านค้า")
+            navigate("/res-preupload")
+          }}
         />
       </ul>
     </div>
