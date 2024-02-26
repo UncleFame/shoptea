@@ -1,10 +1,8 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "./loginsystem";
-import BottomBar from "../components/BottomBar";
 import { IoIosArrowBack } from "react-icons/io";
 import { FaMagnifyingGlass } from "react-icons/fa6";
-import { Star } from "../components/destination/Star";
 import { RestaurantItem } from "../components/RestaurantItem";
 
 const SearchBar = ({ onSearch }) => {
@@ -16,7 +14,7 @@ const SearchBar = ({ onSearch }) => {
   return (
     <div className="flex flex-row relative justify-between items-center bg-gray-400 w-[90%] rounded-xl px-4 box-border">
       <input
-        className="bg-transparent text-black placeholder-gray-500 py-3"
+        className="bg-transparent outline-none text-black placeholder-gray-500 py-3"
         type="text"
         placeholder="ค้นหา ชื้อร้านค้า จังหวัด"
         onChange={handleChange}
