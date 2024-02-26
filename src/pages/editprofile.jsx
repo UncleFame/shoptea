@@ -33,7 +33,7 @@ const Editprofile = () => {
   }
 
   async function handleUpdateUser() {
-    try {image.png
+    try {
       // update user profile image
       const files = imageInput.current.files;
       if (files.length <= 0) return alert("แก้ไขข้อมูลสำเร็จ");

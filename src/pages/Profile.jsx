@@ -82,7 +82,7 @@ const ProfileCard = () => {
 
   return (
     <div className="translate-y-[-30%] h-full max-h-[300px] w-max mx-auto">
-      <ProfileImage imgSrc={profileImage} size={80} />
+      <img className="w-[80px] h-[80px] rounded-full object-cover" src={profileImage}/>
       <p className="text-gray-200 font-semibold">{user?.email}</p>
     </div>
   );

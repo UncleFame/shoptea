@@ -26,7 +26,7 @@ export async function uploadRestaurantSubImages(
           `restaurants/${restaurantName}/sub-image-${index + 1}.png`,
           files[index],
           {
-            cacheControl: "3600",
+            cacheControl: "0",
             upsert: true,
           }
         );
@@ -43,6 +43,7 @@ export async function uploadRestaurantSubImage(file : File, restaurantName : str
     const { error } = await supabase.storage
       .from("Shoplist")
       .upload(`restaurants/${restaurantName}/sub-image-${imageIndex + 1}.png`, file, {
+        cacheControl : "0",
         upsert: true,
       });
 
@@ -67,7 +68,7 @@ export async function updateRestaurantSubImage(
         `restaurants/${restaurantName}/sub-image-${imageIndex + 1}.png`,
         file,
         {
-          cacheControl: "3600",
+          cacheControl: "0",
           upsert: true,
         }
       );
@@ -137,6 +138,7 @@ export async function uploadUserProfileImage(file: File, userId: string) {
     const { data, error } = await supabase.storage
       .from("Shoplist")
       .upload(`profiles/${userId}/profile.png`, file, {
+        cacheControl : "0",
         upsert: true,
       });
 
@@ -153,8 +155,9 @@ export function getProfilePublicUrl(userId: string): string {
     const { data } = supabase.storage
       .from("Shoplist")
       .getPublicUrl(`profiles/${userId}/profile.png`);
-
-    return data.publicUrl;
+    const finalUrl = `${data.publicUrl}?random=${crypto.randomUUID()}`
+    console.log(finalUrl)
+    return finalUrl;
   } catch (error: any) {
     throw new Error(error.message);
   }
