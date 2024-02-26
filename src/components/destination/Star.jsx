@@ -13,7 +13,7 @@ export const Star = ({ rating, numberOfReview, textColor = "text-gray-500" }) =>
         </ul>
       )}
       <p className={`${textColor ? textColor : "text-gray-300"} text-sm font-semibold`}>
-        {isNumber ? `${rating}.0` : rating}({numberOfReview})
+        {isNumber ? `${rating}.0` : rating} {numberOfReview ? `(${numberOfReview})` : ""}
       </p>
     </div>
   );

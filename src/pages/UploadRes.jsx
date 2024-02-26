@@ -182,6 +182,10 @@ const UploadRes = () => {
         await updateRestaurant(updatedRestaurant);
         // show success message
         alert("แก้ไขร้านค้าสำเร็จ");
+
+        setTimeout(() => {
+          navigate("/res-preupload");
+        }, 1500);
         return;
       }
 
@@ -218,7 +222,7 @@ const UploadRes = () => {
         FavMenu,
         googlemap,
         operationDay,
-        updated_at : new Date()
+        updated_at: new Date(),
       };
 
       await insertNewRestaurant(newRestaurant);
