@@ -5,7 +5,7 @@ import { LuCupSoda } from "react-icons/lu";
 import { CiLocationOn } from "react-icons/ci";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { getRestaurantInfoById } from "../../models/restaurant";
-import { getAllRestaurantSubImagesPublicUrl } from "../../models/storage.ts";
+import { getAllRestaurantSubImagesPublicUrl, getProfilePublicUrl } from "../../models/storage.ts";
 import { MdOutlineBookmarkAdd } from "react-icons/md";
 import { useFetchUser } from "../../hooks/useFetchUser";
 import {
@@ -190,7 +190,17 @@ const SubImage = ({ image }) => {
 function Review({ review }) {
   const { user } = useUser();
   const isBelongToCurrentUser = review?.email === user?.email;
+  const [profileImage, setProfileImage] = useState("");
+  
+  useEffect(()=>{
+    if (!user) return
+    const fetchUser = () => {
+      const fetchedPublicUrl = getProfilePublicUrl(review.user_id);
+      setProfileImage(fetchedPublicUrl)
+    }
 
+    fetchUser();
+  }, [user])
   async function handleDeleteReview() {
     try {
       await deleteReviewById(review.id);
@@ -204,7 +214,7 @@ function Review({ review }) {
   return (
     <div className="flex flex-col">
       <div className="flex items-center gap-x-2">
-        <img src="profileicon.png" alt="" className="h-[35px] w-[35px]" />
+        <img src={profileImage} alt="" className="h-[35px] w-[35px] object-cover rounded-full" />
         <div className="flex-col">
           <p className="text-sm text-gray-200 font-semibold p-0 m-0">
             {review?.email}
