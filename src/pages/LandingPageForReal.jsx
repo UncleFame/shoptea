@@ -8,19 +8,16 @@ import { RestaurantItem } from "../components/RestaurantItem";
 import { fetchAllReviewsByRestaurantId } from "../models/review.model";
 
 const LandingPageForReal = () => {
-  
   const navigate = useNavigate();
   const { user, loading } = useUser();
 
   // Handle user authentication navigation
   useEffect(() => {
-    
     if (loading) return;
     if (!user) return navigate("/");
   }, [loading]);
 
   return (
-    
     <div className="relative bg-white w-full h-screen text-left text-xl text-black font-inter">
       <ProfileAndSearch isTitleVisible={true} graybar={true} />
       <ImageCover />
@@ -32,7 +29,6 @@ const LandingPageForReal = () => {
 };
 
 const SectionHeader = () => {
-  
   const navigate = useNavigate();
   return (
     <div className="flex items-center text-sm w-full mx-auto h-[45px] border-b-2 border-solid border-gray-300">
@@ -42,7 +38,10 @@ const SectionHeader = () => {
         </p>
       </div>
       <div className="w-full flex justify-end">
-        <p className="underline underline-offset-4 mr-8 hover:text-green-400 transition-all cursor-pointer"  onClick={() => navigate("/All")}>
+        <p
+          className="underline underline-offset-4 mr-8 hover:text-green-400 transition-all cursor-pointer"
+          onClick={() => navigate("/All")}
+        >
           All
         </p>
       </div>
@@ -65,22 +64,28 @@ export const RestaurantList = () => {
 
   useEffect(() => {
     const fetchRestaurants = async () => {
-      const { data } = await supabase.from("restaurant_details").select();
-      // Sort the restaurants by star rating in descending order
-      const sortedRestaurants = data.sort(async (a, b) => {
-        // Review b
-        const bReview = await fetchAllReviewsByRestaurantId(b.id);
-        const sumBReview = bReview.reduce((accu, review)=> accu + review.star,0);
-        const averageBReview = sumBReview / bReview.length;
-        // Review a
-        const aReview = await fetchAllReviewsByRestaurantId(a.id);
-        const sumAReview = aReview.reduce((accu, review)=> accu + review.star,0);
-        const averageAReview = sumAReview / aReview.length;
-        console.log(`A : ${averageAReview}, B : ${averageBReview}`)
-        return  averageBReview - averageAReview 
+      const { data : restaurants } = await supabase.from("restaurant_details").select();
+      // Fetch all reviews for all restaurants
+      const reviewsPromises = restaurants.map((restaurant) =>
+        fetchAllReviewsByRestaurantId(restaurant.id)
+      );
+      const reviews = await Promise.all(reviewsPromises);
+
+      // Calculate average star rating for each restaurant
+      const averagedRestaurants = restaurants.map((restaurant, index) => {
+        const sum = reviews[index].reduce(
+          (accu, review) => accu + review.star,
+          0
+        );
+        const average = sum / reviews[index].length || 0; // Avoid division by zero
+        return { ...restaurant, averageRating: average };
       });
-      sortedRestaurants.reverse()
-      setSampleRestaurants(sortedRestaurants);
+
+      // Sort restaurants by average rating in descending order
+      const sortedRestaurants = averagedRestaurants.sort(
+        (a, b) => b.averageRating - a.averageRating
+      );
+      setSampleRestaurants((_) => sortedRestaurants);
     };
 
     fetchRestaurants();
@@ -94,7 +99,5 @@ export const RestaurantList = () => {
     </section>
   );
 };
-
-
 
 export default LandingPageForReal;
