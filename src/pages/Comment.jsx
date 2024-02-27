@@ -5,6 +5,7 @@ import { getProfilePublicUrl } from "../models/storage.ts";
 import {StarInput} from "../components/form/StarInput"
 import { addReview } from "../models/review.model";
 import { useSearchParams, useNavigate} from "react-router-dom";
+import { getRestaurantInfoById } from "../models/restaurant";
 const Comment = () => {
   const [formData, setFormData] = useState({
     comment: "",
@@ -15,6 +16,17 @@ const Comment = () => {
   const [searchParams, _] = useSearchParams();
   const restaurantId = searchParams.get('restaurantId');
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    if (!user) return
+    const fetchRestaurantInfo = async () => {
+      const fetchedRestaurant = await getRestaurantInfoById(restaurantId);
+      if (fetchedRestaurant.user_id === user.id) return navigate("/")
+    }    
+
+    fetchRestaurantInfo();
+  }, [user])
+
   function handleUpdateFormData(e) {
     setFormData((prev) => ({
       ...prev,

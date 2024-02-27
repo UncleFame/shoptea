@@ -1,6 +1,5 @@
 import { useCallback, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-
 import { IoIosArrowBack } from "react-icons/io";
 import { RestaurantDetail } from "./RestaurantDetail";
 
