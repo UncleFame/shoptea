@@ -5,6 +5,7 @@ import BottomBar from "../components/BottomBar";
 import { supabase } from "./loginsystem";
 import ProfileAndSearch from "../components/profileandsearch";
 import { RestaurantItem } from "../components/RestaurantItem";
+import { fetchAllReviewsByRestaurantId } from "../models/review.model";
 
 const LandingPageForReal = () => {
   
@@ -66,7 +67,19 @@ export const RestaurantList = () => {
     const fetchRestaurants = async () => {
       const { data } = await supabase.from("restaurant_details").select();
       // Sort the restaurants by star rating in descending order
-      const sortedRestaurants = data.sort((a, b) => b.star - a.star);
+      const sortedRestaurants = data.sort(async (a, b) => {
+        // Review b
+        const bReview = await fetchAllReviewsByRestaurantId(b.id);
+        const sumBReview = bReview.reduce((accu, review)=> accu + review.star,0);
+        const averageBReview = sumBReview / bReview.length;
+        // Review a
+        const aReview = await fetchAllReviewsByRestaurantId(a.id);
+        const sumAReview = aReview.reduce((accu, review)=> accu + review.star,0);
+        const averageAReview = sumAReview / aReview.length;
+        console.log(`A : ${averageAReview}, B : ${averageBReview}`)
+        return  averageBReview - averageAReview 
+      });
+      sortedRestaurants.reverse()
       setSampleRestaurants(sortedRestaurants);
     };
 

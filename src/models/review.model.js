@@ -9,7 +9,6 @@ export async function fetchAllReviewsByRestaurantId(restaurantId){
 
     if (error) throw new Error(error.message)
     
-    console.log(data)
     return data
      
   } catch (error) {
