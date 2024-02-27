@@ -502,7 +502,7 @@ const InputList = ({ formData }) => {
   const formLabels = useMemo(() => {
     return [
       "ชื่อร้าน",
-      "เวลา เปิด/ปิด",
+      "เวลา เปิด-ปิด",
       "ราคา",
       "จังหวัด",
       "เบอร์",

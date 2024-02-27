@@ -72,7 +72,7 @@ export const RestaurantDetail = () => {
             <p className="m-0 text-gray-100 text-sm">
 
               <span>
-                เปิดบริการ {firstRestaurant.operationDay ? `${firstRestaurant.operationDay.split("/")[0]} - ${firstRestaurant.operationDay.split("/")[1]}` : "-"}
+                เปิดบริการ {firstRestaurant.operationDay ? firstRestaurant.operationDay : "-"}
               </span>
             </p>
             <p className="m-0 text-gray-200 text-sm">

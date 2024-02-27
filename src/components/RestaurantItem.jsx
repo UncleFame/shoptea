@@ -46,9 +46,9 @@ export const RestaurantItem = ({ restaurant }) => {
         <p className="m-0 text-sm text-gray-100">ราคา {restaurant.price} บาท</p>
         <p className="m-0 text-sm text-gray-200">จ. {restaurant.province}</p>
         <p className="m-0 text-sm text-gray-200">
-          เปิดบริการ{" "}
+          เปิดบริการ
           {restaurant.operationDay
-            ? restaurant.operationDay.split("/").join("-")
+            ? restaurant.operationDay
             : "-"}
         </p>
       </div>
