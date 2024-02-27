@@ -42,7 +42,6 @@ export const RestaurantItem = ({ restaurant }) => {
           <span className="text-gray-200 font-semibold text-sm">Open: </span>{" "}
           {restaurant.open} - {restaurant.close}
         </p>
-        <p className="m-0 text-sm text-gray-100 ">{restaurant.name}</p>
         <p className="m-0 text-sm text-gray-100">ราคา {restaurant.price} บาท</p>
         <p className="m-0 text-sm text-gray-200">จ. {restaurant.province}</p>
         <p className="m-0 text-sm text-gray-200">
