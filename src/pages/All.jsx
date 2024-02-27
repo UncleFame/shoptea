@@ -36,7 +36,7 @@ const All = () => {
     const fetchRestaurants = async () => {
       try {
         const { data } = await supabase.from("restaurant_details").select();
-        setFilteredRestaurants(data); // Initialize filtered restaurants with all restaurants
+        setFilteredRestaurants(data.reverse()); // Initialize filtered restaurants with all restaurants
       } catch (error) {
         console.error("Error fetching restaurants:", error.message);
       }
