@@ -245,7 +245,7 @@ function Review({ review }) {
           />
         )}
       </div>
-      <h3 className="text-sm font-normal">{review?.comment}</h3>
+      <h3 className="text-sm font-normal break-words">{review?.comment}</h3>
     </div>
   );
 }
