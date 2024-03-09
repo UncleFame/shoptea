@@ -128,7 +128,10 @@ export const RestaurantDetail = () => {
             <div className="w-full h-[2px] bg-gray-300"></div>
 
             <div className="flex justify-center mt-10">
+              <div className="flex flex-col items-center">
               <IoMdAddCircleOutline size={"30"} onClick={GoComment} />
+              <p className="p-0 m-0">สร้างรีวิว</p>
+              </div>
             </div>
           </div>
         </div>
