@@ -66,13 +66,13 @@ const Comment = () => {
       <div className="flex justify-between w-full px-6 box-border mt-5">
         <button
           onClick={() => navigate("/")}
-          className="bg-red-600 bg-transparent text-left inline-block text-white w-[100px] items-center justify-center py-3 rounded-lg"
+          className="bg-red-600 text-left inline-block text-white w-[100px] items-center justify-center py-3 rounded-lg"
         >
           <p className="p-0 m-0 font-semibold font-inter w-min mx-auto">ยกเลิก </p>
         </button>
         <button
           onClick={handleAddReview}
-          className="bg-green-600 text-left inline-block bg-transparent w-[100px] items-center justify-center py-3 rounded-lg"
+          className="bg-green-600 text-left inline-block w-[100px] items-center justify-center py-3 rounded-lg"
         >
           <p className="text-white p-0 m-0 font-semibold font-inter mx-auto w-min">สร้าง</p>
         </button>

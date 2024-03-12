@@ -1,4 +1,3 @@
-import { MdNoEncryptionGmailerrorred } from "react-icons/md";
 import { supabase } from "../pages/loginsystem";
 
 export async function deleteRestaurantCover(restaurantName: string) {
